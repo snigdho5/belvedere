@@ -1,0 +1,331 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use App\Sponsor;
+use App\Userpackage;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use DataTables;
+use Image;
+use DateTime;
+use Auth;
+class PrimiumController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {   
+        if ($request->ajax()){
+            
+            //$data       =   new Userpackage();
+            $data = Userpackage::Join('users', function($join) {
+                $join->on('userpackages.id', '=', 'users.id');
+            });
+            /*echo '<pre>';
+            print_r($data->get());
+            die();*/
+            $testRedio  =   $request->myKey;
+            
+            if($testRedio === 'All'){
+                $data   =   $data->get();
+            }
+            else{
+                $data   =   $data->where('type',$testRedio)->get();                
+            }
+
+            return DataTables::of($data)
+                        ->addIndexColumn()
+                        ->addColumn('action', function($row){
+                            $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="'. $row->id .'" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
+                            $btn    .=  '<a href="javascript:void(0)" id="DeleteModel" data-id="'. $row->id .'" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
+                            return $btn;
+                    })
+                    ->addColumn('status', function($row){
+                        if($row->status == 1){
+                            $row->status    =   'Active';
+                        }
+                        else{
+                            $row->status    =   'Inactive';
+                        }
+                        return $row->status;
+                    })
+                    ->addColumn('company', function($row){
+                        if($row->company){
+                            $row->company   =   $row->company;                            
+                        }
+                        else{
+                            $row->company   =   'NA';
+                        }
+                        return $row->company;
+                    })
+                    ->addColumn('title', function($row){
+                        if($row->title){                            
+                            $row->title   =   $row->title;
+                        }
+                        else{
+                            $row->title   =   'NA';
+                        }
+                        return $row->title;
+                    })
+                    ->addColumn('industry', function($row){
+                        if($row->industry){                            
+                            $row->industry   =   $row->industry;
+                        }
+                        else{
+                            $row->industry   =   'NA';
+                        }
+                        return $row->industry;
+                    })
+                    ->addColumn('price', function($row){
+                        if($row->price){
+                            $price  =   '€'.$row->price;
+                        }
+                        else{
+                            $price  =   $row->price;
+                        }
+                        return $price;
+                    })
+                    ->addColumn('phone_no', function($row){
+                        if($row->phone_no){                            
+                            $row->phone_no   =   $row->phone_no;
+                        }
+                        else{
+                            $row->phone_no   =   'NA';
+                        }
+                        return $row->phone_no;
+                    })
+                    ->rawColumns(['action','status','company','title','phone_no','industry'])
+                    ->make(true);
+        }
+        return view('admin.payedmember');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    public function get_user_billing_history(Request $request)
+    {
+        if ($request->ajax()){
+            $data       =   new Userpackage();
+
+            $testRedio  =   $request->myKey;            
+            if($testRedio === 'All'){
+                $data   =   $data->get();
+            }
+            else{
+                $data   =   $data->where('type',$testRedio)->get();                
+            }
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function($row){
+                    if($row->status == 1){
+                        $row->status    =   'Active';
+                    }
+                    else{
+                        $row->status    =   'Inactive';
+                    }
+                    return $row->status;
+                })
+                ->addColumn('price', function($row){
+                    if($row->price){
+                        $price  =   '€'.$row->price;
+                    }
+                    else{
+                        $price  =   $row->price;
+                    }
+                    return $price;
+                })
+                ->addColumn('action', function($row){
+                    $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="'. $row->id .'" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
+                    $btn    .=  '<a href="javascript:void(0)" id="DeleteModel" data-id="'. $row->id .'" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
+                    return $btn;
+            })            
+            ->rawColumns(['action','status'])
+            ->make(true);
+        }
+        return view('admin.payedmemberlogs');
+    }
+
+    public function export_data()
+    {
+        $dbData    =   Userpackage::get();
+
+        $file = time()."-export.xls" ;
+        header('Content-Type: application/xls');
+        header('Content-Disposition: attachment; filename='.$file);
+
+        $proData    =   '';
+
+        if(count($dbData) > 0){
+            $proData    .=   '<table>
+                <tr>
+                    <th>id</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>User Type</th>
+                    <th>Price</th>
+                    <th>Month</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Package Id</th>
+                    <th>Status</th>
+                </tr>';
+
+                foreach($dbData as $data){
+
+                    $proData    .=  '<tr>';
+
+                    $proData    .=  '<td>'.$data->id.'</td>';
+                    $proData    .=  '<td>'.$data->username.'</td>';
+                    $proData    .=  '<td>'.$data->useremail.'</td>';
+                    $proData    .=  '<td>'.$data->type.'</td>';
+                    $proData    .=  '<td>'.$data->price.'</td>';
+                    $proData    .=  '<td>'.$data->month.'</td>';
+                    $proData    .=  '<td>'.$data->start_date.'</td>';
+                    $proData    .=  '<td>'.$data->end_date.'</td>';
+                    $proData    .=  '<td>'.$data->package_id.'</td>';
+                    if($data->status){
+                        $proData    .=  '<td>Active</td>';
+                    }
+                    else{
+                        $proData    .=  '<td>In-Active</td>';
+                    }
+
+                    $proData    .=  '</tr>';
+                }
+
+            $proData    .=   '</table>';
+            echo $proData;
+        }
+    }
+
+    public function export_primium_data()
+    {
+        $dbData     =   Userpackage::Join('users', function($join){
+            $join->on('userpackages.id', '=', 'users.id');
+        })->get();
+
+        $file = time()."-export.xls" ;
+        header('Content-Type: application/xls');
+        header('Content-Disposition: attachment; filename='.$file);
+
+        $proData    =   '';
+
+        if(count($dbData) > 0){
+            $proData    .=   '<table>
+                <tr>
+                    <th>id</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>User Type</th>
+                    <th>Price</th>
+                    <th>Month</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                    <th>Phone</th>
+                    <th>Industry</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                </tr>';
+
+                foreach($dbData as $data){
+                    $proData    .=  '<tr>';
+
+                    $proData    .=  '<td>'.$data->id.'</td>';
+                    $proData    .=  '<td>'.$data->username.'</td>';
+                    $proData    .=  '<td>'.$data->useremail.'</td>';
+                    $proData    .=  '<td>'.$data->type.'</td>';
+                    $proData    .=  '<td>'.$data->price.'</td>';
+                    $proData    .=  '<td>'.$data->month.'</td>';
+                    $proData    .=  '<td>'.$data->company.'</td>';
+                    $proData    .=  '<td>'.$data->title.'</td>';
+                    $proData    .=  '<td>'.$data->phone.'</td>';
+                    $proData    .=  '<td>'.$data->industry.'</td>';
+                    $proData    .=  '<td>'.$data->start_date.'</td>';
+                    $proData    .=  '<td>'.$data->end_date.'</td>';
+                    //$proData    .=  '<td>'.$data->package_id.'</td>';
+                    if($data->status){
+                        $proData    .=  '<td>Active</td>';
+                    }
+                    else{
+                        $proData    .=  '<td>In-Active</td>';
+                    }
+
+                    $proData    .=  '</tr>';
+                }
+
+            $proData    .=   '</table>';
+            echo $proData;
+        }
+    }
+}

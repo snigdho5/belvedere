@@ -1,0 +1,1 @@
+[14-Oct-2021 10:30:12 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 4096 bytes) in /home/h585794/belvedereunion.com/vendor/box/spout/src/Spout/Common/Entity/Cell.php on line 107
