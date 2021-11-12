@@ -269,11 +269,11 @@
 @stop
 
 @section('page-styles')
-<link rel="stylesheet" href="{{ asset('assets/vendor/table-dragger/table-dragger.min.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/table-dragger/table-dragger.min.css') }}">
 @stop
 
 @section('vendor-script')
-<script src="{{ asset('assets/vendor/table-dragger/table-dragger.min.js') }}"></script>
+<script src="{{ secure_url('assets/vendor/table-dragger/table-dragger.min.js') }}"></script>
 @stop
 
 @section('page-script')

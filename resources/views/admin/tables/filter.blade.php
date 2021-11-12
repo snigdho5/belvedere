@@ -44,7 +44,7 @@
                     <tbody>
                         <tr data-status="approved">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar1.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 1</a>
@@ -59,7 +59,7 @@
                         </tr>
                         <tr data-status="suspended">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar2.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 2</a>
@@ -74,7 +74,7 @@
                         </tr>
                         <tr data-status="blocked">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar3.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar3.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 3</a>
@@ -89,7 +89,7 @@
                         </tr>
                         <tr data-status="approved">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar4.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar4.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 4</a>
@@ -104,7 +104,7 @@
                         </tr>
                         <tr data-status="pending">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar5.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 5</a>
@@ -119,7 +119,7 @@
                         </tr>
                         <tr data-status="suspended">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar6.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar6.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 2</a>
@@ -134,7 +134,7 @@
                         </tr>
                         <tr data-status="blocked">
                             <td class="w60">
-                                <img src="{{ asset('assets/images/xs/avatar7.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
+                                <img src="{{ secure_url('assets/images/xs/avatar7.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded-circle">
                             </td>
                             <td>
                                 <a href="javascript:void(0);" title="">Project 3</a>
@@ -164,5 +164,5 @@
 @stop
 
 @section('page-script')
-<script src="{{ asset('assets/js/pages/tables/table-filter.js') }}"></script>
+<script src="{{ secure_url('assets/js/pages/tables/table-filter.js') }}"></script>
 @stop

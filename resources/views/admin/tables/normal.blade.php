@@ -45,7 +45,7 @@
                         <tbody>
                             <tr>
                                 <td class="w60">
-                                    <img src="{{ asset('assets/images/xs/avatar1.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
+                                    <img src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" title="">Project 1</a>
@@ -60,7 +60,7 @@
                             </tr>
                             <tr>
                                 <td class="w60">
-                                    <img src="{{ asset('assets/images/xs/avatar2.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
+                                    <img src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" title="">Project 2</a>
@@ -75,7 +75,7 @@
                             </tr>
                             <tr>
                                 <td class="w60">
-                                    <img src="{{ asset('assets/images/xs/avatar3.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
+                                    <img src="{{ secure_url('assets/images/xs/avatar3.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" title="">Project 3</a>
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td class="w60">
-                                    <img src="{{ asset('assets/images/xs/avatar4.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
+                                    <img src="{{ secure_url('assets/images/xs/avatar4.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" title="">Project 4</a>
@@ -105,7 +105,7 @@
                             </tr>
                             <tr>
                                 <td class="w60">
-                                    <img src="{{ asset('assets/images/xs/avatar6.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
+                                    <img src="{{ secure_url('assets/images/xs/avatar6.jpg') }}" data-toggle="tooltip" data-placement="top" title="Avatar Name" alt="Avatar" class="w35 rounded">
                                 </td>
                                 <td>
                                     <a href="javascript:void(0);" title="">Project 5</a>

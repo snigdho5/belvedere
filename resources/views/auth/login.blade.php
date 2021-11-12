@@ -49,7 +49,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                 <h2>Become a Member</h2>
 
-                <p>Not a member yet? <a href="{{ asset('/') }}" style="color: white"> Register here.</a></p>
+                <p>Not a member yet? <a href="{{ secure_url('/') }}" style="color: white"> Register here.</a></p>
 
 
 
@@ -173,7 +173,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                                         <div class="brands_item d-flex flex-column justify-content-center">
 
-                                            <img src="{{ asset('imagess/thumb-'.$item->image) }}" class="img-responsive" title="{{$item->title}}">
+                                            <img src="{{ secure_url('imagess/thumb-'.$item->image) }}" class="img-responsive" title="{{$item->title}}">
 
                                         </div>
 

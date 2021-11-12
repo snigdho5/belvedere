@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <div class="navbar-left">
                 <div class="navbar-btn">
-                    <a href="index.html"><img src="{{ asset('assets/images/icon.svg') }}" alt="Mooli Logo" class="img-fluid logo"></a>
+                    <a href="index.html"><img src="{{ secure_url('assets/images/icon.svg') }}" alt="Mooli Logo" class="img-fluid logo"></a>
                     <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-align-left"></i></button>
                 </div>
                 <form id="navbar-search" class="navbar-form search-form">
@@ -33,7 +33,7 @@
                                 <li>
                                     <a href="javascript:void(0);">
                                         <div class="media">
-                                            <img class="media-object" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
+                                            <img class="media-object" src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" alt="">
                                             <div class="media-body">
                                                 <span class="name">James Wert <small class="float-right font-12">Just now</small></span>
                                                 <span class="message">Update GitHub</span>
@@ -44,7 +44,7 @@
                                 <li>
                                     <a href="javascript:void(0);">
                                         <div class="media">
-                                            <img class="media-object" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
+                                            <img class="media-object" src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" alt="">
                                             <div class="media-body">
                                                 <span class="name">Folisise Chosielie <small class="float-right font-12">12min ago</small></span>
                                                 <span class="message">New Messages</span>
@@ -55,7 +55,7 @@
                                 <li>
                                     <a href="javascript:void(0);">
                                         <div class="media">
-                                            <img class="media-object" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
+                                            <img class="media-object" src="{{ secure_url('assets/images/xs/avatar3.jpg') }}" alt="">
                                             <div class="media-body">
                                                 <span class="name">Louis Henry <small class="float-right font-12">38min ago</small></span>
                                                 <span class="message">Design bug fix</span>
@@ -66,7 +66,7 @@
                                 <li>
                                     <a href="javascript:void(0);">
                                         <div class="media mb-0">
-                                            <img class="media-object" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
+                                            <img class="media-object" src="{{ secure_url('assets/images/xs/avatar4.jpg') }}" alt="">
                                             <div class="media-body">
                                                 <span class="name">Debra Stewart <small class="float-right font-12">2hr ago</small></span>
                                                 <span class="message">Fix Bug</span>
@@ -124,12 +124,12 @@
                         <li class="dropdown language-menu hidden-xs">
                             <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown"><i class="fa fa-language"></i></a>
                             <div class="dropdown-menu language_widget mt-0">
-                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ asset('assets/images/flag/us.svg') }}" alt="US English" > US English</a>
-                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ asset('assets/images/flag/gb.svg') }}" alt="UK English" > UK English</a>
+                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ secure_url('assets/images/flag/us.svg') }}" alt="US English" > US English</a>
+                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ secure_url('assets/images/flag/gb.svg') }}" alt="UK English" > UK English</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ asset('assets/images/flag/russia.svg') }}" alt="Russian" > Russian</a>
-                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ asset('assets/images/flag/arabia.svg') }}" alt="Arabic" > Arabic</a>
-                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ asset('assets/images/flag/france.svg') }}" alt="French" > French</a>
+                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ secure_url('assets/images/flag/russia.svg') }}" alt="Russian" > Russian</a>
+                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ secure_url('assets/images/flag/arabia.svg') }}" alt="Arabic" > Arabic</a>
+                                <a class="dropdown-item pt-2 pb-2" href="javascript:void(0);"><img src="{{ secure_url('assets/images/flag/france.svg') }}" alt="French" > French</a>
                             </div>
                         </li>
                         <li><a href="javascript:void(0);" class="right_toggle icon-menu" title="Right Menu"><i class="fa fa-comments-o"></i></a></li>

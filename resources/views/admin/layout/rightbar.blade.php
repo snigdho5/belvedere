@@ -20,7 +20,7 @@
                         <ul class="right_chat list-unstyled mb-0 animation-li-delay">
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Louis Henry <small class="text-muted font-12">10 min</small></span>
                                         <span class="message">How do you do?</span>
@@ -30,7 +30,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Debra Stewart <small class="text-muted font-12">15 min</small></span>
                                         <span class="message">I was wondering...</span>
@@ -40,7 +40,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar3.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Lisa Garett <small class="text-muted font-12">18 min</small></span>
                                         <span class="message">I've forgotten how it felt before</span>
@@ -50,7 +50,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar4.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Folisise Chosielie <small class="text-muted font-12">23 min</small></span>
                                         <span class="message">Wasup for the third time like...</span>
@@ -60,7 +60,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Marshall Nichols <small class="text-muted font-12">27 min</small></span>
                                         <span class="message">But we’re probably gonna need a new carpet.</span>
@@ -70,7 +70,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar6.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar6.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Debra Stewart <small class="text-muted font-12">38 min</small></span>
                                         <span class="message">It’s not that bad...</span>
@@ -80,7 +80,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar7.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Lisa Garett <small class="text-muted font-12">45 min</small></span>
                                         <span class="message">How do you do?</span>
@@ -94,7 +94,7 @@
                         <ul class="right_chat list-unstyled mb-0 animation-li-delay">
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">PHP Groups<small class="text-muted font-12">10 min</small></span>
                                         <span class="message">How do you do?</span>
@@ -104,7 +104,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Family Groups <small class="text-muted font-12">18 min</small></span>
                                         <span class="message">I've forgotten how it felt before</span>
@@ -114,7 +114,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Friends holic <small class="text-muted font-12">23 min</small></span>
                                         <span class="message">Wasup for the third time like...</span>
@@ -124,7 +124,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar8.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar8.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">CL City 2 <small class="text-muted font-12">45 min</small></span>
                                         <span class="message">How do you do?</span>
@@ -138,7 +138,7 @@
                         <ul class="right_chat list-unstyled mb-0 animation-li-delay">
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar4.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar4.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">John Smith <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">johnsmith@info.com</span>
@@ -148,7 +148,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Merri Diamond <small class="text-muted font-12"><i class="fa fa-heart"></i></small></span>
                                         <span class="message">hermanbeck@info.com</span>
@@ -158,7 +158,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Louis Henry <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">maryadams@info.com</span>
@@ -168,7 +168,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Andrew Patrick <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">mikethimas@info.com</span>
@@ -178,7 +178,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Claire Peters <small class="text-muted font-12"><i class="fa fa-heart"></i></small></span>
                                         <span class="message">clairepeters@info.com</span>
@@ -188,7 +188,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt=""> 
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" alt=""> 
                                     <div class="media-body">
                                         <span class="name">Debra Stewart <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">It’s not that bad...</span>
@@ -198,7 +198,7 @@
                             </li>
                             <li class="offline">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar5.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar5.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Lisa Garett <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">eringonzales@info.com</span>
@@ -208,7 +208,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar3.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar3.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Louis Henry <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">susiewillis@info.com</span>
@@ -218,7 +218,7 @@
                             </li>
                             <li class="online">
                                 <a href="javascript:void(0);" class="media">
-                                    <img class="media-object" src="{{ asset('assets/images/xs/avatar7.jpg') }}" alt="">
+                                    <img class="media-object" src="{{ secure_url('assets/images/xs/avatar7.jpg') }}" alt="">
                                     <div class="media-body">
                                         <span class="name">Debra Stewart <small class="text-muted font-12"><i class="fa fa-star"></i></small></span>
                                         <span class="message">johnsmith@info.com</span>

@@ -92,7 +92,7 @@
 
                                 <div class="col-lg-12">
 
-                                    {{-- <div class="form-group c_form_group">
+                                    <div class="form-group c_form_group">
 
                                         <label for="basic-url">Image</label>
 
@@ -114,7 +114,7 @@
                                         <span id="about_image_error" class="error"></span>
                                         <img src="{{ isset($data->about_image) ? $data->about_image : '' }}"
                                             id="about_image_preview" class="img-preview">
-                                    </div> --}}
+                                    </div>
 
                                     <div class="form-group c_form_group">
 
@@ -180,7 +180,7 @@
 
 @section('page-styles')
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 
 @stop
 
@@ -188,9 +188,9 @@
 
 @section('vendor-script')
 
-    <script src="{{ asset('assets/vendor/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ secure_url('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
 @stop
 
@@ -198,7 +198,7 @@
 
 @section('page-script')
 
-    <script src="{{ asset('assets/js/pages/forms/editors.js') }}"></script>
+    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
 
     <script>
         $(function() {

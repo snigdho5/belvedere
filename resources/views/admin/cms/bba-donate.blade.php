@@ -73,16 +73,16 @@
 @stop
 
 @section('page-styles')
-<link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 @stop
 
 @section('vendor-script')
-<script src="{{ asset('assets/vendor/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ secure_url('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 @stop
 
 @section('page-script')
-<script src="{{ asset('assets/js/pages/forms/editors.js') }}"></script>
+<script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
 <script>
     $(function() {
         $.ajaxSetup({

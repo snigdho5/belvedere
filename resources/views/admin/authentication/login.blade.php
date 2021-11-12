@@ -5,7 +5,7 @@
 
     <div class="auth_brand">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('assets/images/icon.svg') }}" width="50" class="d-inline-block align-top mr-2" alt="">
+            <img src="{{ secure_url('assets/images/icon.svg') }}" width="50" class="d-inline-block align-top mr-2" alt="">
             <strong>Belvedere</strong> Union
         </a>                                                
     </div>

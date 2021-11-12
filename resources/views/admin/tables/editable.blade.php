@@ -98,9 +98,9 @@
 
 @stop
 @section('vendor-script')
-<script src="{{ asset('assets/vendor/editable-table/mindmup-editabletable.js') }}"></script>
+<script src="{{ secure_url('assets/vendor/editable-table/mindmup-editabletable.js') }}"></script>
 @stop
 
 @section('page-script')
-<script src="{{ asset('assets/js/pages/tables/editable-table.js') }}"></script>
+<script src="{{ secure_url('assets/js/pages/tables/editable-table.js') }}"></script>
 @stop

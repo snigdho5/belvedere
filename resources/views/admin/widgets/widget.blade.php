@@ -624,7 +624,7 @@
             <div class="body">
                 <article class="media">
                     <div class="mr-3">
-                        <img class="rounded mr-3" src="{{ asset('assets/images/xs/avatar1.jpg') }}" alt="">
+                        <img class="rounded mr-3" src="{{ secure_url('assets/images/xs/avatar1.jpg') }}" alt="">
                     </div>
                     <div class="media-body">
                         <div class="content">
@@ -651,7 +651,7 @@
         <div class="card">
             <div class="body">
                 <div class="media mb-0">
-                    <img class="rounded mr-3" src="{{ asset('assets/images/xs/avatar2.jpg') }}" alt="">
+                    <img class="rounded mr-3" src="{{ secure_url('assets/images/xs/avatar2.jpg') }}" alt="">
                     <div class="media-body">
                         <h5 class="m-0">Deborah Cox</h5>
                         <p class="text-muted mb-0">Webdeveloper</p>                                    
@@ -702,7 +702,7 @@
     </div>
     <div class="col-lg-4 col-md-12">
         <div class="card">
-            <img class="card-img-top" src="{{ asset('assets/images/image-gallery/1.jpg') }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ secure_url('assets/images/image-gallery/1.jpg') }}" alt="Card image cap">
             <div class="body">
                 <h4 class="card-title">Card title</h4>
                 <div class="card-subtitle">Lorem ipsum dolor sit amet.</div>
@@ -898,18 +898,18 @@
 @stop
 
 @section('page-styles')
-<link rel="stylesheet" href="{{ asset('assets/vendor/c3/c3.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/c3/c3.min.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/chartist/css/chartist.min.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css') }}">
+<link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}">
 @stop
 
 @section('vendor-script')
-<script src="{{ asset('assets/bundles/chartist.bundle.js') }}"></script>
-<script src="{{ asset('assets/bundles/knob.bundle.js') }}"></script>
-<script src="{{ asset('assets/bundles/c3.bundle.js') }}"></script>
+<script src="{{ secure_url('assets/bundles/chartist.bundle.js') }}"></script>
+<script src="{{ secure_url('assets/bundles/knob.bundle.js') }}"></script>
+<script src="{{ secure_url('assets/bundles/c3.bundle.js') }}"></script>
 @stop
 
 @section('page-script')
-<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
+<script src="{{ secure_url('assets/js/pages/widgets.js') }}"></script>
 @stop
