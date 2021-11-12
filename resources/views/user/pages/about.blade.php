@@ -93,7 +93,8 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                 <div class="xt-video xt-video-popup-type-with_image">
 
-                    <div class="xt-video-img"><img src="{!!isset($content->video_link)?$content->video_link:'user/images/about-6-min.jpg'!!}" alt="">
+                    <div class="xt-video-img">
+                        <img src="{{ isset($content->about_image) ? secure_url('uploads/image/' . $content->about_image) : '' }}" alt="about-image">
 
                         {{-- <div class="xt-video-overlay"><a class="xt-video-popup-btn" data-fancybox="" href="https://youtu.be/AGBjI0x9VbM"><span class="video-popup-play-icon"></span></a></div> --}}
 

@@ -12,6 +12,8 @@ use App\User;
 
 use Redirect;
 
+use DB;
+
 
 
 use App\CmsContent;
@@ -92,7 +94,9 @@ class CmsController extends Controller
         $postData   =   $request->all();
         $image = $request->file('about_image') ?? '';
 
-        // dd($image);
+        // echo '<pre>';print_r($postData);
+ 
+        // dd($image); 
         if (!empty($image)) {
 
             $uploadPath = public_path('/uploads/image');
@@ -106,7 +110,10 @@ class CmsController extends Controller
             $imagename = $fileName;
 
             $postData['about_image'] = $imagename;
-            // $postData['about_image'];die;
+            // echo $postData['about_image'];die;
+        } else {
+            // echo 'ss';die;
+            $postData['about_image'] = '';
         }
 
         $pagetype   =   $postData['page_type'];
@@ -115,9 +122,29 @@ class CmsController extends Controller
 
         if ($layout) {
 
-            CmsContent::updateOrCreate(["id" => $layout->id], $postData);
-        } else {
+            if ($postData['about_image'] != '') {
+                $updArray = array(
+                    'title' => $postData['title'],
+                    'video_link' => $postData['video_link'],
+                    'description' => $postData['description'],
+                    'about_image' => $postData['about_image']
+                );
+            } else {
+                $updArray = array(
+                    'title' => $postData['title'],
+                    'video_link' => $postData['video_link'],
+                    'description' => $postData['description']
+                );
+            }
 
+            DB::table('cms_contents')
+                ->where('id', $layout->id)
+                ->limit(1)
+                ->update($updArray);
+
+            // echo '<pre>';print_r($updArray);die;
+            // CmsContent::updateOrCreate(["id" => $layout->id], $postData);
+        } else {
             CmsContent::create($postData);
         }
 

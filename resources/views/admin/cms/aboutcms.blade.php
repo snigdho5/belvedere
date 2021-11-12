@@ -112,23 +112,24 @@
                                         </div>
 
                                         <span id="about_image_error" class="error"></span>
-                                        <img src="{{ isset($data->about_image) ? $data->about_image : '' }}"
+                                        <img src="{{ isset($data->about_image) ? secure_url('uploads/image/' . $data->about_image) : '' }}"
                                             id="about_image_preview" class="img-preview">
                                     </div>
 
                                     <div class="form-group c_form_group">
 
-                                    <label>Image Link</label>
+                                        <label>Video Link</label>
 
-                                    <div class="input-group">
+                                        <div class="input-group">
 
-                                        <input class="form-control" id="video_link" name="video_link" value="{{isset($data->video_link)?$data->video_link:''}}">
+                                            <input class="form-control" id="video_link" name="video_link"
+                                                value="{{ isset($data->video_link) ? $data->video_link : '' }}">
+
+                                        </div>
+
+                                        <span id="title_error" class="error"></span>
 
                                     </div>
-
-                                    <span id="title_error" class="error"></span>
-
-                                </div>
 
                                 </div>
 
@@ -142,9 +143,10 @@
 
                                         <div class="">
 
-                                        <textarea class="
-                                            form-control" id="ckeditor" name="description" aria-label="With textarea">
-                                            {{ isset($data->description) ? $data->description : '' }}</textarea>
+                                            <textarea class="
+                                            form-control"
+                                                id="ckeditor" name="description" aria-label="With textarea">
+                                                {{ isset($data->description) ? $data->description : '' }}</textarea>
 
                                         </div>
 

@@ -61,6 +61,8 @@ Route::get('/', function(){
 
     $pkg            =   Package::where('type','member')->get();
 
+    // echo '<pre>';print_r($cmsData);die;
+
     return view('user.pages.home',compact('cmsData','eventData','ourClubData','blogData','oursponser','pkg'));
 
 })->name('home');
