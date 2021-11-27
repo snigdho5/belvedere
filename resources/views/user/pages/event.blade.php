@@ -2,25 +2,24 @@
 
 @push('css')
 
-<style>
+    <style>
+        .tttext {
 
-    .tttext {
+            display: block;
 
-    display: block;
+            width: 200px;
 
-    width: 200px;
+            overflow: hidden;
 
-    overflow: hidden;
+            white-space: nowrap;
 
-    white-space: nowrap;
+            text-overflow: ellipsis;
 
-    text-overflow: ellipsis;
+        }
 
-    }
+    </style>
 
-</style>
 
-    
 
 @endpush
 
@@ -70,14 +69,16 @@
 
             <!-- <p class="section-title-small text-center  section-title-small-border-yes">Lorem ipsum dolor sit amet,
 
-                consectetuer.</p> -->
+                            consectetuer.</p> -->
 
 
 
-            <p class="text-center  section-title-small-border-yes">To be announced at a later date.</p>    
+            <p class="text-center  section-title-small-border-yes">To be announced at a later date.</p>
 
-            
-            <p class="text-center  section-title-small-border-yes">Booking for the annual Dinner is now closed. There are still places available at some tables. If you would still like to attend please email the union office at belvedereunion@belvederecollege.ie</p>    
+
+            <p class="text-center  section-title-small-border-yes">Booking for the annual Dinner is now closed. There are
+                still places available at some tables. If you would still like to attend please email the union office at
+                belvedereunion@belvederecollege.ie</p>
 
 
 
@@ -87,65 +88,67 @@
 
                 @foreach ($data as $item)
 
-                        
+                    @if ($item['status'] == 1)
 
-                    @php                            
+                        @php
+                            $timestemp = $item['fromdate'];
+                            
+                            $year = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->year;
+                            
+                            $month = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->month;
+                            
+                            $day = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->day;
+                        @endphp
 
-                        $timestemp = $item['fromdate'];
 
-                        $year = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->year;
 
-                        $month = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->month;
+                        <li class="course  col-lg-4 col-md-6">
 
-                        $day = Carbon\Carbon::createFromFormat('Y-m-d', $timestemp)->day;
+                            <div class="reptro-course-loop-thumbnail-area">
 
-                    @endphp
+                                <div class="reptro-course-details-btn"> <a class="btn btn-fill btn-lg"
+                                        href="{{ url('eventdetail/' . $item['id']) }}">Details</a></div>
 
-               
-
-                <li class="course  col-lg-4 col-md-6">
-
-                    <div class="reptro-course-loop-thumbnail-area">
-
-                        <div class="reptro-course-details-btn"> <a class="btn btn-fill btn-lg"
-
-                                href="{{ url('eventdetail/'.$item['id']) }}">Details</a></div>
-
-                        <div class="course-thumbnail"> <img width="570" height="461" src="imagess/{{ $item['image'] }}"></div>
-
-                    </div>
-
-                    <div class="reptro-course-item-inner"> <a href="#" class="course-permalink">
-
-                            <h3 class="course-title">{{ $item->title }}</h3>
-
-                        </a>
-
-                        <div class="event-info">
-
-                            <div class="reptro-event-date">
-
-                            <span class="reptro-event-day">{{ $day }}</span>
-
-                            <span class="reptro-event-month">{{ date('F', mktime(0, 0, 0, $month, 10)) }}</span>
-
-                            <span class="reptro-event-year">{{ $year }}</span>
+                                <div class="course-thumbnail"> <img width="570" height="461"
+                                        src="imagess/{{ $item['image'] }}"></div>
 
                             </div>
 
-                            <div class="venueTime">
+                            <div class="reptro-course-item-inner"> <a href="#" class="course-permalink">
 
-                                <span class="reptro-event-time tttext"> <i class="sli-clock"></i>Thursday, {{ $item['time'] }}</span>
+                                    <h3 class="course-title">{{ $item->title }}</h3>
 
-                                <span class="reptro-event-venue tttext"><i class="sli-location-pin"></i>{{ $item['address'] }}</span>
+                                </a>
+
+                                <div class="event-info">
+
+                                    <div class="reptro-event-date">
+
+                                        <span class="reptro-event-day">{{ $day }}</span>
+
+                                        <span
+                                            class="reptro-event-month">{{ date('F', mktime(0, 0, 0, $month, 10)) }}</span>
+
+                                        <span class="reptro-event-year">{{ $year }}</span>
+
+                                    </div>
+
+                                    <div class="venueTime">
+
+                                        <span class="reptro-event-time tttext"> <i class="sli-clock"></i>Thursday,
+                                            {{ $item['time'] }}</span>
+
+                                        <span class="reptro-event-venue tttext"><i
+                                                class="sli-location-pin"></i>{{ $item['address'] }}</span>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
-                        </div>
-
-                    </div> 
-
-                    @endforeach 
+                    @endif
+                @endforeach
 
             </ul>
 
@@ -168,4 +171,3 @@
     @include('user.include.sponser')
 
 @endsection
-

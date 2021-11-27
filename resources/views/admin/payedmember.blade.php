@@ -16,7 +16,7 @@
 
             <div class="col-xl-5 col-md-5 col-sm-12">
 
-                <h1>Manage Member</h1>
+                <h1>Manage Members</h1>
 
 
 
@@ -280,13 +280,25 @@
                                     <option value="company">Company</option>
                                     <option value="title">Title</option>
                                     <option value="phone_no">Phone</option>
+                                    <option value="status">Status</option>
                                 </select>
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group search-box">
 
                                 <input type="text" name="search_key" id="search_key" class="form-control" placeholder="Search.." />
+
+                            </div>
+
+                            
+                            <div class="form-group status-drop" style="display:none;">
+
+                                <select class="form-control" name="set_status" id="set_status">
+                                    <option value="">Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
 
                             </div>
 
@@ -530,6 +542,9 @@
 
                                 </div>
 
+                                    
+
+
 <!--                                <div class="col-lg-12">
 
                                     <div class="form-group c_form_group">
@@ -753,6 +768,26 @@
                                             </div>
 
                                             <input name="industry" type="text" class="form-control" id="editindustry" aria-describedby="basic-addon3">
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                
+                                <div class="col-lg-12">
+
+                                    <div class="form-group c_form_group">
+
+                                        <label>Status</label>
+
+                                        <div class="input-group">
+
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="" >Select</option>
+                                            </select>
+
 
                                         </div>
 
@@ -1098,6 +1133,8 @@
 
                 $('#ModelButton').html('Edit');
 
+                $('#status').html('');
+
                 $.ajax({
 
                     /*url: "{{ url('managesponsors') }}/" + Id,
@@ -1114,7 +1151,7 @@
 
                         var response = JSON.parse(result);
 
-                        //console.log(response.phone_no);
+                        // console.log(response);
 
                         $('#editForm').trigger("reset");
 
@@ -1131,6 +1168,14 @@
                         $('#editphone').val(response.phone_no);
 
                         $('#editindustry').val(response.industry);
+
+                        if(response.status == 1){
+                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
+                        }else{
+                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
+                        }
+
+                        $('#status').append(html_opt);
 
                         //$('#imageappendhere').append(
 
@@ -1258,6 +1303,19 @@
 
                 });*/
 
+            });
+
+
+            $(document).on("change", "#filter_type", function() {
+                var filter_type = $(this).val();
+                if(filter_type == 'status'){
+                    $('.search-box').hide();
+                    $('.status-drop').show();
+                }else{
+                    $('.status-drop').hide();
+                    $('.search-box').show();
+                }
+                
             });
 
             

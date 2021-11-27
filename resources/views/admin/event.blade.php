@@ -46,7 +46,7 @@
 
                         <h4>
 
-                            {{--<li>
+                            {{-- <li>
 
                                 <a href="{{url('export_event_data')}}">
 
@@ -54,7 +54,7 @@
 
                                 </a>
 
-                            </li>--}}
+                            </li> --}}
 
                             <li>
 
@@ -69,7 +69,6 @@
                             <li class="dropdown">
 
                                 <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
-
                                     aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
                                     <i class="icon-plus"></i>
@@ -86,19 +85,19 @@
 
                 <div class="row">
 
-                    <div class="col-md-12"> 
+                    <div class="col-md-12">
 
-                        @if(count($errors) > 0)
+                        @if (count($errors) > 0)
 
                             <div class="alert alert-danger">
 
-                                upload validation error<br/>
+                                upload validation error<br />
 
                                 <ul>
 
-                                    @foreach($errors->all() as $error)
+                                    @foreach ($errors->all() as $error)
 
-                                        <li>{{$error}}</li>
+                                        <li>{{ $error }}</li>
 
                                     @endforeach
 
@@ -108,25 +107,25 @@
 
                         @endif
 
-                        @if($message = Session::get('success'))
+                        @if ($message = Session::get('success'))
 
                             <div class="alert alert-success alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
 
-                                <strong>{{$message}}</strong>
+                                <strong>{{ $message }}</strong>
 
                             </div>
 
                         @endif
 
-                        @if($message = Session::get('error'))
+                        @if ($message = Session::get('error'))
 
                             <div class="alert alert-danger alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
 
-                                <strong>{{$message}}</strong>
+                                <strong>{{ $message }}</strong>
 
                             </div>
 
@@ -140,19 +139,21 @@
 
                     <div class="col-md-6">
 
-                        <form method="post" action="{{url('export_event_data')}}">
+                        <form method="post" action="{{ url('export_event_data') }}">
 
                             @csrf
 
                             <div class="form-group">
 
-                                <input type="text" name="expofromdate" id="expofromdate" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Select From date"/>
+                                <input type="text" name="expofromdate" id="expofromdate" data-provide="datepicker"
+                                    data-date-autoclose="true" class="form-control" placeholder="Select From date" />
 
                             </div>
 
                             <div class="form-group">
 
-                                <input type="text" name="expotodate" id="expotodate" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Select To date"/>
+                                <input type="text" name="expotodate" id="expotodate" data-provide="datepicker"
+                                    data-date-autoclose="true" class="form-control" placeholder="Select To date" />
 
                             </div>
 
@@ -162,13 +163,25 @@
                                     <option value="">Select Column</option>
                                     <option value="title">Title</option>
                                     <option value="location">Location</option>
+                                    <option value="status">Status</option>
                                 </select>
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group search-box">
 
-                                <input type="text" name="search_key" id="search_key" class="form-control" placeholder="Search.." />
+                                <input type="text" name="search_key" id="search_key" class="form-control"
+                                    placeholder="Search.." />
+
+                            </div>
+
+                            <div class="form-group status-drop" style="display:none;">
+
+                                <select class="form-control" name="set_status" id="set_status">
+                                    <option value="">Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inctive</option>
+                                </select>
 
                             </div>
 
@@ -208,6 +221,8 @@
 
                                     <!-- <th>Phone no</th> -->
 
+                                    <th>Status</th>
+
                                     <th>Action</th>
 
                                 </tr>
@@ -216,7 +231,7 @@
 
                             <tbody>
 
-                                
+
 
                             </tbody>
 
@@ -237,7 +252,6 @@
     <!-- Modal with btn -->
 
     <div class="modal fade bd-example-modal-lg" id="MyModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-
         aria-hidden="true">
 
         <div class="modal-dialog modal-lg">
@@ -279,7 +293,6 @@
                                             </div>
 
                                             <input name="title" type="text" class="form-control" id="title"
-
                                                 aria-describedby="basic-addon3">
 
                                         </div>
@@ -304,7 +317,8 @@
 
                                             </div>
 
-                                            <textarea name="map" id="map" class="form-control" aria-label="With textarea" style="resize:none; height: 175px;"></textarea>                                            
+                                            <textarea name="map" id="map" class="form-control" aria-label="With textarea"
+                                                style="resize:none; height: 175px;"></textarea>
 
                                         </div>
 
@@ -322,9 +336,10 @@
 
                                         <div class="input-group">
 
-                                            <input id="fromdate" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Select date"/>
+                                            <input id="fromdate" data-provide="datepicker" data-date-autoclose="true"
+                                                class="form-control" placeholder="Select date" />
 
-                                            <input id="finalfromdate" type="hidden" name="fromdate"/>
+                                            <input id="finalfromdate" type="hidden" name="fromdate" />
 
                                         </div>
 
@@ -334,7 +349,7 @@
 
 
 
-                                {{--<div class="col-lg-4 col-md-6">
+                                {{-- <div class="col-lg-4 col-md-6">
 
                                     <div class="form-group c_form_group">
 
@@ -350,7 +365,7 @@
 
                                     </div>
 
-                                </div>--}}
+                                </div> --}}
 
 
 
@@ -361,7 +376,6 @@
                                         <label for="basic-url">Time</label>
 
                                         <div class="input-group clockpicker" data-placement="left" data-align="top"
-
                                             data-autoclose="true">
 
                                             <input name="time" id="time" type="text" class="form-control" value="13:14">
@@ -395,7 +409,6 @@
                                             </div>
 
                                             <input name="cost" id="cost" type="text" class="form-control" id=""
-
                                                 aria-describedby="basic-addon3">
 
                                         </div>
@@ -404,7 +417,7 @@
 
                                 </div>
 
-                                 
+
 
                                 <div class="col-lg-6">
 
@@ -422,17 +435,17 @@
 
                                             <input name="image" type="file" class="custom-file-input" id="inputGroupFile01">
 
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
                                         </div>
 
                                     </div>
 
-                                </div>                               
+                                </div>
 
 
 
-                                {{--<div class="col-lg-4">
+                                {{-- <div class="col-lg-4">
 
                                     <div class="form-group c_form_group">
 
@@ -478,13 +491,13 @@
 
                                     </div>
 
-                                </div>--}}
+                                </div> --}}
 
 
 
-                                <input name="phone_no" id="phone_no" type="hidden" value="9578461230"/>
+                                <input name="phone_no" id="phone_no" type="hidden" value="9578461230" />
 
-                                <input name="email" id="email" type="hidden" value="noemail@gmail.com"/>
+                                <input name="email" id="email" type="hidden" value="noemail@gmail.com" />
 
 
 
@@ -503,14 +516,13 @@
                                             </div>
 
                                             <input name="address" id="address" type="text" class="form-control" id=""
-
                                                 aria-describedby="basic-addon3">
 
                                         </div>
 
                                     </div>
 
-                                </div>                            
+                                </div>
 
 
 
@@ -522,7 +534,8 @@
 
                                         <div class="input-group">
 
-                                            <textarea name="desc" id="ckeditor" class="desc form-control" aria-label="With textarea" style="resize:none; height: 175px;"></textarea>
+                                            <textarea name="desc" id="ckeditor" class="desc form-control"
+                                                aria-label="With textarea" style="resize:none; height: 175px;"></textarea>
 
                                         </div>
 
@@ -532,27 +545,48 @@
 
                                 
 
+                                <div class="col-lg-12">
+
+                                    <div class="form-group c_form_group">
+
+                                        <label>Status</label>
+
+                                        <div class="input-group">
+
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="" >Select</option>
+                                            </select>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
                             </div>
 
                     </div>
 
                 </div>
 
-                        <div class="modal-footer">
+                <div class="modal-footer">
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                            <button type="submit" class="btn btn-primary theme-bg gradient" id="ModelButton"></button>
-
-                        </div>
-
-                    </form>
+                    <button type="submit" class="btn btn-primary theme-bg gradient" id="ModelButton"></button>
 
                 </div>
+
+                </form>
 
             </div>
 
         </div>
+
+    </div>
 
     </div>
 
@@ -566,9 +600,11 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 
@@ -576,7 +612,8 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}">
 
@@ -588,12 +625,12 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
 
 
 
     <style>
-
         .demo-card label {
 
             display: block;
@@ -620,9 +657,9 @@
 
 
 
-    {{--<script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
 
-    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>--}}
+    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script> --}}
 
     <script src="{{ secure_url('assets/bundles/datatablescripts.bundle.js') }}"></script>
 
@@ -636,7 +673,7 @@
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
 
-    
+
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -652,7 +689,9 @@
 
     <!-- <script src="{{ secure_url('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
+        crossorigin="anonymous"></script>
 
     <script src="{{ secure_url('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 
@@ -660,29 +699,36 @@
 
 
 
-    
 
 
 
-    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}"></script>
+
+    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}">
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 
     <script type="text/javascript">
-
         $('.clockpicker').clockpicker();
 
 
 
-        $("#expofromdate").datepicker({format: 'dd-mm-yyyy'});
+        $("#expofromdate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
 
-        $("#expotodate").datepicker({format: 'dd-mm-yyyy'});
+        $("#expotodate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
 
 
 
-        $("#fromdate").datepicker({ startDate: "today", format: 'dd-mm-yyyy'});
+        $("#fromdate").datepicker({
+            startDate: "today",
+            format: 'dd-mm-yyyy'
+        });
 
-        $('#fromdate').datepicker().on('changeDate', function(e){
+        $('#fromdate').datepicker().on('changeDate', function(e) {
 
             //$('#other-input').val(e.format(0,"dd/mm/yyyy"));
 
@@ -690,16 +736,15 @@
 
             //alert(e.format(0,"dd/mm/yyyy"));
 
-            $('#finalfromdate').val(e.format(0,"yyyy-mm-dd"));
+            $('#finalfromdate').val(e.format(0, "yyyy-mm-dd"));
 
         });
 
-        $('#todate').datepicker().on('changeDate', function(e){
+        $('#todate').datepicker().on('changeDate', function(e) {
 
-            $('#finaltodate').val(e.format(0,"yyyy-mm-dd"));
+            $('#finaltodate').val(e.format(0, "yyyy-mm-dd"));
 
         });
-
     </script>
 
 
@@ -715,8 +760,7 @@
     <script src="{{ secure_url('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 
     <script>
-
-        $(function(){
+        $(function() {
 
             $.ajaxSetup({
 
@@ -728,7 +772,7 @@
 
             });
 
-            
+
 
             $("#myTable").DataTable({
 
@@ -780,7 +824,7 @@
 
                         name: 'address',
 
-                         
+
 
                     },
 
@@ -793,6 +837,16 @@
                          
 
                     },*/
+
+
+                    {
+
+                        data: 'status',
+
+                        name: 'status'
+
+                    },
+
 
                     {
 
@@ -808,7 +862,7 @@
 
 
 
-            $(document).on("click", ".AddNew", function(){
+            $(document).on("click", ".AddNew", function() {
 
                 $('.error').html('');
 
@@ -830,9 +884,22 @@
 
             });
 
+            
+            $(document).on("change", "#filter_type", function() {
+                var filter_type = $(this).val();
+                if(filter_type == 'status'){
+                    $('.search-box').hide();
+                    $('.status-drop').show();
+                }else{
+                    $('.status-drop').hide();
+                    $('.search-box').show();
+                }
+                
+            });
 
 
-            $(document).on("click", "#EditModel", function(){
+
+            $(document).on("click", "#EditModel", function() {
 
                 $('.error').html('');
 
@@ -842,13 +909,15 @@
 
                 $('#ModelButton').html('Edit');
 
+                $('#status').html('');
+
                 $.ajax({
 
                     url: "{{ url('manageevent') }}/" + Id,
 
                     method: 'get',
 
-                    success: function(result){
+                    success: function(result) {
 
                         $('#MyForm').trigger("reset");
 
@@ -864,9 +933,9 @@
 
                         $('#title').append(
 
-                            '<input id="EditId"  type="hidden"   name="EditId">');                        
+                            '<input id="EditId"  type="hidden"   name="EditId">');
 
-                        $('#EditId').val(result.id);                        
+                        $('#EditId').val(result.id);
 
                         $('#title').val(result.title);
 
@@ -894,7 +963,15 @@
 
                         $('#address').val(result.address);
 
-                        $('#map').val(result.map);                       
+                        $('#map').val(result.map);
+
+                        if(result.status == 1){
+                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inctive</option>';
+                        }else{
+                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inctive</option>';
+                        }
+
+                        $('#status').append(html_opt);
 
                         $('#MyModel').modal('show');
 
@@ -906,21 +983,19 @@
 
 
 
-            $('#myForm').on('submit', function(event){
+            $('#myForm').on('submit', function(event) {
 
-                event.preventDefault();                
+                event.preventDefault();
 
                 //url = "{{ url('manageevent') }}";
 
-                var checkForm   =   $('#EditId').val();
+                var checkForm = $('#EditId').val();
 
-                if(checkForm){
+                if (checkForm) {
 
                     url = "{{ route('updateevent') }}";
 
-                }
-
-                else{
+                } else {
 
                     url = "{{ route('addevent') }}";
 
@@ -948,7 +1023,7 @@
 
                         $('#myTable').DataTable().ajax.reload();
 
-                        if(!checkForm){
+                        if (!checkForm) {
 
                             swal({
 
@@ -964,9 +1039,7 @@
 
                             });
 
-                        }
-
-                        else{
+                        } else {
 
                             swal({
 
@@ -1085,12 +1158,8 @@
             });*/
 
         });
-
-
-
     </script>
 
 
 
 @stop
-

@@ -520,6 +520,7 @@ class PrimiumController extends Controller
 
         $data['search_key']     =   $request->post('search_key');
         $filter_type     =   $request->post('filter_type');
+        $status     =   $request->post('set_status');
 
         //$dbData    =   Userpackage::get();
 
@@ -728,6 +729,31 @@ class PrimiumController extends Controller
                             $data['dateTo']
                         ]
                     )->get();
+            } else if ($filter_type == 'status') {
+                $dbData = Userpackage::select(
+                    'username',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("userpackages.status", "like", "%" . $status . "%")
+                    ->whereRaw(
+                        "(start_date >= ? AND start_date <= ?)",
+                        [
+                            $data['dateFrom'],
+                            $data['dateTo']
+                        ]
+                    )->get();
             } else if ($filter_type == '' && $data['search_key'] == '') {
                 $dbData = Userpackage::select(
                     'username',
@@ -777,6 +803,7 @@ class PrimiumController extends Controller
                     ->orWhere("company", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("title", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("phone_no", "like", "%" . $data['search_key'] . "%")
+                    ->orWhere("userpackages.status", "like", "%" . $status . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
                         [
@@ -930,6 +957,24 @@ class PrimiumController extends Controller
                 )
                     ->join('users', 'userpackages.id', '=', 'users.id')
                     ->where("phone_no", "like", "%" . $data['search_key'] . "%")->get();
+            } else if ($filter_type == 'status') {
+                $dbData = Userpackage::select(
+                    'username',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("userpackages.status", "like", "%" . $status . "%")->get();
             } else {
                 $dbData = Userpackage::select(
                     'username',
@@ -955,6 +1000,7 @@ class PrimiumController extends Controller
                     ->orWhere("company", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("title", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("phone_no", "like", "%" . $data['search_key'] . "%")
+                    ->orWhere("userpackages.status", "like", "%" . $status . "%")
                     ->get();
             }
         }

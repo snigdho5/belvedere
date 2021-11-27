@@ -56,6 +56,17 @@ class EventController extends Controller
 
                 ->addIndexColumn()
 
+                ->addColumn('status', function ($row) {
+
+                    if($row->status == 1){
+                        $btn_st    =   'Active';
+                    }else{
+                        $btn_st    =   'Inactive';
+                    }
+
+                    return $btn_st;
+                })
+
                 ->addColumn('action', function ($row) {
 
                     $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="' . $row->id . '" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
@@ -298,6 +309,7 @@ class EventController extends Controller
 
         $data['search_key']     =   $request->post('search_key');
         $filter_type     =   $request->post('filter_type');
+        $status     =   $request->post('set_status');
 
         //$dbData    =   Event::get();
 
@@ -347,6 +359,28 @@ class EventController extends Controller
                             $data['dateTo']
                         ]
                     )->get();
+            } else if ($filter_type == 'status') {
+
+                $dbData = Event::select(
+                    'title',
+                    DB::raw('DATE_FORMAT(fromdate,"%d-%m-%Y %h:%i:%s") as fromdate'),
+                    DB::raw('DATE_FORMAT(todate,"%d-%m-%Y %h:%i:%s") as todate'),
+                    'time',
+                    'cost',
+                    'desc',
+                    'phone_no',
+                    'email',
+                    'address',
+                    DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                ->where("status", "like", "%" . $status . "%")
+                    ->whereRaw(
+                        "(fromdate >= '?' AND fromdate <= '?')",
+                        [
+                            $data['dateFrom'],
+                            $data['dateTo']
+                        ]
+                    )->get();
             } else if ($filter_type == '' && $data['search_key'] == '') {
                 $dbData = Event::select(
                     'title',
@@ -382,6 +416,7 @@ class EventController extends Controller
                 )
                 ->where("title", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("address", "like", "%" . $data['search_key'] . "%")
+                    ->orWhere("status", "like", "%" . $status . "%")
                     ->whereRaw(
                         "(fromdate >= '?' AND fromdate <= '?')",
                         [
@@ -419,6 +454,20 @@ class EventController extends Controller
                     DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
                 ->where("address", "like", "%" . $data['search_key'] . "%")->get();
+            } else if ($filter_type == 'status') {
+                $dbData = Event::select(
+                    'title',
+                    DB::raw('DATE_FORMAT(fromdate,"%d-%m-%Y %h:%i:%s") as fromdate'),
+                    DB::raw('DATE_FORMAT(todate,"%d-%m-%Y %h:%i:%s") as todate'),
+                    'time',
+                    'cost',
+                    'desc',
+                    'phone_no',
+                    'email',
+                    'address',
+                    DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                ->where("status", "like", "%" . $status . "%")->get();
             } else {
                 $dbData = Event::select(
                     'title',
@@ -433,7 +482,9 @@ class EventController extends Controller
                     DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
                 ->where("title", "like", "%" . $data['search_key'] . "%")
-                ->orWhere("address", "like", "%" . $data['search_key'] . "%")->get();
+                ->orWhere("address", "like", "%" . $data['search_key'] . "%")
+                ->orWhere("status", "like", "%" . $status . "%")
+                ->get();
             }
         }
 

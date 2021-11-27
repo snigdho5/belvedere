@@ -166,8 +166,11 @@ class SponsorController extends Controller
     public function updateUserData(Request $request){
         $data   =   $request->all();
         $id     =   $data['userId'];
+        $status     =   $data['status'];
         unset($data['userId']);
+        unset($data['status']);
         User::where('id',$id)->update($data);
+        Userpackage::where('id',$id)->update(array('status' => $status));
         return true;
     }
 
