@@ -44,11 +44,11 @@
 
                     <br>
 
-                    <div class="row"> 
+                    <div class="row">
 
                         <div class="radio radio-primary col-sm-2">
 
-                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All" checked>
 
                             <label for="radio4">
 
@@ -110,7 +110,7 @@
 
                             <li>
 
-                                <a href="{{url('export_primium_data')}}">
+                                <a href="{{ url('export_primium_data') }}">
 
                                     <i class="fa fa-exchange" style="font-size: 22px"></i>
 
@@ -132,13 +132,13 @@
 
                                 <!-- <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                   aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                       aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                    <i class="icon-plus"></i>
+                                        <i class="icon-plus"></i>
 
-                                </a> -->
+                                    </a> -->
 
-                                <a href="{{url('addnewuser')}}" style="font-size: 22px">
+                                <a href="{{ url('addnewuser') }}" style="font-size: 22px">
 
                                     <i class="icon-plus"></i>
 
@@ -154,17 +154,17 @@
 
                 <div class="row">
 
-                    @if(count($errors) > 0)
+                    @if (count($errors) > 0)
 
                         <div class="alert alert-danger">
 
-                            upload validation error<br/>
+                            upload validation error<br />
 
                             <ul>
 
-                                @foreach($errors->all() as $error)
+                                @foreach ($errors->all() as $error)
 
-                                    <li>{{$error}}</li>
+                                    <li>{{ $error }}</li>
 
                                 @endforeach
 
@@ -174,25 +174,25 @@
 
                     @endif
 
-                    @if($message = Session::get('success'))
+                    @if ($message = Session::get('success'))
 
                         <div class="alert alert-success alert-block">
 
                             <button type="button" class="close" data-dismiss="alert">x</button>
 
-                            <strong>{{$message}}</strong>
+                            <strong>{{ $message }}</strong>
 
                         </div>
 
                     @endif
 
-                    @if($message = Session::get('error'))
+                    @if ($message = Session::get('error'))
 
                         <div class="alert alert-danger alert-block">
 
                             <button type="button" class="close" data-dismiss="alert">x</button>
 
-                            <strong>{{$message}}</strong>
+                            <strong>{{ $message }}</strong>
 
                         </div>
 
@@ -200,7 +200,7 @@
 
                     <div class="col-md-12">
 
-                        <form method="post" enctype="multipart/form-data" action="{{url('/import_excel/import')}}">
+                        <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/import') }}">
 
                             @csrf
 
@@ -218,7 +218,7 @@
 
                                         <td width="30%">
 
-                                            <input type="file" name="select_file"/>
+                                            <input type="file" name="select_file" />
 
                                         </td>
 
@@ -240,7 +240,7 @@
 
                     <div class="col-md-1">
 
-                        
+
 
                     </div>
 
@@ -252,19 +252,21 @@
 
                     <div class="col-md-6">
 
-                        <form method="post" action="{{url('export_primium_data')}}">
+                        <form method="post" action="{{ url('export_primium_data') }}">
 
                             @csrf
 
                             <div class="form-group">
 
-                                <input type="text" name="fromdate" id="fromdate" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Select From date"/>
+                                <input type="text" name="fromdate" id="fromdate" data-provide="datepicker"
+                                    data-date-autoclose="true" class="form-control" placeholder="Select From date" />
 
                             </div>
 
                             <div class="form-group">
 
-                                <input type="text" name="todate" id="todate" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="Select To date"/>
+                                <input type="text" name="todate" id="todate" data-provide="datepicker"
+                                    data-date-autoclose="true" class="form-control" placeholder="Select To date" />
 
                             </div>
 
@@ -277,6 +279,7 @@
                                     <option value="username">User name</option>
                                     <option value="month">Month</option>
                                     <option value="enddate">Enddate</option>
+                                    <option value="year_left">Year Left</option>
                                     <option value="company">Company</option>
                                     <option value="title">Title</option>
                                     <option value="phone_no">Phone</option>
@@ -287,11 +290,12 @@
 
                             <div class="form-group search-box">
 
-                                <input type="text" name="search_key" id="search_key" class="form-control" placeholder="Search.." />
+                                <input type="text" name="search_key" id="search_key" class="form-control"
+                                    placeholder="Search.." />
 
                             </div>
 
-                            
+
                             <div class="form-group status-drop" style="display:none;">
 
                                 <select class="form-control" name="set_status" id="set_status">
@@ -344,6 +348,8 @@
 
                                     <th>Month</th>
 
+                                    <th>Year Left</th>
+
                                     <th>Company</th>
 
                                     <th>Title</th>
@@ -382,7 +388,8 @@
 
     <!-- Modal with btn -->
 
-    <div class="modal fade bd-example-modal-lg" id="MyModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="MyModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
 
         <div class="modal-dialog">
 
@@ -400,7 +407,7 @@
 
                 </div>
 
-                <div class="modal-body">                    
+                <div class="modal-body">
 
                     <div class="body">
 
@@ -424,7 +431,8 @@
 
                                             </div>
 
-                                            <input name="name" type="text" class="form-control" id="name" aria-describedby="basic-addon3">
+                                            <input name="name" type="text" class="form-control" id="name"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -446,7 +454,8 @@
 
                                             </div>
 
-                                            <input name="email" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
+                                            <input name="email" type="text" class="form-control" id="email"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -468,7 +477,8 @@
 
                                             </div>
 
-                                            <input name="password" type="password" class="form-control" id="password" aria-describedby="basic-addon3">
+                                            <input name="password" type="password" class="form-control" id="password"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -490,7 +500,8 @@
 
                                             </div>
 
-                                            <input name="company" type="text" class="form-control" id="company" aria-describedby="basic-addon3">
+                                            <input name="company" type="text" class="form-control" id="company"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -512,7 +523,8 @@
 
                                             </div>
 
-                                            <input name="title" type="text" class="form-control" id="title" aria-describedby="basic-addon3">
+                                            <input name="title" type="text" class="form-control" id="title"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -534,7 +546,8 @@
 
                                             </div>
 
-                                            <input name="phone_no" type="text" class="form-control" id="phonex" aria-describedby="basic-addon3">
+                                            <input name="phone_no" type="text" class="form-control" id="phonex"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -542,46 +555,46 @@
 
                                 </div>
 
-                                    
 
 
-<!--                                <div class="col-lg-12">
 
-                                    <div class="form-group c_form_group">
+                                <!--                                <div class="col-lg-12">
 
-                                        <label for="basic-url">Image</label>
+                                        <div class="form-group c_form_group">
 
-                                        <div class="input-group">
+                                            <label for="basic-url">Image</label>
 
-                                            <div class="input-group-prepend">
+                                            <div class="input-group">
 
-                                                <span class="input-group-text" id="basic-addon3"></span>
+                                                <div class="input-group-prepend">
+
+                                                    <span class="input-group-text" id="basic-addon3"></span>
+
+                                                </div>
+
+                                                <input name="image" type="file" class="custom-file-input" id="inputGroupFile01">
+
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
                                             </div>
 
-                                            <input name="image" type="file" class="custom-file-input" id="inputGroupFile01">
-
-                                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-
                                         </div>
 
-                                    </div>
-
-                                </div>-->
+                                    </div>-->
 
                             </div>
 
-                        </div>
-
                     </div>
 
-                    <div class="modal-footer">
+                </div>
 
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <div class="modal-footer">
 
-                        <button type="submit" class="btn btn-primary theme-bg gradient" id="ModelButton"></button>                    
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                    </div>
+                    <button type="submit" class="btn btn-primary theme-bg gradient" id="ModelButton"></button>
+
+                </div>
 
                 </form>
 
@@ -593,7 +606,8 @@
 
 
 
-    <div class="modal fade bd-example-modal-lg" id="edituserModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="edituserModel" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
         <div class="modal-dialog">
 
@@ -611,7 +625,7 @@
 
                 </div>
 
-                <div class="modal-body">                    
+                <div class="modal-body">
 
                     <div class="body">
 
@@ -621,71 +635,71 @@
 
                                 <!--<div class="col-lg-6">
 
-                                    <div class="form-group c_form_group">
+                                        <div class="form-group c_form_group">
 
-                                        <input name="member" type="hidden" value="1">
+                                            <input name="member" type="hidden" value="1">
 
-                                        <label for="basic-url">Name</label>
+                                            <label for="basic-url">Name</label>
 
-                                        <div class="input-group">
+                                            <div class="input-group">
 
-                                            <div class="input-group-prepend">
+                                                <div class="input-group-prepend">
 
-                                                <span class="input-group-text" id="basic-addon3"></span>
+                                                    <span class="input-group-text" id="basic-addon3"></span>
+
+                                                </div>
+
+                                                <input name="name" type="text" class="form-control" id="name" aria-describedby="basic-addon3">
 
                                             </div>
-
-                                            <input name="name" type="text" class="form-control" id="name" aria-describedby="basic-addon3">
 
                                         </div>
 
                                     </div>
 
-                                </div>
+                                    <div class="col-lg-6">
 
-                                <div class="col-lg-6">
+                                        <div class="form-group c_form_group">
 
-                                    <div class="form-group c_form_group">
+                                            <label for="basic-url">Email</label>
 
-                                        <label for="basic-url">Email</label>
+                                            <div class="input-group">
 
-                                        <div class="input-group">
+                                                <div class="input-group-prepend">
 
-                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon3"></span>
 
-                                                <span class="input-group-text" id="basic-addon3"></span>
+                                                </div>
+
+                                                <input name="email" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
 
                                             </div>
-
-                                            <input name="email" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
 
                                         </div>
 
                                     </div>
 
-                                </div>
+                                    <div class="col-lg-12">
 
-                                <div class="col-lg-12">
+                                        <div class="form-group c_form_group">
 
-                                    <div class="form-group c_form_group">
+                                            <label for="basic-url">Password</label>
 
-                                        <label for="basic-url">Password</label>
+                                            <div class="input-group">
 
-                                        <div class="input-group">
+                                                <div class="input-group-prepend">
 
-                                            <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon3"></span>
 
-                                                <span class="input-group-text" id="basic-addon3"></span>
+                                                </div>
+
+                                                <input name="password" type="password" class="form-control" id="password" aria-describedby="basic-addon3">
 
                                             </div>
 
-                                            <input name="password" type="password" class="form-control" id="password" aria-describedby="basic-addon3">
-
                                         </div>
 
-                                    </div>
-
-                                </div>-->
+                                    </div>-->
 
                                 <div class="col-lg-6">
 
@@ -701,7 +715,8 @@
 
                                             </div>
 
-                                            <input name="company" type="text" class="form-control" id="editcompany" aria-describedby="basic-addon3">
+                                            <input name="company" type="text" class="form-control" id="editcompany"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -723,7 +738,8 @@
 
                                             </div>
 
-                                            <input name="title" type="text" class="form-control" id="edittitle" aria-describedby="basic-addon3">
+                                            <input name="title" type="text" class="form-control" id="edittitle"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -745,7 +761,8 @@
 
                                             </div>
 
-                                            <input name="phone_no" type="text" class="form-control" id="editphone" aria-describedby="basic-addon3">
+                                            <input name="phone_no" type="text" class="form-control" id="editphone"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -767,7 +784,8 @@
 
                                             </div>
 
-                                            <input name="industry" type="text" class="form-control" id="editindustry" aria-describedby="basic-addon3">
+                                            <input name="industry" type="text" class="form-control" id="editindustry"
+                                                aria-describedby="basic-addon3">
 
                                         </div>
 
@@ -775,7 +793,7 @@
 
                                 </div>
 
-                                
+
                                 <div class="col-lg-12">
 
                                     <div class="form-group c_form_group">
@@ -785,7 +803,7 @@
                                         <div class="input-group">
 
                                             <select name="status" id="status" class="form-control">
-                                                <option value="" >Select</option>
+                                                <option value="">Select</option>
                                             </select>
 
 
@@ -795,15 +813,16 @@
 
                                 </div>
 
-                            </div>                        
+                            </div>
 
                             <div class="modal-footer">
 
-                                <input id="usrXid" type="hidden" name="userId"/>
+                                <input id="usrXid" type="hidden" name="userId" />
 
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-                                <button type="submit" class="btn btn-primary theme-bg gradient" id="updateUser">Update</button>                    
+                                <button type="submit" class="btn btn-primary theme-bg gradient"
+                                    id="updateUser">Update</button>
 
                             </div>
 
@@ -830,18 +849,17 @@
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
 
     <link rel="stylesheet"
-
         href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css') }}">
 
     <link rel="stylesheet"
-
         href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}">
 
@@ -851,10 +869,10 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/nouislider/nouislider.min.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
 
     <style>
-
         .demo-card label {
 
             display: block;
@@ -887,7 +905,7 @@
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
 
-    
+
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -909,12 +927,11 @@
 
 
 
-    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}">
+    </script>
 
     <script type="text/javascript">
-
         $('.clockpicker').clockpicker();
-
     </script>
 
 @stop
@@ -928,12 +945,15 @@
     <script src="{{ secure_url('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 
     <script>
+        $("#fromdate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
 
-        $("#fromdate").datepicker({format: 'dd-mm-yyyy'});
+        $("#todate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
 
-        $("#todate").datepicker({format: 'dd-mm-yyyy'});
-
-        $(document).on("click",".TestRadio",function(e){
+        $(document).on("click", ".TestRadio", function(e) {
 
             // console.log(testRedioss);
 
@@ -949,7 +969,7 @@
 
 
 
-        $(function(){
+        $(function() {
 
             $.ajaxSetup({
 
@@ -979,13 +999,13 @@
 
                     "url": "{{ route('primiummember.index') }}",
 
-                    "data":function ( d ) {
+                    "data": function(d) {
 
-                        d.myKey = $('input[name=radioName]:checked').val() 
+                        d.myKey = $('input[name=radioName]:checked').val()
 
-                    }             
+                    }
 
-                    },
+                },
 
                 "columns": [{
 
@@ -1040,6 +1060,14 @@
                         data: 'month',
 
                         name: 'month'
+
+                    },
+
+                    {
+
+                        data: 'year_left',
+
+                        name: 'year_left'
 
                     },
 
@@ -1123,7 +1151,7 @@
 
 
 
-            $(document).on("click", "#EditModel", function(){
+            $(document).on("click", "#EditModel", function() {
 
                 $('.error').html('');
 
@@ -1145,9 +1173,11 @@
 
                     method: 'POST',
 
-                    data : { userid : Id },
+                    data: {
+                        userid: Id
+                    },
 
-                    success: function(result){                        
+                    success: function(result) {
 
                         var response = JSON.parse(result);
 
@@ -1169,10 +1199,12 @@
 
                         $('#editindustry').val(response.industry);
 
-                        if(response.status == 1){
-                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
-                        }else{
-                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
+                        if (response.status == 1) {
+                            var html_opt =
+                                '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
+                        } else {
+                            var html_opt =
+                                '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
                         }
 
                         $('#status').append(html_opt);
@@ -1215,11 +1247,11 @@
 
 
 
-            $(document).on("click", "#updateUser", function(x){
+            $(document).on("click", "#updateUser", function(x) {
 
                 x.preventDefault();
 
-                var formData    =   $('#editForm').serialize();
+                var formData = $('#editForm').serialize();
 
                 //console.log(formData);
 
@@ -1233,11 +1265,11 @@
 
                     data: formData,
 
-                    success: function(data){
+                    success: function(data) {
 
                         $('#edituserModel').modal('hide');
 
-                        $('#myTable').DataTable().ajax.reload();                    
+                        $('#myTable').DataTable().ajax.reload();
 
                         swal({
 
@@ -1308,23 +1340,23 @@
 
             $(document).on("change", "#filter_type", function() {
                 var filter_type = $(this).val();
-                if(filter_type == 'status'){
+                if (filter_type == 'status') {
                     $('.search-box').hide();
                     $('.status-drop').show();
-                }else{
+                } else {
                     $('.status-drop').hide();
                     $('.search-box').show();
                 }
-                
+
             });
 
-            
 
-            $('#myForm').on('submit', function(event){
 
-                event.preventDefault();                
+            $('#myForm').on('submit', function(event) {
 
-                var formData    =   $('#myForm').serialize();
+                event.preventDefault();
+
+                var formData = $('#myForm').serialize();
 
                 //console.log(formData);
 
@@ -1340,11 +1372,11 @@
 
                     data: formData,
 
-                    success: function(data){
+                    success: function(data) {
 
                         $('#MyModel').modal('hide');
 
-                        $('#myTable').DataTable().ajax.reload();                    
+                        $('#myTable').DataTable().ajax.reload();
 
                         swal({
 
@@ -1442,9 +1474,9 @@
 
             $(document).on("click", "#DeleteModel", function() {
 
-                var Id      =   $(this).attr('data-id');
+                var Id = $(this).attr('data-id');
 
-                var email   =   $(this).attr('data-email');
+                var email = $(this).attr('data-email');
 
                 swal({
 
@@ -1474,7 +1506,9 @@
 
                                 method: 'POST',
 
-                                data : { userid : Id },
+                                data: {
+                                    userid: Id
+                                },
 
                                 success: function(result) {
 
@@ -1490,9 +1524,7 @@
 
                             });
 
-                        }
-
-                        else {
+                        } else {
 
                             swal("Your imaginary file is safe!");
 
@@ -1505,7 +1537,6 @@
             });
 
         });
-
     </script>
 
 @stop

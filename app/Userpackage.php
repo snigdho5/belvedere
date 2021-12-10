@@ -8,7 +8,7 @@ class Userpackage extends Model
 {
     protected $table = 'userpackages';
     protected $fillable = [
-        'user_id','username','useremail','type','price','month',
+        'user_id','username','useremail','type','price','month','year_left',
         'start_date','end_date','package_id','status'
     ];
 

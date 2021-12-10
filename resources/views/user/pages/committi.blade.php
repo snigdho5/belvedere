@@ -62,20 +62,35 @@
         <div class="container">
 		
 		
-            
             @foreach ($member->where('type','vicepresident') as $item)
 			<div class="row">	
-				<div class="col-sm-6">
-					<h4 class="reptro-section-title text-center margin-bottom-xsmall" style="margin-bottom:5px;"><span>Brian O’Neill</span> </h4>
-				
-					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">Senior Vice President  OB88</p>
-				</div>
 				
 				<div class="col-sm-6">
 					<h4 class="reptro-section-title text-center margin-bottom-xsmall" style="margin-bottom:5px;"><span>John Doyle</span> </h4>
 				
-					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">President Elect OB88</p>
+					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">President</p>
               	</div>
+
+                <div class="col-sm-6">
+					<h4 class="reptro-section-title text-center margin-bottom-xsmall" style="margin-bottom:5px;"><span>Brian O’Neill</span> </h4>
+				
+					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">President  Elect</p>
+				</div>
+                
+                <div class="col-sm-6">
+					<h4 class="reptro-section-title text-center margin-bottom-xsmall" style="margin-bottom:5px;"><span>Kevin Lynch</span> </h4>
+				
+					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">Senior Vice President</p>
+				</div>
+
+                
+                <div class="col-sm-6">
+					<h4 class="reptro-section-title text-center margin-bottom-xsmall" style="margin-bottom:5px;"><span>Cathal Barry</span> </h4>
+				
+					<p class="section-title-small text-center" style="margin-bottom:60px;font-size:13px;">Hon. Secretary</p>
+				</div>
+
+
 			</div>	
 			@endforeach
 			

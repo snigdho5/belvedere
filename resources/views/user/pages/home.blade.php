@@ -76,6 +76,14 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                             </div>
 
+                            
+                            <div class="xt_sign_up_now_field">
+
+                                {{-- <input type="date" name="year_left" placeholder="Year Left"> --}}
+                                <input type="number" name="year_left" min="1900" max="2099" step="1" placeholder="Year Left ({{date('Y')}})" />
+
+                            </div>
+
                             <div class="xt_sign_up_now_field">
 
                                 <input type="Email" name="email" placeholder="Email Address">

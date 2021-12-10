@@ -22,6 +22,7 @@ class FrontRegisterController extends Controller
             'name'      =>  'required',
             'email'     =>  'required|email|unique:users,email',
             'password'  =>  'required',
+            'year_left'  =>  'required',
             //'rolename' => 'required'
         ]);
         //|same:confirm-password
@@ -42,11 +43,13 @@ class FrontRegisterController extends Controller
         //set package data   
       
         $month = $package['month'];   
+        $year_left = $input['year_left'];   
         $packagedata['start_date']  =   date("Y/m/d");
         $packagedata['end_date']    =   date("Y/m/d", strtotime(" +$month months"));
         $packagedata['price']       =   $package['price'];
         $packagedata['month']       =   $month;
         $packagedata['package_id']  =   $package_id;
+        $packagedata['year_left']   =   $year_left;
         $packagedata['status']      =   1;
         Userpackage::create($packagedata);
         User::where('id', $user->id)->update(['member'=> '1']);  

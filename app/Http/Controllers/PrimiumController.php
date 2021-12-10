@@ -536,6 +536,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -561,6 +562,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -586,6 +588,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -611,6 +614,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -636,6 +640,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -654,6 +659,32 @@ class PrimiumController extends Controller
                             $data['dateTo']
                         ]
                     )->get();
+            } else if ($filter_type == 'year_left') {
+                $dbData = Userpackage::select(
+                    'username',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'year_left as Year Left',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as year_left'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("year_left", "like", "%" . $data['search_key'] . "%")
+                    ->whereRaw(
+                        "(start_date >= ? AND start_date <= ?)",
+                        [
+                            $data['dateFrom'],
+                            $data['dateTo']
+                        ]
+                    )->get();
             } else if ($filter_type == 'company') {
                 $dbData = Userpackage::select(
                     'username',
@@ -661,6 +692,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -686,6 +718,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -711,6 +744,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -736,6 +770,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -761,6 +796,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -785,6 +821,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -800,6 +837,7 @@ class PrimiumController extends Controller
                     ->orWhere("username", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("month", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                    ->orWhere("year_left", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("company", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("title", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("phone_no", "like", "%" . $data['search_key'] . "%")
@@ -820,6 +858,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -838,6 +877,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -856,6 +896,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -874,6 +915,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -892,6 +934,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -903,6 +946,25 @@ class PrimiumController extends Controller
                 )
                     ->join('users', 'userpackages.id', '=', 'users.id')
                     ->where("end_date", "like", "%" . $data['search_key'] . "%")->get();
+            } else if ($filter_type == 'year_left') {
+                $dbData = Userpackage::select(
+                    'username',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'year_left as Year Left',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("year_left", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'company') {
                 $dbData = Userpackage::select(
                     'username',
@@ -910,6 +972,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -928,6 +991,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -946,6 +1010,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -964,6 +1029,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -982,6 +1048,7 @@ class PrimiumController extends Controller
                     'type',
                     'price',
                     'month',
+                    'year_left as Year Left',
                     'name as firstname',
                     'surname',
                     'email',
@@ -997,6 +1064,7 @@ class PrimiumController extends Controller
                     ->orWhere("username", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("month", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                    ->orWhere("year_left", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("company", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("title", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("phone_no", "like", "%" . $data['search_key'] . "%")
