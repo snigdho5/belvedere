@@ -279,7 +279,7 @@
                                     <option value="username">User name</option>
                                     <option value="month">Month</option>
                                     <option value="enddate">Enddate</option>
-                                    {{-- <option value="year_left">Year Left</option> --}}
+                                    <option value="year_left">Year Left</option>
                                     <option value="company">Company</option>
                                     <option value="title">Title</option>
                                     <option value="phone_no">Phone</option>

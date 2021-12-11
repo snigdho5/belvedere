@@ -13,6 +13,8 @@ use App\Userpackage;
 use App\Sponsor;
 use App\Package;
 use App\Event;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
 use App\Rules\MatchOldPassword;
 
 class FrontRegisterController extends Controller
@@ -53,6 +55,17 @@ class FrontRegisterController extends Controller
         $packagedata['status']      =   1;
         Userpackage::create($packagedata);
         User::where('id', $user->id)->update(['member'=> '1']);  
+
+        $maildata = ([
+            'name' => $user->name,
+            'email' => $user->email,
+            'month' => $packagedata['month'],
+            'start_date' => $packagedata['start_date'],
+            'end_date' => $packagedata['end_date'],
+            'year_left' => $packagedata['year_left'],
+            ]);
+
+        Mail::to($user->email)->send(new RegisterMail($maildata));
     }
     
     /*********************************************      SPONSER      *********************************************/
