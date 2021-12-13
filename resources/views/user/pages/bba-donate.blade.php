@@ -342,9 +342,9 @@
 
                                             <div class="brands_item d-flex flex-column justify-content-center">
 
-                                                <!-- <img src="{{ asset('imagess/thumb-' . $item->image) }}" class="img-responsive" title="{{ $item->title }}"> -->
+                                                <!-- <img src="{{ secure_url('imagess/thumb-' . $item->image) }}" class="img-responsive" title="{{ $item->title }}"> -->
 
-                                                <img src="{{ asset('imagess/' . $item->image) }}" class="img-responsive"
+                                                <img src="{{ secure_url('imagess/' . $item->image) }}" class="img-responsive"
                                                     title="{{ $item->title }}">
 
                                             </div>

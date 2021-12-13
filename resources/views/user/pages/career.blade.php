@@ -295,7 +295,7 @@
               <li class="course  col-lg-12 col-md-12">
                     <div class="reptro-course-loop-thumbnail-area">
                         <!-- <div class="reptro-course-details-btn"> <a class="btn btn-fill btn-lg" href="events-details.html">Apply</a></div> -->
-                        <div class="course-thumbnail"> <img width="570" height="461" src="{{ asset('imagess/thumb-'.$item->image) }}">
+                        <div class="course-thumbnail"> <img width="570" height="461" src="{{ secure_url('imagess/thumb-'.$item->image) }}">
                         </div>
                     </div>
                     <div class="reptro-course-item-inner"> <a href="#" class="course-permalink">

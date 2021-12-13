@@ -148,7 +148,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                         <div class="pad15">
 
-                            <img src="{{ asset('imagess/thumb-'.$item->image) }}" class="img-responsive">
+                            <img src="{{ secure_url('imagess/thumb-'.$item->image) }}" class="img-responsive">
 
                         </div>
 

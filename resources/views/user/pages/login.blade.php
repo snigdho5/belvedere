@@ -39,23 +39,14 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
             <div class="reptro-hero-area-right reptro-hero-area-column"
 
-                style="background-image: url(user/images/hero-min.jpg)"></div>
+                style="background-image: secure_url(user/images/hero-min.jpg)"></div>
 
             <div class="reptro-hero-area-left reptro-hero-area-left-custom-bg-no reptro-hero-area-column">
 
                 <h2>Become a Member</h2>
 
-                <p>Not a member yet? <a href="{{asset('/')}}" style="color:white;"> Register here.</a></p>
+                <p>Not a member yet? <a href="{{secure_url('/')}}" style="color:white;"> Register here.</a></p>
 
-
-
-
-
-               
-
-
-
-                
 
                 <div class="wpcf7 left">
 

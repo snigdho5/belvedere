@@ -115,7 +115,7 @@
 
             </div>
 
-            <div class="tribe-events-event-image"><img src="{{ asset('imagess/' . $event->image) }}" alt=""></div>
+            <div class="tribe-events-event-image"><img src="{{ secure_url('imagess/' . $event->image) }}" alt=""></div>
 
             <p>{{ $event->desc }}</p>
 
@@ -288,7 +288,7 @@
 
                                         <div class="course-thumbnail">
 
-                                            <img width="570" height="461" src="{{ asset('imagess/'. $item['image']) }}"/>
+                                            <img width="570" height="461" src="{{ secure_url('imagess/'. $item['image']) }}"/>
 
                                         </div>
 
@@ -370,22 +370,22 @@
 
             <div class="row">
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo-5-1.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo-5-1.png') }}"
                             class="img-responsive" alt=""></a></div>
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo-3-1.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo-3-1.png') }}"
                             class="img-responsive" alt=""></a></div>
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo-2-1.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo-2-1.png') }}"
                             class="img-responsive" alt=""></a></div>
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo-1-1.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo-1-1.png') }}"
                             class="img-responsive" alt=""></a></div>
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo5.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo5.png') }}"
                             class="img-responsive" alt=""></a></div>
 
-                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ asset('user/images/logo-6.png') }}"
+                <div class="col-lg-2 col-md-6 logo-item"><a href="#"><img src="{{ secure_url('user/images/logo-6.png') }}"
                             class="img-responsive" alt=""></a></div>
 
             </div>
@@ -516,7 +516,7 @@
 
 
 
-    <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ secure_url('user/js/owl.carousel.min.js') }}"></script>
 
 
 

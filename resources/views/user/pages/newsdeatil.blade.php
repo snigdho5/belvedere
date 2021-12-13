@@ -92,7 +92,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
     {{--@include('user.include.sponser')--}}
 
-    <script src="{{ asset('user/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ secure_url('user/js/owl.carousel.min.js') }}"></script>
 
 
 

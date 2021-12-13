@@ -51,7 +51,7 @@ Route::get('/', function(){
 
     $cmsData        =   CmsContent::first();
 
-    $eventData      =   Event::limit(6)->get();
+    $eventData      =   Event::where("status", "=", "1")->limit(6)->get();
 
     $ourClubData    =   OurClub::limit(3)->get();
 
