@@ -177,6 +177,7 @@ class FrontRegisterController extends Controller
         
         $user   =   Auth::user();
         $input  =   $request->all();
+        $year_left = $input['year_left'];
         
         if(count($input) > 7){
             $input['notification']  =   1;
@@ -199,12 +200,15 @@ class FrontRegisterController extends Controller
         
         //$input['password']  =   Hash::make($input['new_confirm_password']);
         unset($input['_token']);
+        unset($input['year_left']);
         /*unset($input['current_password']);
         unset($input['new_password']);
         unset($input['new_confirm_password']);*/
         //dd($input);
         
         User::where('id', $user->id)->update($input);
+        Userpackage::where('user_id', $user->id)->where('type','member')->update(['year_left'=>$year_left]);
+        
         return redirect('profile');
     }
     

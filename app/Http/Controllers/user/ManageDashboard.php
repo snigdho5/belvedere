@@ -22,7 +22,13 @@ class ManageDashboard extends Controller
     public function profile(){
 
         $user       =   Auth::user();
-        return view('user.pages.dashboard.profile',compact('user'));
+       
+        $userpackage = Userpackage::select('*')
+            ->join('users', 'userpackages.id', '=', 'users.id')
+            ->where("user_id", "=", $user->id)
+            ->get();
+        $userpackage = $userpackage[0];
+        return view('user.pages.dashboard.profile',compact('user', 'userpackage'));
     }
 
     public function getsponserdata(){

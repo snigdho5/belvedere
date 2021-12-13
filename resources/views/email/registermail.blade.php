@@ -7,7 +7,7 @@
 
 <body>
     <h2> Hi {{ $data['name'] }}, you have successfully registered. Following are your account details: <br>
-        </h3>
+        </h2>
         <h3>Email: </h3>
         <p>{{ $data['email'] }}</p>
         <h3>Name: </h3>

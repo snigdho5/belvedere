@@ -190,7 +190,8 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                                 <!-- <input id="yrleft" type="date" class="form-control-plaintext borde text-muted/"> -->
 
-                                <input id="yrleft" type="text" class="form-control-plaintext borde text-muted/">
+                                {{-- <input id="yrleft" type="text" class="form-control-plaintext borde text-muted/"> --}}
+                                <input type="number" class="form-control-plaintext borde text-muted/" id="yrleft" name="year_left" min="1900" max="2099" step="1" placeholder="Year Left" value="{{$userpackage->year_left}}"/>
 
                             </div>
 
@@ -362,7 +363,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
     $("#memberSince").datepicker({format: 'dd-mm-yyyy'});
 
-    $("#yrleft").datepicker({format: 'dd-mm-yyyy'});
+    // $("#yrleft").datepicker({format: 'dd-mm-yyyy'});
 
 </script>
 
