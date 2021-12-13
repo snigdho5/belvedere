@@ -31,7 +31,7 @@
 
             <div class="container">
 
-                <h1 class="entry-title">Events</h1>
+                <h1 class="entry-title">Archived Events</h1>
 
             </div>
 
@@ -47,7 +47,7 @@
 
                         <li><a href="/" itemprop="url">Home</a></li>
 
-                        <li class="current">Event</li>
+                        <li class="current">Archived Events</li>
 
                     </ul>
 
@@ -65,7 +65,7 @@
 
         <section class="reptro-section-padding-large elementor-top-section">
 
-            <h2 class="reptro-section-title text-center margin-bottom-xsmall"><span>Upcoming Events</span></h2>
+            <h2 class="reptro-section-title text-center margin-bottom-xsmall"><span>Archived Events</span></h2>
 
             <!-- <p class="section-title-small text-center  section-title-small-border-yes">Lorem ipsum dolor sit amet,
 
@@ -73,12 +73,7 @@
 
 
 
-            <p class="text-center  section-title-small-border-yes">To be announced at a later date.</p>
-
-
-            <p class="text-center  section-title-small-border-yes">Booking for the annual Dinner is now closed. There are
-                still places available at some tables. If you would still like to attend please email the union office at
-                belvedereunion@belvederecollege.ie</p>
+            <p class="text-center  section-title-small-border-yes">The past events.</p>
 
 
 
@@ -105,7 +100,7 @@
                             <div class="reptro-course-loop-thumbnail-area">
 
                                 <div class="reptro-course-details-btn"> <a class="btn btn-fill btn-lg"
-                                        href="{{ url('eventdetail/' . $item['id']) }}">Details</a></div>
+                                        href="{{ url('archived-event-detail/' . $item['id']) }}">Details</a></div>
 
                                 <div class="course-thumbnail"> <img width="570" height="461"
                                         src="imagess/{{ $item['image'] }}"></div>

@@ -258,6 +258,11 @@ Route::get('search','user\CareersController@search');
 Route::post('autocomplete/fetch','user\CareersController@autocomplete')->name('autocomplete.fetch');
 
 
+//archived events
+Route::get('archived-events','user\EventController@archivedevents')->name('archived-events');
+
+Route::get('archived-event-detail/{id}','user\EventController@showarchivedevents');
+
 
 Route::get('about','user\AboutController@index');
 

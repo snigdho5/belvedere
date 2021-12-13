@@ -23,7 +23,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $data       = Event::get();
+        $data = Event::where("status", "=", "1")->get();
         $oursponser = Sponsor::get();
         return view('user.pages.event', compact('data', 'oursponser'));
     }
@@ -506,4 +506,29 @@ class EventController extends Controller
         }
         return view('admin.eventenrolledmember');
     }
+
+
+    // archived events
+
+    public function archivedevents()
+    {
+        $today = date('Y-m-d');
+
+        $data = Event::where("status", "=", "0")
+        ->orWhere("fromdate", "<", "'" . $today . "'")
+        ->get();
+        
+        $oursponser = Sponsor::get();
+        return view('user.pages.archivedevents', compact('data', 'oursponser'));
+    }
+
+    public function showarchivedevents($id)
+    {
+        $event          =   Event::where('id', $id)->first();
+        $popularevent   =   Event::take(5)->get();
+        $oursponser     =   Sponsor::get();
+        return view('user.pages.archiveeventdetail', compact('event', 'popularevent', 'oursponser'));
+    }
+
+
 }

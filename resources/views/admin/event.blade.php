@@ -554,7 +554,9 @@
                                         <div class="input-group">
 
                                             <select name="status" id="status" class="form-control">
-                                                <option value="" >Select</option>
+                                                <option value="">Select</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inctive</option>
                                             </select>
 
 
