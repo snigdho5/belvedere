@@ -1190,6 +1190,7 @@ legend {
   outline: none;
   color: #333 !important;
   font-size: 91%;
+  width: 100%;
 }
 
 #search_evt {
@@ -1200,5 +1201,6 @@ legend {
   outline: none;
   color: #333 !important;
   font-size: 91%;
+  width: 100%;
 }
 /*# sourceMappingURL=Searchs_010.css.map */
