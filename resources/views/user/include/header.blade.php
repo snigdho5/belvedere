@@ -112,11 +112,24 @@ $data = layoutDataData;
 
                         </li>
 
-                        <li class="nav-item {{ request()->is('event') ? 'active' : '' }}">
 
-                            <a class="nav-link" href="{{ url('event') }}">Events</a>
+                        <li class="nav-item {{ request()->is('event') ? 'active' : '' }}
+
+                            {{ request()->is('archived-events') ? 'active' : '' }}">
+
+                            <a class="nav-link" href="javascript:void(0);">Events</a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a href="{{ secure_url('event') }}">Upcomming Events</a></li>
+
+                                <li><a href="{{ secure_url('archived-events') }}">Passed Events</a></li>
+
+                            </ul>
 
                         </li>
+
+                        
 
                         <li class="nav-item {{ request()->is('careers') ? 'active' : '' }}
 

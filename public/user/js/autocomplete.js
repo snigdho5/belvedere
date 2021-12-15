@@ -23,3 +23,5 @@
     	//console.log($(this).text());
     	setTimeout(function(){ $(".btn-search").trigger("click"); }, 1000);
     });
+
+	

@@ -249,7 +249,15 @@ Route::get('event','user\EventController@index')->name('event');
 
 Route::get('eventdetail/{id}','user\EventController@show');
 
+Route::get('event-search','user\EventController@event_search');
+
+Route::post('autocomplete/fetch_ev','user\EventController@autocomplete')->name('autocomplete.fetch_ev');
+
 Route::get('careers','user\CareersController@index')->name('careers');
+
+Route::get('archived-event-search','user\EventController@archived_event_search');
+
+Route::post('autocomplete/fetch_ar_ev','user\EventController@autocomplete')->name('autocomplete.fetch_ar_ev');
 
 Route::post('eventcheckout', 'user\EventController@eventcheckout')->name('eventcheckout');
 

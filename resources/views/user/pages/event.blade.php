@@ -108,7 +108,7 @@
                                                     <option>Company name c</option>
                                                 </select>
                                                 </div> -->
-                                        <input id="search_new" class="search_new" name="query" type="text"
+                                        <input id="search_evt" class="search_evt" name="query" type="text"
                                             placeholder="Enter Keywords" />
                                         <div id="suggestionList"></div>
                                     </div>
@@ -265,7 +265,10 @@
             <!-- <div class="text-center reptro-all-courses-btn"> <a class="btn btn-lg btn-fill" href="#">All Events</a></div> -->
 
         </section>
-
+        
+        <input id="autocompleteUrl" type="hidden"  name="autourl" value="{{route('autocomplete.fetch_ev')}}"/>
+        <input id="csrfT" type="hidden"  name="_tokcsr" value="{{ csrf_token() }}"/>
+    
     </div>
 
 
@@ -277,3 +280,10 @@
     @include('user.include.sponser')
 
 @endsection
+
+@push('js')
+
+<script src="user/js/choices.js"></script>
+<script src="user/js/autocomplete_event.js"></script>
+
+@endpush

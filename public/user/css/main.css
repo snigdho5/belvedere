@@ -1181,4 +1181,24 @@ legend {
     color: #333 !important;
     font-size: 91%;
 }
+
+#search_arc {
+  border-radius: 30px;
+  padding: 11px;
+  background: #cccccc61;
+  border: none;
+  outline: none;
+  color: #333 !important;
+  font-size: 91%;
+}
+
+#search_evt {
+  border-radius: 30px;
+  padding: 11px;
+  background: #cccccc61;
+  border: none;
+  outline: none;
+  color: #333 !important;
+  font-size: 91%;
+}
 /*# sourceMappingURL=Searchs_010.css.map */

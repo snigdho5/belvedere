@@ -31,7 +31,7 @@
 
             <div class="container">
 
-                <h1 class="entry-title">Archived Events</h1>
+                <h1 class="entry-title">Past Events</h1>
 
             </div>
 
@@ -47,7 +47,7 @@
 
                         <li><a href="/" itemprop="url">Home</a></li>
 
-                        <li class="current">Archived Events</li>
+                        <li class="current">Past Events</li>
 
                     </ul>
 
@@ -65,7 +65,7 @@
 
         <section class="reptro-section-padding-large elementor-top-section">
 
-            <h2 class="reptro-section-title text-center margin-bottom-xsmall"><span>Archived Events</span></h2>
+            <h2 class="reptro-section-title text-center margin-bottom-xsmall"><span>Past Events</span></h2>
 
             <!-- <p class="section-title-small text-center  section-title-small-border-yes">Lorem ipsum dolor sit amet,
 
@@ -102,7 +102,7 @@
                                                 <option>Company name c</option>
                                             </select>
                                             </div> -->
-                                        <input id="search_new" class="search_new" name="query" type="text"
+                                        <input id="search_arc" class="search_arc" name="query" type="text"
                                             placeholder="Enter Keywords" />
                                         <div id="suggestionList"></div>
                                     </div>
@@ -260,6 +260,10 @@
 
         </section>
 
+        
+    <input id="autocompleteUrl" type="hidden"  name="autourl" value="{{route('autocomplete.fetch_ar_ev')}}"/>
+    <input id="csrfT" type="hidden"  name="_tokcsr" value="{{ csrf_token() }}"/>
+
     </div>
 
 
@@ -271,3 +275,13 @@
     @include('user.include.sponser')
 
 @endsection
+
+
+@push('js')
+
+<script src="user/js/choices.js"></script>
+<script src="user/js/autocomplete_archive.js"></script>
+
+@endpush
+
+

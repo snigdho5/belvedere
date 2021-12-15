@@ -507,6 +507,21 @@ class EventController extends Controller
         return view('admin.eventenrolledmember');
     }
 
+    
+    public function event_search(Request $request)
+    {
+
+        $search_keyword     =   $request->get('query');
+
+        $data = Event::where("status", "=", "1")
+        ->where('title','LIKE','%'.$search_keyword.'%')
+        ->paginate(10);
+
+        $oursponser = Sponsor::get();
+
+        return view('user.pages.event',compact('data','oursponser'));
+    }
+
 
     // archived events
 
@@ -528,6 +543,43 @@ class EventController extends Controller
         $popularevent   =   Event::take(5)->get();
         $oursponser     =   Sponsor::get();
         return view('user.pages.archiveeventdetail', compact('event', 'popularevent', 'oursponser'));
+    }
+
+
+    
+    public function archived_event_search(Request $request)
+    {
+
+        $search_keyword     =   $request->get('query');
+
+        $data = Event::where("status", "=", "0")
+        ->where('title','LIKE','%'.$search_keyword.'%')
+        ->paginate(10);
+
+        $oursponser = Sponsor::get();
+
+        return view('user.pages.archivedevents',compact('data','oursponser'));
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $search_keyword     =   $request->post('query');
+        $status     =   $request->post('status');
+
+        $eData = Event::where("status", "=", $status)
+        ->where('title','LIKE','%'.$search_keyword.'%')
+        ->paginate(10);
+
+        $outputData     =   '<ul id="suggestions" class="dropdown-menu" style="display:block; position:relative;">';
+        $sg  =   1;
+
+        foreach ($eData as $data) {
+            $outputData     .=  '<li class="sugg">'.$data->title.'</li>';
+            $sg++;
+        }
+
+        $outputData     .=  '</ul>';
+        echo $outputData;
     }
 
 
