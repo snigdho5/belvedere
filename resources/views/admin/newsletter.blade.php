@@ -640,7 +640,7 @@
 
         });
 
-        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio6,#radio7,#radio8', function(){
+        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio6,#radio8', function(){
 
             $('#manualInput').hide();
 
