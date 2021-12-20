@@ -180,7 +180,7 @@
                                 <select class="form-control" name="set_status" id="set_status">
                                     <option value="">Select Status</option>
                                     <option value="1">Active</option>
-                                    <option value="0">Inctive</option>
+                                    <option value="0">Inactive</option>
                                 </select>
 
                             </div>
@@ -556,7 +556,7 @@
                                             <select name="status" id="status" class="form-control">
                                                 <option value="">Select</option>
                                                 <option value="1">Active</option>
-                                                <option value="0">Inctive</option>
+                                                <option value="0">Inactive</option>
                                             </select>
 
 
@@ -968,9 +968,9 @@
                         $('#map').val(result.map);
 
                         if(result.status == 1){
-                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inctive</option>';
+                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
                         }else{
-                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inctive</option>';
+                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
                         }
 
                         $('#status').append(html_opt);

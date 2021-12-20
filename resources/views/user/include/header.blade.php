@@ -121,9 +121,9 @@ $data = layoutDataData;
 
                             <ul class="dropdown-menu">
 
-                                <li><a href="{{ secure_url('event') }}">Upcomming Events</a></li>
+                                <li><a href="{{ secure_url('event') }}">Upcoming Events</a></li>
 
-                                <li><a href="{{ secure_url('archived-events') }}">Passed Events</a></li>
+                                <li><a href="{{ secure_url('archived-events') }}">Past Events</a></li>
 
                             </ul>
 

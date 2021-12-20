@@ -307,6 +307,18 @@
                                         </label>
 
                                     </div>
+                                    
+                                    <div class="radio radio-primary col-sm-4">
+
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio8" value="addlist">
+
+                                        <label for="radio8">
+
+                                            Add Subscription List
+
+                                        </label>
+
+                                    </div>
 
                                 </div>
 
@@ -422,13 +434,13 @@
 
                                     <tr>
 
-                                        <td class="bltdl" width="40%" align="right">
+                                        <td class="bltdl bltdl-file" width="40%" align="right">
 
                                             <label>Select File for Upload</label>
 
                                         </td>
 
-                                        <td class="bltdl" width="30%">
+                                        <td class="bltdl bltdl-file" width="30%">
 
                                             <input type="file" name="select_file"/>
 
@@ -616,7 +628,7 @@
 
         });
 
-        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio7', function(){
+        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio7,#radio8', function(){
 
             $('#dateRng').hide();
 
@@ -628,7 +640,7 @@
 
         });
 
-        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio6', function(){
+        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio6,#radio7,#radio8', function(){
 
             $('#manualInput').hide();
 
@@ -673,6 +685,15 @@
             $('#myTable').DataTable().ajax.reload();
 
             // alert("test");
+            var radioval = $(this).val();
+
+            // console.log(radioval);
+            if(radioval == 'addlist'){
+                $('.bltdl-file').hide();
+
+            }else{
+                $('.bltdl-file').show();
+            }
 
         });
 

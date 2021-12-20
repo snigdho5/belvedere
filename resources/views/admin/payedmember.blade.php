@@ -132,11 +132,11 @@
 
                                 <!-- <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                       aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                                           aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                        <i class="icon-plus"></i>
+                                                                            <i class="icon-plus"></i>
 
-                                    </a> -->
+                                                                        </a> -->
 
                                 <a href="{{ url('addnewuser') }}" style="font-size: 22px">
 
@@ -323,6 +323,51 @@
                     </div>
 
                 </div>
+
+                <div class="subs-div">
+                    <table class="table table-hover" border="2">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;" colspan="3">
+                                    <h3>Manage Subscription List</h3>
+                                    <p>To add members to subscription list, select members and the subscription list name(or
+                                        add a new) and then click Submit</p>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td>
+                                    <input type="checkbox" class="check-all" value=""> Check All
+                                </td>
+
+                                <td>
+                                    <select name="subs_id" id="subs_id" class="form-control subs_id"
+                                        style="max-width:300px;">
+
+                                        <option value="">Choose Subscription List</option>
+
+                                        @foreach (subscriberlist() as $listName)
+
+                                            <option value="<?php echo $listName->id; ?>">
+                                                <?php echo $listName->list_name; ?>
+                                            </option>
+
+                                        @endforeach
+
+                                    </select>
+                                    <span><a href="{{ secure_url('subscriberslist') }}" target="_blank">Add Subscription
+                                            List</a></span>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary sms-btn">Submit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
 
                 <div class="body">
 
@@ -560,27 +605,27 @@
 
                                 <!--                                <div class="col-lg-12">
 
-                                        <div class="form-group c_form_group">
+                                                                            <div class="form-group c_form_group">
 
-                                            <label for="basic-url">Image</label>
+                                                                                <label for="basic-url">Image</label>
 
-                                            <div class="input-group">
+                                                                                <div class="input-group">
 
-                                                <div class="input-group-prepend">
+                                                                                    <div class="input-group-prepend">
 
-                                                    <span class="input-group-text" id="basic-addon3"></span>
+                                                                                        <span class="input-group-text" id="basic-addon3"></span>
 
-                                                </div>
+                                                                                    </div>
 
-                                                <input name="image" type="file" class="custom-file-input" id="inputGroupFile01">
+                                                                                    <input name="image" type="file" class="custom-file-input" id="inputGroupFile01">
 
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
 
-                                            </div>
+                                                                                </div>
 
-                                        </div>
+                                                                            </div>
 
-                                    </div>-->
+                                                                        </div>-->
 
                             </div>
 
@@ -635,71 +680,71 @@
 
                                 <!--<div class="col-lg-6">
 
-                                        <div class="form-group c_form_group">
+                                                                            <div class="form-group c_form_group">
 
-                                            <input name="member" type="hidden" value="1">
+                                                                                <input name="member" type="hidden" value="1">
 
-                                            <label for="basic-url">Name</label>
+                                                                                <label for="basic-url">Name</label>
 
-                                            <div class="input-group">
+                                                                                <div class="input-group">
 
-                                                <div class="input-group-prepend">
+                                                                                    <div class="input-group-prepend">
 
-                                                    <span class="input-group-text" id="basic-addon3"></span>
+                                                                                        <span class="input-group-text" id="basic-addon3"></span>
 
-                                                </div>
+                                                                                    </div>
 
-                                                <input name="name" type="text" class="form-control" id="name" aria-describedby="basic-addon3">
+                                                                                    <input name="name" type="text" class="form-control" id="name" aria-describedby="basic-addon3">
 
-                                            </div>
+                                                                                </div>
 
-                                        </div>
+                                                                            </div>
 
-                                    </div>
+                                                                        </div>
 
-                                    <div class="col-lg-6">
+                                                                        <div class="col-lg-6">
 
-                                        <div class="form-group c_form_group">
+                                                                            <div class="form-group c_form_group">
 
-                                            <label for="basic-url">Email</label>
+                                                                                <label for="basic-url">Email</label>
 
-                                            <div class="input-group">
+                                                                                <div class="input-group">
 
-                                                <div class="input-group-prepend">
+                                                                                    <div class="input-group-prepend">
 
-                                                    <span class="input-group-text" id="basic-addon3"></span>
+                                                                                        <span class="input-group-text" id="basic-addon3"></span>
 
-                                                </div>
+                                                                                    </div>
 
-                                                <input name="email" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
+                                                                                    <input name="email" type="text" class="form-control" id="email" aria-describedby="basic-addon3">
 
-                                            </div>
+                                                                                </div>
 
-                                        </div>
+                                                                            </div>
 
-                                    </div>
+                                                                        </div>
 
-                                    <div class="col-lg-12">
+                                                                        <div class="col-lg-12">
 
-                                        <div class="form-group c_form_group">
+                                                                            <div class="form-group c_form_group">
 
-                                            <label for="basic-url">Password</label>
+                                                                                <label for="basic-url">Password</label>
 
-                                            <div class="input-group">
+                                                                                <div class="input-group">
 
-                                                <div class="input-group-prepend">
+                                                                                    <div class="input-group-prepend">
 
-                                                    <span class="input-group-text" id="basic-addon3"></span>
+                                                                                        <span class="input-group-text" id="basic-addon3"></span>
 
-                                                </div>
+                                                                                    </div>
 
-                                                <input name="password" type="password" class="form-control" id="password" aria-describedby="basic-addon3">
+                                                                                    <input name="password" type="password" class="form-control" id="password" aria-describedby="basic-addon3">
 
-                                            </div>
+                                                                                </div>
 
-                                        </div>
+                                                                            </div>
 
-                                    </div>-->
+                                                                        </div>-->
 
                                 <div class="col-lg-6">
 
@@ -971,572 +1016,656 @@
 
         $(function() {
 
-            $.ajaxSetup({
+                    $.ajaxSetup({
 
-                headers: {
+                        headers: {
 
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-                }
-
-            });
-
-            $("#myTable").DataTable({
-
-                "responsive": true,
-
-                "autoWidth": false,
-
-                "processing": true,
-
-                "serverSide": true,
-
-                "bDestroy": true,
-
-                "Access-Control-Allow-Origin": "*",
-
-                "ajax": {
-
-                    "url": "{{ route('primiummember.index') }}",
-
-                    "data": function(d) {
-
-                        d.myKey = $('input[name=radioName]:checked').val()
-
-                    }
-
-                },
-
-                "columns": [{
-
-                        data: 'type',
-
-                        name: 'type'
-
-                    },
-
-                    {
-
-                        data: 'username',
-
-                        name: 'username'
-
-                    },
-
-                    {
-
-                        data: 'useremail',
-
-                        name: 'useremail'
-
-                    },
-
-                    {
-
-                        data: 'start_date',
-
-                        name: 'start_date'
-
-                    },
-
-                    {
-
-                        data: 'end_date',
-
-                        name: 'end_date'
-
-                    },
-
-                    {
-
-                        data: 'price',
-
-                        name: 'price'
-
-                    },
-
-                    {
-
-                        data: 'month',
-
-                        name: 'month'
-
-                    },
-
-                    {
-
-                        data: 'year_left',
-
-                        name: 'year_left'
-
-                    },
-
-                    {
-
-                        data: 'company',
-
-                        name: 'company'
-
-                    },
-
-                    {
-
-                        data: 'title',
-
-                        name: 'title'
-
-                    },
-
-                    {
-
-                        data: 'phone_no',
-
-                        name: 'phone_no'
-
-                    },
-
-                    {
-
-                        data: 'industry',
-
-                        name: 'industry'
-
-                    },
-
-                    {
-
-                        data: 'status',
-
-                        name: 'status'
-
-                    },
-
-                    {
-
-                        data: 'action',
-
-                        name: 'action'
-
-                    },
-
-                ]
-
-
-
-            });
-
-
-
-            $(document).on("click", ".AddNew", function() {
-
-                $('.error').html('');
-
-                $('.error').html('');
-
-                // $('#imageview').remove();
-
-                $('#EditId').remove();
-
-                $('#myForm').trigger("reset");
-
-                $('#ModelTitle').html('Add Member');
-
-                $('#ModelButton').html('Save');
-
-                $('#MyModel').modal('show');
-
-                $("#myForm")[0].reset();
-
-            });
-
-
-
-            $(document).on("click", "#EditModel", function() {
-
-                $('.error').html('');
-
-                var Id = $(this).attr('data-id');
-
-                $('#Model_title').html('Edit Sponsors');
-
-                $('#ModelButton').html('Edit');
-
-                $('#status').html('');
-
-                $.ajax({
-
-                    /*url: "{{ url('managesponsors') }}/" + Id,
-
-                    method: 'get',*/
-
-                    url: "{{ route('edituserdata') }}",
-
-                    method: 'POST',
-
-                    data: {
-                        userid: Id
-                    },
-
-                    success: function(result) {
-
-                        var response = JSON.parse(result);
-
-                        // console.log(response);
-
-                        $('#editForm').trigger("reset");
-
-                        $('#EditId').remove();
-
-                        $('#imageview').remove();
-
-                        $('#usrXid').val(response.id);
-
-                        $('#editcompany').val(response.company);
-
-                        $('#edittitle').val(response.title);
-
-                        $('#editphone').val(response.phone_no);
-
-                        $('#editindustry').val(response.industry);
-
-                        if (response.status == 1) {
-                            var html_opt =
-                                '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
-                        } else {
-                            var html_opt =
-                                '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
-                        }
-
-                        $('#status').append(html_opt);
-
-                        //$('#imageappendhere').append(
-
-                        //'<div id="imageview"><img src="public/images/admin/thumb-' +
-
-                        //result.image + '" alt="abc" height="150"> </div>');
-
-                        /*$('#title').append('<input id="EditId" type="hidden" name="EditId">');
-
-                        $('#EditId').val(result.id);
-
-                        $('#title').val(result.title);
-
-                        $('#date').val(result.date);
-
-                        $('#time').val(result.time);
-
-                        $('#cost').val(result.cost);
-
-                        $('#desc').val(result.desc);
-
-                        $('#phone_no').val(result.phone_no);
-
-                        $('#email').val(result.email);
-
-                        $('#address').val(result.address);
-
-                        $('#map').val(result.map);*/
-
-                        $('#edituserModel').modal('show');
-
-                    }
-
-                });
-
-            });
-
-
-
-            $(document).on("click", "#updateUser", function(x) {
-
-                x.preventDefault();
-
-                var formData = $('#editForm').serialize();
-
-                //console.log(formData);
-
-                $(':input[type="submit"]').prop('disabled', true);
-
-                $.ajax({
-
-                    url: "{{ route('updateuserinfo') }}",
-
-                    type: "POST",
-
-                    data: formData,
-
-                    success: function(data) {
-
-                        $('#edituserModel').modal('hide');
-
-                        $('#myTable').DataTable().ajax.reload();
-
-                        swal({
-
-                            position: 'top-end',
-
-                            title: "Good job!",
-
-                            text: "User Updated Successfully!",
-
-                            icon: "success",
-
-                            showConfirmButton: false,
-
-                        });
-
-                        $(':input[type="submit"]').prop('disabled', false);
-
-                        $("#editForm")[0].reset();
-
-                    }
-
-                })
-
-                /*$('.error').html('');
-
-                var Id = $(this).attr('data-id');
-
-                $('#Model_title').html('Edit Sponsors');
-
-                $('#ModelButton').html('Edit');
-
-                $.ajax({
-
-                    url: "{{ route('edituserdata') }}",
-
-                    method: 'POST',
-
-                    data : { userid : Id },
-
-                    success: function(result){                        
-
-                        var response = JSON.parse(result);
-
-                        console.log(response.id);
-
-                        $('#editForm').trigger("reset");
-
-                        $('#EditId').remove();
-
-                        $('#imageview').remove();
-
-                        $('#editcompany').val(response.company);
-
-                        $('#edittitle').val(response.title);
-
-                        $('#editphone').val(response.phone);
-
-                        
-
-                        $('#edituserModel').modal('show');
-
-                    }
-
-                });*/
-
-            });
-
-
-            $(document).on("change", "#filter_type", function() {
-                var filter_type = $(this).val();
-                if (filter_type == 'status') {
-                    $('.search-box').hide();
-                    $('.status-drop').show();
-                } else {
-                    $('.status-drop').hide();
-                    $('.search-box').show();
-                }
-
-            });
-
-
-
-            $('#myForm').on('submit', function(event) {
-
-                event.preventDefault();
-
-                var formData = $('#myForm').serialize();
-
-                //console.log(formData);
-
-                url = "{{ url('addnewuser') }}"
-
-                $(':input[type="submit"]').prop('disabled', true);
-
-                $.ajax({
-
-                    url: url,
-
-                    type: "POST",
-
-                    data: formData,
-
-                    success: function(data) {
-
-                        $('#MyModel').modal('hide');
-
-                        $('#myTable').DataTable().ajax.reload();
-
-                        swal({
-
-                            position: 'top-end',
-
-                            title: "Good job!",
-
-                            text: "User Added Successfully!",
-
-                            icon: "success",
-
-                            showConfirmButton: false,
-
-                        });
-
-                        $(':input[type="submit"]').prop('disabled', false);
-
-                        $("#myForm")[0].reset();
-
-                    }
-
-                })
-
-                //url = "{{ url('managesponsors') }}"
-
-                //$(':input[type="submit"]').prop('disabled', true);                
-
-                /*$.ajax({
-
-                    url: url,
-
-                    type: "POST",
-
-                    data: new FormData(this),
-
-                    contentType: false,
-
-                    processData: false,
-
-                    success: function(data) {
-
-                        $('#MyModel').modal('hide');
-
-                        $('#myTable').DataTable().ajax.reload();
-
-                        swal({
-
-                            position: 'top-end',
-
-                            title: "Good job!",
-
-                            text: "Product Added Successfully!",
-
-                            icon: "success",
-
-                            showConfirmButton: false,
-
-                        });
-
-                        $(':input[type="submit"]').prop('disabled', false);
-
-
-
-                        $("#myForm")[0].reset();
-
-                    },
-
-                    error: function(reject) {
-
-                        if (reject.status === 422) {
-
-                            $(':input[type="submit"]').prop('disabled', false);
-
-
-
-                            var errors = $.parseJSON(reject.responseText);
-
-                            $.each(errors.errors, function(key, val) {
-
-                                $("#" + key + "_error").show();
-
-                                $("#" + key + "_error").text(val[0]);
-
-                            });
-
-                        }
-
-                    }
-
-                })*/
-
-            });
-
-
-
-            $(document).on("click", "#DeleteModel", function() {
-
-                var Id = $(this).attr('data-id');
-
-                var email = $(this).attr('data-email');
-
-                swal({
-
-                        title: "Are you sure?",
-
-                        text: "Once deleted, you will not be able to recover this  file!",
-
-                        icon: "warning",
-
-                        buttons: true,
-
-                        dangerMode: true,
-
-                    })
-
-                    .then((willDelete) => {
-
-                        if (willDelete) {
-
-                            $.ajax({
-
-                                //url: "{{ url('managesponsors') }}/" + Id,
-
-                                //method: 'DELETE',
-
-                                url: "{{ route('deleteuser') }}",
-
-                                method: 'POST',
-
-                                data: {
-                                    userid: Id
-                                },
-
-                                success: function(result) {
-
-                                    $('#myTable').DataTable().ajax.reload();
-
-                                }
-
-                            });
-
-                            swal("Poof! Your imaginary file has been deleted!", {
-
-                                icon: "success",
-
-                            });
-
-                        } else {
-
-                            swal("Your imaginary file is safe!");
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
                         }
 
                     });
 
-                return false;
+                    $("#myTable").DataTable({
 
-            });
+                        "responsive": true,
 
-        });
+                        "autoWidth": false,
+
+                        "processing": true,
+
+                        "serverSide": true,
+
+                        "bDestroy": true,
+
+                        "Access-Control-Allow-Origin": "*",
+
+                        "ajax": {
+
+                            "url": "{{ route('primiummember.index') }}",
+
+                            "data": function(d) {
+
+                                d.myKey = $('input[name=radioName]:checked').val()
+
+                            }
+
+                        },
+
+                        "columns": [{
+
+                                data: 'checkbox',
+
+                                name: 'checkbox'
+
+                            },
+                            {
+
+                                data: 'type',
+
+                                name: 'type'
+
+                            },
+
+                            {
+
+                                data: 'username',
+
+                                name: 'username'
+
+                            },
+
+                            {
+
+                                data: 'useremail',
+
+                                name: 'useremail'
+
+                            },
+
+                            {
+
+                                data: 'start_date',
+
+                                name: 'start_date'
+
+                            },
+
+                            {
+
+                                data: 'end_date',
+
+                                name: 'end_date'
+
+                            },
+
+                            {
+
+                                data: 'price',
+
+                                name: 'price'
+
+                            },
+
+                            {
+
+                                data: 'month',
+
+                                name: 'month'
+
+                            },
+
+                            {
+
+                                data: 'year_left',
+
+                                name: 'year_left'
+
+                            },
+
+                            {
+
+                                data: 'company',
+
+                                name: 'company'
+
+                            },
+
+                            {
+
+                                data: 'title',
+
+                                name: 'title'
+
+                            },
+
+                            {
+
+                                data: 'phone_no',
+
+                                name: 'phone_no'
+
+                            },
+
+                            {
+
+                                data: 'industry',
+
+                                name: 'industry'
+
+                            },
+
+                            {
+
+                                data: 'status',
+
+                                name: 'status'
+
+                            },
+
+                            {
+
+                                data: 'action',
+
+                                name: 'action'
+
+                            },
+
+                        ]
+
+
+
+                    });
+
+
+
+                    $(document).on("click", ".AddNew", function() {
+
+                        $('.error').html('');
+
+                        $('.error').html('');
+
+                        // $('#imageview').remove();
+
+                        $('#EditId').remove();
+
+                        $('#myForm').trigger("reset");
+
+                        $('#ModelTitle').html('Add Member');
+
+                        $('#ModelButton').html('Save');
+
+                        $('#MyModel').modal('show');
+
+                        $("#myForm")[0].reset();
+
+                    });
+
+
+
+                    $(document).on("click", "#EditModel", function() {
+
+                        $('.error').html('');
+
+                        var Id = $(this).attr('data-id');
+
+                        $('#Model_title').html('Edit Sponsors');
+
+                        $('#ModelButton').html('Edit');
+
+                        $('#status').html('');
+
+                        $.ajax({
+
+                            /*url: "{{ url('managesponsors') }}/" + Id,
+
+                            method: 'get',*/
+
+                            url: "{{ route('edituserdata') }}",
+
+                            method: 'POST',
+
+                            data: {
+                                userid: Id
+                            },
+
+                            success: function(result) {
+
+                                var response = JSON.parse(result);
+
+                                // console.log(response);
+
+                                $('#editForm').trigger("reset");
+
+                                $('#EditId').remove();
+
+                                $('#imageview').remove();
+
+                                $('#usrXid').val(response.id);
+
+                                $('#editcompany').val(response.company);
+
+                                $('#edittitle').val(response.title);
+
+                                $('#editphone').val(response.phone_no);
+
+                                $('#editindustry').val(response.industry);
+
+                                if (response.status == 1) {
+                                    var html_opt =
+                                        '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
+                                } else {
+                                    var html_opt =
+                                        '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
+                                }
+
+                                $('#status').append(html_opt);
+
+                                //$('#imageappendhere').append(
+
+                                //'<div id="imageview"><img src="public/images/admin/thumb-' +
+
+                                //result.image + '" alt="abc" height="150"> </div>');
+
+                                /*$('#title').append('<input id="EditId" type="hidden" name="EditId">');
+
+                                $('#EditId').val(result.id);
+
+                                $('#title').val(result.title);
+
+                                $('#date').val(result.date);
+
+                                $('#time').val(result.time);
+
+                                $('#cost').val(result.cost);
+
+                                $('#desc').val(result.desc);
+
+                                $('#phone_no').val(result.phone_no);
+
+                                $('#email').val(result.email);
+
+                                $('#address').val(result.address);
+
+                                $('#map').val(result.map);*/
+
+                                $('#edituserModel').modal('show');
+
+                            }
+
+                        });
+
+                    });
+
+
+
+                    $(document).on("click", "#updateUser", function(x) {
+
+                        x.preventDefault();
+
+                        var formData = $('#editForm').serialize();
+
+                        //console.log(formData);
+
+                        $(':input[type="submit"]').prop('disabled', true);
+
+                        $.ajax({
+
+                            url: "{{ route('updateuserinfo') }}",
+
+                            type: "POST",
+
+                            data: formData,
+
+                            success: function(data) {
+
+                                $('#edituserModel').modal('hide');
+
+                                $('#myTable').DataTable().ajax.reload();
+
+                                swal({
+
+                                    position: 'top-end',
+
+                                    title: "Good job!",
+
+                                    text: "User Updated Successfully!",
+
+                                    icon: "success",
+
+                                    showConfirmButton: false,
+
+                                });
+
+                                $(':input[type="submit"]').prop('disabled', false);
+
+                                $("#editForm")[0].reset();
+
+                            }
+
+                        })
+
+                        /*$('.error').html('');
+
+                        var Id = $(this).attr('data-id');
+
+                        $('#Model_title').html('Edit Sponsors');
+
+                        $('#ModelButton').html('Edit');
+
+                        $.ajax({
+
+                            url: "{{ route('edituserdata') }}",
+
+                            method: 'POST',
+
+                            data : { userid : Id },
+
+                            success: function(result){                        
+
+                                var response = JSON.parse(result);
+
+                                console.log(response.id);
+
+                                $('#editForm').trigger("reset");
+
+                                $('#EditId').remove();
+
+                                $('#imageview').remove();
+
+                                $('#editcompany').val(response.company);
+
+                                $('#edittitle').val(response.title);
+
+                                $('#editphone').val(response.phone);
+
+                                
+
+                                $('#edituserModel').modal('show');
+
+                            }
+
+                        });*/
+
+                    });
+
+
+                    $(document).on("change", "#filter_type", function() {
+                        var filter_type = $(this).val();
+                        if (filter_type == 'status') {
+                            $('.search-box').hide();
+                            $('.status-drop').show();
+                        } else {
+                            $('.status-drop').hide();
+                            $('.search-box').show();
+                        }
+
+                    });
+
+
+
+                    $('#myForm').on('submit', function(event) {
+
+                        event.preventDefault();
+
+                        var formData = $('#myForm').serialize();
+
+                        //console.log(formData);
+
+                        url = "{{ url('addnewuser') }}"
+
+                        $(':input[type="submit"]').prop('disabled', true);
+
+                        $.ajax({
+
+                            url: url,
+
+                            type: "POST",
+
+                            data: formData,
+
+                            success: function(data) {
+
+                                $('#MyModel').modal('hide');
+
+                                $('#myTable').DataTable().ajax.reload();
+
+                                swal({
+
+                                    position: 'top-end',
+
+                                    title: "Good job!",
+
+                                    text: "User Added Successfully!",
+
+                                    icon: "success",
+
+                                    showConfirmButton: false,
+
+                                });
+
+                                $(':input[type="submit"]').prop('disabled', false);
+
+                                $("#myForm")[0].reset();
+
+                            }
+
+                        })
+
+                        //url = "{{ url('managesponsors') }}"
+
+                        //$(':input[type="submit"]').prop('disabled', true);                
+
+                        /*$.ajax({
+
+                            url: url,
+
+                            type: "POST",
+
+                            data: new FormData(this),
+
+                            contentType: false,
+
+                            processData: false,
+
+                            success: function(data) {
+
+                                $('#MyModel').modal('hide');
+
+                                $('#myTable').DataTable().ajax.reload();
+
+                                swal({
+
+                                    position: 'top-end',
+
+                                    title: "Good job!",
+
+                                    text: "Product Added Successfully!",
+
+                                    icon: "success",
+
+                                    showConfirmButton: false,
+
+                                });
+
+                                $(':input[type="submit"]').prop('disabled', false);
+
+
+
+                                $("#myForm")[0].reset();
+
+                            },
+
+                            error: function(reject) {
+
+                                if (reject.status === 422) {
+
+                                    $(':input[type="submit"]').prop('disabled', false);
+
+
+
+                                    var errors = $.parseJSON(reject.responseText);
+
+                                    $.each(errors.errors, function(key, val) {
+
+                                        $("#" + key + "_error").show();
+
+                                        $("#" + key + "_error").text(val[0]);
+
+                                    });
+
+                                }
+
+                            }
+
+                        })*/
+
+                    });
+
+
+
+                    $(document).on("click", "#DeleteModel", function() {
+
+                        var Id = $(this).attr('data-id');
+
+                        var email = $(this).attr('data-email');
+
+                        swal({
+
+                                title: "Are you sure?",
+
+                                text: "Once deleted, you will not be able to recover this  file!",
+
+                                icon: "warning",
+
+                                buttons: true,
+
+                                dangerMode: true,
+
+                            })
+
+                            .then((willDelete) => {
+
+                                if (willDelete) {
+
+                                    $.ajax({
+
+                                        //url: "{{ url('managesponsors') }}/" + Id,
+
+                                        //method: 'DELETE',
+
+                                        url: "{{ route('deleteuser') }}",
+
+                                        method: 'POST',
+
+                                        data: {
+                                            userid: Id
+                                        },
+
+                                        success: function(result) {
+
+                                            $('#myTable').DataTable().ajax.reload();
+
+                                        }
+
+                                    });
+
+                                    swal("Poof! Your imaginary file has been deleted!", {
+
+                                        icon: "success",
+
+                                    });
+
+                                } else {
+
+                                    swal("Your imaginary file is safe!");
+
+                                }
+
+                            });
+
+                        return false;
+
+                    });
+
+
+                    $(document).on('change', '.check-member', function() {
+
+                        if ($(".check-member").is(':checked')) {
+                            // $(".subs-div").show();
+                        } else {
+                            // $(".subs-div").hide();
+                        }
+
+                    });
+
+                    //check all
+
+                    $(document).on('change', '.check-all', function() {
+                        //console.log('ff');
+
+                        if ($(".check-all").is(':checked')) {
+                            // $(".subs-div").show();
+                            $('.check-member').attr('checked', 'checked');
+                            //$('.check-member').prop('checked', 'checked');
+                            $(this).val('uncheck all');
+                        } else {
+                            // $(".subs-div").hide();
+                            $('.check-member').removeAttr('checked');
+                            $(this).val('check all');
+                        }
+                    });
+
+                    $(document).on('click', '.sms-btn', function() {
+
+                            var i = 0;
+                            var arr = {};
+
+                            var subs_id = $("select#subs_id option").filter(":selected").val();
+
+                            $('.check-member:checked').each(function() {
+                                arr[i] = {};
+                                arr[i] = $(this).val();
+                                i++;
+                            });
+                            // console.log(arr);
+
+                            var jArr = JSON.stringify(arr);
+
+                            if (subs_id != '' && jArr != '') {
+                                    $.ajax({
+
+                                        url: "{{ secure_url('addtosubslist') }}",
+                                        method: 'POST',
+                                        data: {
+                                            arr: arr,
+                                            subs_id: subs_id
+                                        },
+                                        success: function(result) {
+                                            // if (result.status == '1') {
+                                            swal("Users added to this subscribers list!", {
+                                                icon: "success",
+                                            });
+                                            // } else {
+                                            //     swal("Poof! Your imaginary file has been deleted!", {
+                                            //         icon: "error",
+                                            //     });
+                                            // }
+                                        }
+
+                                    });
+                                } else {
+                                    swal("Please choose member and subscription list first!", {
+                                        icon: "error",
+                                    });
+                                }
+
+
+
+
+                            });
+
+                    });
     </script>
 
 @stop

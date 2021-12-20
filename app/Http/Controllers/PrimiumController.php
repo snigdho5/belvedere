@@ -50,6 +50,10 @@ class PrimiumController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('checkbox', function ($row) {
+                    $html    =   '<input type="checkbox" class="check-member" name="check_member" id="check_member" value="'.$row->user_id.'" />';
+                    return $html;
+                })
                 ->addColumn('action', function ($row) {
                     $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="' . $row->id . '" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
                     $btn    .=  '<a href="javascript:void(0)" id="DeleteModel" data-id="' . $row->id . '" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
@@ -111,7 +115,7 @@ class PrimiumController extends Controller
                     $row->end_date    =   date("d-m-Y", strtotime($row->end_date));
                     return $row->end_date;
                 })
-                ->rawColumns(['action', 'status', 'company', 'title', 'phone_no', 'industry'])
+                ->rawColumns(['checkbox','action', 'status', 'company', 'title', 'phone_no', 'industry'])
                 ->make(true);
         }
         return view('admin.payedmember');

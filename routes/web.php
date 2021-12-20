@@ -505,6 +505,8 @@ Route::group(['middleware' => ['is_admin']], function(){
 
     Route::post('newsletter/subscription', 'UserController@send_newsletter');
 
+    Route::post('addtosubslist', 'UserController@add_to_subslist');
+
     Route::get('/newsletterlogs', 'UserController@newsletter_logs')->name('newsletterlogs');
 
     Route::get('/newsletterdetails/{id}', 'UserController@subscription_details')->name('newsletterdetails');

@@ -365,7 +365,7 @@ class UserController extends Controller
 
     {
 
-        if ($request->input('radioName') == 'member') {
+        if ($request->input('radioName') == 'member' || $request->input('radioName') == 'addlist') {
 
             $data     =   User::where('member', '=', 1)->select('name as first_name', 'surname as last_name', 'email')->get();
 
@@ -449,8 +449,11 @@ class UserController extends Controller
 
                     $success    =   '(' . $c . ') Data Imported successfully';
                 } else {
-
-                    $success    =   'No new data to import';
+                    if($request->input('radioName') == 'addlist'){
+                        $success    =   'Subscription List added successfully!';
+                    }else{
+                        $success    =   'No new data to import';
+                    }
                 }
 
                 return back()->with('success', $success);
@@ -1459,5 +1462,36 @@ class UserController extends Controller
             );
             return  $data;
         }
+    }
+
+    
+
+    public function add_to_subslist(Request $request)
+
+    {
+
+        if ($request->ajax()) {
+            
+        $data   =   $request->all();
+        
+        $dataArr = (array) $data['arr'];
+        // print_r($data);die;
+ 
+            foreach ($dataArr as $key => $user_id) {
+
+                $ncl_array  =   [
+
+                    'user_id'   =>  $user_id,
+
+                    'list_id'   =>  $data['subs_id']
+
+                ];
+
+                DB::table('subscriber_list_child')->insert($ncl_array);
+            }
+            
+        }
+
+        return view('admin.payedmember');
     }
 }
