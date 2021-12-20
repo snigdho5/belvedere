@@ -1628,11 +1628,12 @@
                                 arr[i] = $(this).val();
                                 i++;
                             });
-                            // console.log(arr);
 
                             var jArr = JSON.stringify(arr);
 
-                            if (subs_id != '' && jArr != '') {
+                            // console.log(arr);
+
+                            if (subs_id != '' && jArr != '{}') {
                                     $.ajax({
 
                                         url: "{{ secure_url('addtosubslist') }}",
@@ -1655,7 +1656,7 @@
 
                                     });
                                 } else {
-                                    swal("Please choose member and subscription list first!", {
+                                    swal("Please choose members and subscription list first!", {
                                         icon: "error",
                                     });
                                 }
