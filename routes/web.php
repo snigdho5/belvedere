@@ -365,6 +365,10 @@ Route::group(['middleware' => ['is_admin']], function(){
 
     
 
+    Route::get('subs_list', 'PrimiumController@indexSubsList');
+    
+    Route::post('filter_member', 'PrimiumController@filterMember');
+
     Route::post('aboutadded', 'CmsController@AddEditCms');
 
     Route::get('homecms','CmsController@index');

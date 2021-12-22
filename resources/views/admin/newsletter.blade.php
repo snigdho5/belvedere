@@ -44,69 +44,69 @@
 
                     <!-- <div class="row"> 
 
-                        <div class="radio radio-primary col-sm-2">
+                                                <div class="radio radio-primary col-sm-2">
 
-                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
 
-                            <label for="radio4">
+                                                    <label for="radio4">
 
-                                ALL
+                                                        ALL
 
-                            </label>
+                                                    </label>
 
-                        </div>
-
-
-
-                        <div class="radio radio-primary col-sm-2">
-
-                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
-
-                            <label for="radio4">
-
-                                Member
-
-                            </label>
-
-                        </div>
+                                                </div>
 
 
 
-                        <div class="radio radio-primary col-sm-2">
+                                                <div class="radio radio-primary col-sm-2">
 
-                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
+                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
 
-                            <label for="radio4">
+                                                    <label for="radio4">
 
-                                Advertiser
+                                                        Member
 
-                            </label>
+                                                    </label>
 
-                        </div>
+                                                </div>
 
 
 
-                        <div class="radio radio-primary col-sm-2">
+                                                <div class="radio radio-primary col-sm-2">
 
-                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
 
-                            <label for="radio4">
+                                                    <label for="radio4">
 
-                                Sponser
+                                                        Advertiser
 
-                            </label>
+                                                    </label>
 
-                        </div>
+                                                </div>
 
-                    </div> -->
 
- 
+
+                                                <div class="radio radio-primary col-sm-2">
+
+                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+
+                                                    <label for="radio4">
+
+                                                        Sponser
+
+                                                    </label>
+
+                                                </div>
+
+                                            </div> -->
+
+
 
                     <!-- <ul class="header-dropdown dropdown">
 
-                        <h4>
+                                                <h4>
 
-                            {{--<li>
+                                                    {{-- <li>
 
                                 <a href="{{url('export_renewal_data')}}">
 
@@ -114,51 +114,51 @@
 
                                 </a>
 
-                            </li>--}}
+                            </li> --}}
 
-                            <li>
+                                                    <li>
 
-                                <a href="javascript:void(0);" class="full-screen">
+                                                        <a href="javascript:void(0);" class="full-screen">
 
-                                    <i class="icon-frame" style="font-size: 22px"></i>
+                                                            <i class="icon-frame" style="font-size: 22px"></i>
 
-                                </a>
+                                                        </a>
 
-                            </li>
+                                                    </li>
 
-                            <li class="dropdown">
+                                                    <li class="dropdown">
 
-                                <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
+                                                        <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                   aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                           aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                    <i class="icon-plus"></i>
+                                                            <i class="icon-plus"></i>
 
-                                </a>
+                                                        </a>
 
-                            </li>
+                                                    </li>
 
-                        </h4>
+                                                </h4>
 
-                    </ul> -->
+                                            </ul> -->
 
                 </div>
 
                 <div class="row">
 
-                    <div class="col-md-12"> 
+                    <div class="col-md-12">
 
-                        @if(count($errors) > 0)
+                        @if (count($errors) > 0)
 
                             <div class="alert alert-danger">
 
-                                upload validation error<br/>
+                                upload validation error<br />
 
                                 <ul>
 
-                                    @foreach($errors->all() as $error)
+                                    @foreach ($errors->all() as $error)
 
-                                        <li>{{$error}}</li>
+                                        <li>{{ $error }}</li>
 
                                     @endforeach
 
@@ -168,37 +168,37 @@
 
                         @endif
 
-                        @if($message = Session::get('success'))
+                        @if ($message = Session::get('success'))
 
                             <div class="alert alert-success alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
 
-                                <strong>{{$message}}</strong>
+                                <strong>{{ $message }}</strong>
 
                             </div>
 
                         @endif
 
-                        @if($message = Session::get('warning'))
+                        @if ($message = Session::get('warning'))
 
                             <div class="alert alert-warning alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
 
-                                <strong>{{$message}}</strong>
+                                <strong>{{ $message }}</strong>
 
                             </div>
 
                         @endif
 
-                        @if($message = Session::get('error'))
+                        @if ($message = Session::get('error'))
 
                             <div class="alert alert-danger alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
 
-                                <strong>{{$message}}</strong>
+                                <strong>{{ $message }}</strong>
 
                             </div>
 
@@ -206,27 +206,28 @@
 
                     </div>
 
-                    
 
-                    <div class="col-md-2">
 
-                        <a class="btn btn-primary" href="{{ secure_url('exportformat/import_news.xlsx') }}">Download Import format</a>
+                    {{-- <div class="col-md-2">
 
-                    </div>
+                        <a class="btn btn-primary" href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
+                            Import format</a>
+
+                    </div> --}}
 
                     <div class="col-md-8">
 
-                        <form method="post" enctype="multipart/form-data" action="{{url('/import_excel/subscribers')}}">
+                        <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/subscribers') }}">
 
                             @csrf
 
                             <div class="form-group">
 
                                 <div class="row">
-
                                     <div class="radio radio-primary col-sm-4">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio1" value="none" checked/>
+                                        <input type="radio" class="TestRadio " name="radioName" id="radio1"
+                                            value="excel" />
 
                                         <label for="radio1">
 
@@ -238,7 +239,58 @@
 
                                     <div class="radio radio-primary col-sm-4">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio2" value="member"/>
+
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio7"
+                                            value="manual">
+
+                                        <label for="radio7">
+
+                                            Add Manual Entry 
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="radio radio-primary col-sm-4">
+
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio9"
+                                            value="filter" />
+
+                                        <label for="radio9">
+
+                                            By Filter and select
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="radio radio-primary col-sm-4">
+
+                                        <hr>
+
+                                    </div>
+                                </div>
+
+
+                                {{-- <div class="row">
+
+                                    <div class="radio radio-primary col-sm-4 excel-div">
+
+                                        <input type="radio" class="TestRadio " name="radioName" id="radio1"
+                                            value="none" />
+
+                                        <label for="radio1">
+
+                                            Upload By Excel
+
+                                        </label>
+
+                                    </div>
+
+                                    <div class="radio radio-primary col-sm-4 excel-div">
+
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio2"
+                                            value="member" />
 
                                         <label for="radio2">
 
@@ -248,9 +300,10 @@
 
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
+                                    <div class="radio radio-primary col-sm-4 excel-div">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio3" value="advertiser"/>
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio3"
+                                            value="advertiser" />
 
                                         <label for="radio3">
 
@@ -260,9 +313,10 @@
 
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
+                                    <div class="radio radio-primary col-sm-4 excel-div">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponser">
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio4"
+                                            value="sponser">
 
                                         <label for="radio4">
 
@@ -272,9 +326,10 @@
 
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
+                                    <div class="radio radio-primary col-sm-4 excel-div">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio5" value="events">
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio5"
+                                            value="events">
 
                                         <label for="radio5">
 
@@ -284,7 +339,7 @@
 
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
+                                    <div class="radio radio-primary col-sm-4 excel-div">
 
                                         <input type="radio" class="TestRadio" name="radioName" id="radio6" value="old">
 
@@ -296,9 +351,10 @@
 
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
+                                    <div class="radio radio-primary col-sm-4 manual-div">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio7" value="manual">
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio7"
+                                            value="manual">
 
                                         <label for="radio7">
 
@@ -307,16 +363,250 @@
                                         </label>
 
                                     </div>
-                                    
-                                    <div class="radio radio-primary col-sm-4">
 
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio8" value="addlist">
+                                    <div class="radio radio-primary col-sm-4 manual-div">
+
+                                        <input type="radio" class="TestRadio" name="radioName" id="radio8"
+                                            value="addlist">
 
                                         <label for="radio8">
 
                                             Add Subscription List
 
                                         </label>
+
+                                    </div>
+
+
+
+                                </div> --}}
+
+                                <div class="row filter-div">
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="radio" class="filterRad" name="filterRad" id="filterRad"
+                                            value="All" checked>
+
+                                        <label for="filterRad">
+
+                                            ALL
+
+                                        </label>
+
+                                    </div>
+
+
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="radio" class="filterRad" name="filterRad" id="filterRad"
+                                            value="member">
+
+                                        <label for="filterRad">
+
+                                            Member
+
+                                        </label>
+
+                                    </div>
+
+
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="radio" class="filterRad" name="filterRad" id="filterRad"
+                                            value="advertiser">
+
+                                        <label for="filterRad">
+
+                                            Advertiser
+
+                                        </label>
+
+                                    </div>
+
+
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="radio" class="filterRad" name="filterRad" id="filterRad"
+                                            value="sponsor">
+
+                                        <label for="filterRad">
+
+                                            Sponser
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 filter-div">
+
+
+
+                                    <form method="post" action="{{ url('export_primium_data') }}">
+
+                                        @csrf
+
+                                        <div class="form-group">
+
+                                            <input type="text" name="fromdate" id="fromdate" data-provide="datepicker"
+                                                data-date-autoclose="true" class="form-control"
+                                                placeholder="Select From date" />
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <input type="text" name="todate" id="todate" data-provide="datepicker"
+                                                data-date-autoclose="true" class="form-control"
+                                                placeholder="Select To date" />
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <select class="form-control" name="filter_type" id="filter_type">
+                                                <option value="">Select Column</option>
+                                                <option value="type">Type</option>
+                                                <option value="useremail">User email</option>
+                                                <option value="username">User name</option>
+                                                <option value="month">Month</option>
+                                                <option value="enddate">Enddate</option>
+                                                <option value="year_left">Year Left</option>
+                                                <option value="company">Company</option>
+                                                <option value="title">Title</option>
+                                                <option value="phone_no">Phone</option>
+                                                <option value="status">Status</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group search-box">
+
+                                            <input type="text" name="search_key" id="search_key" class="form-control"
+                                                placeholder="Search.." />
+
+                                        </div>
+
+
+                                        <div class="form-group status-drop" style="display:none;">
+
+                                            <select class="form-control" name="set_status" id="set_status">
+                                                <option value="">Select Status</option>
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <input type="button" name="export" class="btn btn-primary search-btn"
+                                                value="Submit" />
+
+                                        </div>
+
+                                    </form>
+
+                                </div>
+
+                                <div class="subs-div filter-div">
+                                    <table class="table table-hover" border="2">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;" colspan="3">
+                                                    <h3>Manage Subscription List</h3>
+                                                    <p>To add members to subscription list, select members and the
+                                                        subscription list name(or
+                                                        add a new) and then click Submit</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="text-align: center;">
+                                                <td>
+                                                    <input type="checkbox" class="check-all" value=""> Check All
+                                                </td>
+
+                                                <td>
+                                                    <select name="subs_id" id="subs_id" class="form-control subs_id"
+                                                        style="max-width:300px;">
+
+                                                        <option value="">Choose Subscription List</option>
+
+                                                        @foreach (subscriberlist() as $listName)
+
+                                                            <option value="<?php echo $listName->id; ?>">
+                                                                <?php echo $listName->list_name; ?>
+                                                            </option>
+
+                                                        @endforeach
+
+                                                    </select>
+                                                </td>
+
+                                                <td>
+                                                    <button type="button" class="btn btn-primary sms-btn">Submit</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="body filter-div">
+
+                                    <div class="table-responsive">
+
+                                        <table id="myTable2"
+                                            class="table table-hover js-basic-example dataTable table-custom spacing5">
+
+                                            <thead>
+
+                                                <tr>
+
+                                                    <th>Type</th>
+
+                                                    <th>UserName</th>
+
+                                                    <th>UserEmail</th>
+
+                                                    <th>StartDate</th>
+
+                                                    <th>EndDate</th>
+
+                                                    <th>Price</th>
+
+                                                    <th>Month</th>
+
+                                                    <th>Year Left</th>
+
+                                                    <th>Company</th>
+
+                                                    <th>Title</th>
+
+                                                    <th>Phone</th>
+
+                                                    <th>Industry</th>
+
+                                                    <th>Status</th>
+
+                                                    <th>Action</th>
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+
+
+
+                                            </tbody>
+
+                                        </table>
 
                                     </div>
 
@@ -328,7 +618,8 @@
 
                                         <label for="firstName">First Name :</label>
 
-                                        <input type="text" class="form-control" name="first_name" placeholder="Enter First Name"/>
+                                        <input type="text" class="form-control" name="first_name"
+                                            placeholder="Enter First Name" />
 
                                     </div>
 
@@ -336,7 +627,8 @@
 
                                         <label for="lastName">Last Name :</label>
 
-                                        <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name"/>
+                                        <input type="text" class="form-control" name="last_name"
+                                            placeholder="Enter Last Name" />
 
                                     </div>
 
@@ -344,7 +636,7 @@
 
                                         <label for="email">Email :</label>
 
-                                        <input type="text" class="form-control" name="email" placeholder="Enter Email"/>
+                                        <input type="text" class="form-control" name="email" placeholder="Enter Email" />
 
                                     </div>
 
@@ -352,7 +644,8 @@
 
                                         <label for="email">Save To :</label>
 
-                                        <input id="s2n" type="radio" class="form-control" name="save2" value="savetonew"/>
+                                        <input id="s2n" type="radio" class="form-control" name="save2"
+                                            value="savetonew" />
 
                                         <label for="s2n">
 
@@ -360,7 +653,8 @@
 
                                         </label>
 
-                                        <input id="s2e" type="radio" class="form-control" name="save2" value="savetoexist"/>
+                                        <input id="s2e" type="radio" class="form-control" name="save2"
+                                            value="savetoexist" />
 
                                         <label for="s2e">
 
@@ -378,9 +672,9 @@
 
                                             <option value="">Choose List</option>
 
-                                            @foreach(subscriberlist() as $listName)
+                                            @foreach (subscriberlist() as $listName)
 
-                                            <option value="<?= $listName->id ?>"><?= $listName->list_name ?></option>
+                                                <option value="<?= $listName->id ?>"><?= $listName->list_name ?></option>
 
                                             @endforeach
 
@@ -396,7 +690,8 @@
 
                                         <label for="fromDate">From Date</label>
 
-                                        <input type="text" class="form-control" name="dateFrom" placeholder="Enter from year"/>
+                                        <input type="text" class="form-control" name="dateFrom"
+                                            placeholder="Enter from year" />
 
                                     </div>
 
@@ -404,7 +699,8 @@
 
                                         <label for="toDate">To Date</label>
 
-                                        <input type="text" class="form-control" name="dateTo" placeholder="Enter to year"/>
+                                        <input type="text" class="form-control" name="dateTo"
+                                            placeholder="Enter to year" />
 
                                     </div>
 
@@ -412,13 +708,21 @@
 
                             </div>
 
-                            <div class="form-group">                            
+                            <div class="form-group">
 
-                                <table class="table">
+                                <table class="table tab-div">
 
                                     <tr>
 
-                                        <td class="bltdl" width="50%" align="right">
+                                        <td width="30%" class="bltdl-file">
+                                            <a class="btn btn-primary" href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
+                                                Import format</a>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td class="bltdl " width="50%" align="right">
 
                                             <label>Enter Your List Name</label>
 
@@ -426,7 +730,8 @@
 
                                         <td class="bltdl" width="50%">
 
-                                            <input type="text" class="form-control" name="list_name" placeholder="List Name" />
+                                            <input type="text" class="form-control" name="list_name"
+                                                placeholder="List Name" />
 
                                         </td>
 
@@ -442,13 +747,13 @@
 
                                         <td class="bltdl bltdl-file" width="30%">
 
-                                            <input type="file" name="select_file"/>
+                                            <input type="file" name="select_file" />
 
                                         </td>
 
                                         <td width="30%" align="left">
 
-                                            <input type="submit" name="upload" class="btn btn-primary" value="Import" />
+                                            <input type="submit" name="upload" class="btn btn-primary import-btn" value="Import" />
 
                                         </td>
 
@@ -464,7 +769,7 @@
 
                     <div class="col-md-2">
 
-                        
+
 
                     </div>
 
@@ -519,18 +824,17 @@
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
 
     <link rel="stylesheet"
-
         href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedcolumns.bootstrap4.min.css') }}">
 
     <link rel="stylesheet"
-
         href="{{ secure_url('assets/vendor/jquery-datatable/fixedeader/dataTables.fixedheader.bootstrap4.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}">
 
@@ -540,10 +844,10 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/nouislider/nouislider.min.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.css') }}">
 
     <style>
-
         .demo-card label {
 
             display: block;
@@ -576,7 +880,7 @@
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
 
-    
+
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -598,16 +902,19 @@
 
 
 
-    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}">
+    </script>
 
     <script type="text/javascript">
-
         $('.clockpicker').clockpicker();
 
-        $("#expofromdate").datepicker({format: 'dd-mm-yyyy'});
+        $("#expofromdate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
 
-        $("#expotodate").datepicker({format: 'dd-mm-yyyy'});
-
+        $("#expotodate").datepicker({
+            format: 'dd-mm-yyyy'
+        });
     </script>
 
 @stop
@@ -621,40 +928,45 @@
     <script src="{{ secure_url('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 
     <script>
-
-        $(function(){
+        $(function() {
 
             $('#dateRng,#manualInput,#tempDiv').hide();
 
+            $('.bltdl-file').hide();
+            $('.tab-div').hide();
+            $('.filter-div').hide();
+            $('.filter-div').hide();
+            $('.excel-div').hide(); 
+
         });
 
-        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio7,#radio8', function(){
+        $(document).on('click', '#radio1,#radio2,#radio3,#radio4,#radio5,#radio7,#radio8', function() {
 
             $('#dateRng').hide();
 
         });
 
-        $(document).on('click','#radio6', function(){
+        $(document).on('click', '#radio6', function() {
 
             $('#dateRng').show();
 
         });
 
-        $(document).on('click','#radio1,#radio2,#radio3,#radio4,#radio5,#radio6,#radio8', function(){
+        $(document).on('click', '#radio1,#radio2,#radio3,#radio4,#radio5,#radio6,#radio8', function() {
 
             $('#manualInput').hide();
 
         });
 
-        $(document).on('click','#radio7', function(){
+        $(document).on('click', '#radio7', function() {
 
             $('#manualInput').show();
 
-            
+
 
         });
 
-        $(document).on('click','#s2e', function(){
+        $(document).on('click', '#s2e', function() {
 
             $('#tempDiv').show();
 
@@ -662,19 +974,19 @@
 
         });
 
-        $(document).on('click','#s2n', function(){
+        $(document).on('click', '#s2n', function() {
 
             $('.bltdl').show();
 
             $('#tempDiv').hide();
 
-            $('#tempodropd').prop('selectedIndex',0);
+            $('#tempodropd').prop('selectedIndex', 0);
 
         });
 
 
 
-        $(document).on("click",".TestRadio",function(e){
+        $(document).on("change", ".TestRadio", function(e) {
 
             // console.log(testRedioss);
 
@@ -682,24 +994,71 @@
 
             // console.log(testRedioss);
 
+
+            $('.tab-div').show();
+
             $('#myTable').DataTable().ajax.reload();
 
             // alert("test");
             var radioval = $(this).val();
 
             // console.log(radioval);
-            if(radioval == 'addlist'){
-                $('.bltdl-file').hide();
+         
 
-            }else{
+            if (radioval == 'excel') {
                 $('.bltdl-file').show();
+                $('.filter-div').hide();
+                $('.filter-div').hide();
+                $('.excel-div').show();
+                $('.import-btn').show();
+            } else if (radioval == 'addlist' || radioval == 'manual') {
+                $('.filter-div').hide();
+                $('.excel-div').hide();
+                $('.bltdl-file').hide();
+                $('.import-btn').show();
+            } else {
+                $('#manualInput').hide();
+                $('.bltdl').hide();
+                $('.bltdl-file').hide();
+                $('.excel-div').hide();
+                $('.filter-div').hide();
+                $('.import-btn').hide();
+                $('.filter-div').show();
             }
+            
 
         });
 
 
 
-        $(function(){
+
+        // $(document).on("click", ".radio_top", function(e) {
+
+        //     var radioval = $(this).val();
+        //     // console.log(radioval);
+
+        //     $('.tab-div').hide();
+        //     $('#dateRng,#manualInput,#tempDiv').hide();
+
+        //     if (radioval == 'excel') {
+        //         $('.manual-div').hide();
+        //         $('.filter-div').hide();
+        //         $('.excel-div').show();
+        //     } else if (radioval == 'manual') {
+        //         $('.filter-div').hide();
+        //         $('.excel-div').hide();
+        //         $('.manual-div').show();
+        //     } else {
+        //         $('.excel-div').hide();
+        //         $('.manual-div').hide();
+        //         $('.filter-div').show();
+        //     }
+
+        // });
+
+
+
+        $(function() {
 
             $.ajaxSetup({
 
@@ -729,13 +1088,13 @@
 
                     "url": "{{ route('subscriberslist') }}",
 
-                        "data":function ( d ) {
+                    "data": function(d) {
 
-                            //d.myKey = $('input[name=radioName]:checked').val() 
+                        //d.myKey = $('input[name=radioName]:checked').val() 
 
-                        }
+                    }
 
-                    },
+                },
 
                 "columns": [
 
@@ -770,6 +1129,199 @@
             });
 
 
+            $("#myTable2").DataTable({
+
+                // "responsive": true,
+
+                "autoWidth": false,
+
+                "processing": true,
+
+                "serverSide": true,
+
+                "bDestroy": true,
+
+                "Access-Control-Allow-Origin": "*",
+
+                "ajax": {
+
+                    "url": "{{ secure_url('subs_list') }}",
+
+                    "data": function(d) {
+
+                        d.myKey = $('input[name=radioName]:checked').val()
+
+                    }
+
+                },
+
+                "columns": [{
+
+                        data: 'checkbox',
+
+                        name: 'checkbox'
+
+                    },
+                    {
+
+                        data: 'type',
+
+                        name: 'type'
+
+                    },
+
+                    {
+
+                        data: 'username',
+
+                        name: 'username'
+
+                    },
+
+                    {
+
+                        data: 'useremail',
+
+                        name: 'useremail'
+
+                    },
+
+                    {
+
+                        data: 'start_date',
+
+                        name: 'start_date'
+
+                    },
+
+                    {
+
+                        data: 'end_date',
+
+                        name: 'end_date'
+
+                    },
+
+                    {
+
+                        data: 'price',
+
+                        name: 'price'
+
+                    },
+
+                    {
+
+                        data: 'month',
+
+                        name: 'month'
+
+                    },
+
+                    {
+
+                        data: 'year_left',
+
+                        name: 'year_left'
+
+                    },
+
+                    {
+
+                        data: 'company',
+
+                        name: 'company'
+
+                    },
+
+                    {
+
+                        data: 'title',
+
+                        name: 'title'
+
+                    },
+
+                    {
+
+                        data: 'phone_no',
+
+                        name: 'phone_no'
+
+                    },
+
+                    {
+
+                        data: 'industry',
+
+                        name: 'industry'
+
+                    },
+
+                    {
+
+                        data: 'status',
+
+                        name: 'status'
+
+                    },
+
+                    {
+
+                        data: 'action',
+
+                        name: 'action'
+
+                    },
+
+                ]
+
+
+
+            });
+
+
+            $(document).on("click", ".search-btn", function(e) {
+
+                var fromdate = $('#fromdate').val();
+                var todate = $('#todate').val();
+                var search_key = $('#search_key').val();
+                var filter_type = $("select#filter_type option").filter(":selected").val();
+                var set_status = $("select#set_status option").filter(":selected").val();
+
+                $.ajax({
+
+                    /*url: "{{ url('managesponsors') }}/" + Id,
+
+                    method: 'get',*/
+
+                    url: "{{ secure_url('filter_member') }}",
+
+                    method: 'POST',
+
+                    data: {
+
+                        fromdate: fromdate,
+                        todate: todate,
+                        search_key: search_key,
+                        filter_type: filter_type,
+                        set_status: set_status
+
+                    },
+
+                    success: function(result) {
+
+                        var response = JSON.parse(result);
+
+                        //console.log(response.phone_no);
+
+                    }
+
+                });
+
+
+            });
+
 
             $(document).on("click", ".AddNew", function() {
 
@@ -795,7 +1347,7 @@
 
 
 
-            $(document).on("click", "#EditModel", function(){
+            $(document).on("click", "#EditModel", function() {
 
                 $('.error').html('');
 
@@ -815,9 +1367,11 @@
 
                     method: 'POST',
 
-                    data : { userid : Id },
+                    data: {
+                        userid: Id
+                    },
 
-                    success: function(result){                        
+                    success: function(result) {
 
                         var response = JSON.parse(result);
 
@@ -877,11 +1431,11 @@
 
 
 
-            $(document).on("click", "#updateUser", function(x){
+            $(document).on("click", "#updateUser", function(x) {
 
                 x.preventDefault();
 
-                var formData    =   $('#editForm').serialize();
+                var formData = $('#editForm').serialize();
 
                 //console.log(formData);
 
@@ -895,11 +1449,11 @@
 
                     data: formData,
 
-                    success: function(data){
+                    success: function(data) {
 
                         $('#edituserModel').modal('hide');
 
-                        $('#myTable').DataTable().ajax.reload();                    
+                        $('#myTable').DataTable().ajax.reload();
 
                         swal({
 
@@ -967,13 +1521,13 @@
 
             });
 
-            
 
-            $('#myForm').on('submit', function(event){
 
-                event.preventDefault();                
+            $('#myForm').on('submit', function(event) {
 
-                var formData    =   $('#myForm').serialize();
+                event.preventDefault();
+
+                var formData = $('#myForm').serialize();
 
                 //console.log(formData);
 
@@ -989,11 +1543,11 @@
 
                     data: formData,
 
-                    success: function(data){
+                    success: function(data) {
 
                         $('#MyModel').modal('hide');
 
-                        $('#myTable').DataTable().ajax.reload();                    
+                        $('#myTable').DataTable().ajax.reload();
 
                         swal({
 
@@ -1091,9 +1645,9 @@
 
             $(document).on("click", "#DeleteModel", function() {
 
-                var Id      =   $(this).attr('data-id');
+                var Id = $(this).attr('data-id');
 
-                var email   =   $(this).attr('data-email');
+                var email = $(this).attr('data-email');
 
                 swal({
 
@@ -1123,7 +1677,9 @@
 
                                 method: 'POST',
 
-                                data : { userid : Id },
+                                data: {
+                                    userid: Id
+                                },
 
                                 success: function(result) {
 
@@ -1139,9 +1695,7 @@
 
                             });
 
-                        }
-
-                        else {
+                        } else {
 
                             swal("Your imaginary file is safe!");
 
@@ -1154,7 +1708,6 @@
             });
 
         });
-
     </script>
 
 @stop

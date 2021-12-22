@@ -56,7 +56,7 @@
 
                 <li class="{{ Request::segment(1) === 'managepackage' ? 'active' : null }}"><a href="{{url('managepackage')}}"><i class="fa fa-th-list"></i> <span>Packages</span></a></li>
 
-                <li class="{{ Request::segment(1) === 'primiummember' ? 'active' : null }}"><a href="{{url('primiummember')}}"><i class="fa fa-diamond"></i> <span>Primium Member Billing</span></a></li>
+                <li class="{{ Request::segment(1) === 'primiummember' ? 'active' : null }}"><a href="{{url('primiummember')}}"><i class="fa fa-diamond"></i> <span>Premium Member Billing</span></a></li>
 
                 <li class="{{ Request::segment(1) === 'membersbilling' ? 'active' : null }}"><a href="{{url('membersbilling')}}"><i class="fa fa-info"></i> <span>Billing History Logs</span></a></li>
 

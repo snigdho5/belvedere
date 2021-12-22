@@ -39,7 +39,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
             <div class="reptro-hero-area-right reptro-hero-area-column"
 
-                style="background-image: secure_url(user/images/hero-min.jpg)"></div>
+                style="background-image: secure_url(user/images/Belvedere-College.jpg)"></div>
 
             <div class="reptro-hero-area-left reptro-hero-area-left-custom-bg-no reptro-hero-area-column">
 
