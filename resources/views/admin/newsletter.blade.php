@@ -44,69 +44,69 @@
 
                     <!-- <div class="row"> 
 
-                                                <div class="radio radio-primary col-sm-2">
+                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
 
-                                                    <label for="radio4">
+                                                                                                        <label for="radio4">
 
-                                                        ALL
+                                                                                                            ALL
 
-                                                    </label>
+                                                                                                        </label>
 
-                                                </div>
-
-
-
-                                                <div class="radio radio-primary col-sm-2">
-
-                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
-
-                                                    <label for="radio4">
-
-                                                        Member
-
-                                                    </label>
-
-                                                </div>
+                                                                                                    </div>
 
 
 
-                                                <div class="radio radio-primary col-sm-2">
+                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
+                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
 
-                                                    <label for="radio4">
+                                                                                                        <label for="radio4">
 
-                                                        Advertiser
+                                                                                                            Member
 
-                                                    </label>
+                                                                                                        </label>
 
-                                                </div>
+                                                                                                    </div>
 
 
 
-                                                <div class="radio radio-primary col-sm-2">
+                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                    <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
 
-                                                    <label for="radio4">
+                                                                                                        <label for="radio4">
 
-                                                        Sponser
+                                                                                                            Advertiser
 
-                                                    </label>
+                                                                                                        </label>
 
-                                                </div>
+                                                                                                    </div>
 
-                                            </div> -->
+
+
+                                                                                                    <div class="radio radio-primary col-sm-2">
+
+                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+
+                                                                                                        <label for="radio4">
+
+                                                                                                            Sponser
+
+                                                                                                        </label>
+
+                                                                                                    </div>
+
+                                                                                                </div> -->
 
 
 
                     <!-- <ul class="header-dropdown dropdown">
 
-                                                <h4>
+                                                                                                    <h4>
 
-                                                    {{-- <li>
+                                                                                                        {{-- <li>
 
                                 <a href="{{url('export_renewal_data')}}">
 
@@ -116,162 +116,178 @@
 
                             </li> --}}
 
-                                                    <li>
+                                                                                                        <li>
 
-                                                        <a href="javascript:void(0);" class="full-screen">
+                                                                                                            <a href="javascript:void(0);" class="full-screen">
 
-                                                            <i class="icon-frame" style="font-size: 22px"></i>
+                                                                                                                <i class="icon-frame" style="font-size: 22px"></i>
 
-                                                        </a>
+                                                                                                            </a>
 
-                                                    </li>
+                                                                                                        </li>
 
-                                                    <li class="dropdown">
+                                                                                                        <li class="dropdown">
 
-                                                        <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
+                                                                                                            <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                                           aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                                                                               aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                                            <i class="icon-plus"></i>
+                                                                                                                <i class="icon-plus"></i>
 
-                                                        </a>
+                                                                                                            </a>
 
-                                                    </li>
+                                                                                                        </li>
 
-                                                </h4>
+                                                                                                    </h4>
 
-                                            </ul> -->
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-12">
-
-                        @if (count($errors) > 0)
-
-                            <div class="alert alert-danger">
-
-                                upload validation error<br />
-
-                                <ul>
-
-                                    @foreach ($errors->all() as $error)
-
-                                        <li>{{ $error }}</li>
-
-                                    @endforeach
-
-                                </ul>
-
-                            </div>
-
-                        @endif
-
-                        @if ($message = Session::get('success'))
-
-                            <div class="alert alert-success alert-block">
-
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-
-                                <strong>{{ $message }}</strong>
-
-                            </div>
-
-                        @endif
-
-                        @if ($message = Session::get('warning'))
-
-                            <div class="alert alert-warning alert-block">
-
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-
-                                <strong>{{ $message }}</strong>
-
-                            </div>
-
-                        @endif
-
-                        @if ($message = Session::get('error'))
-
-                            <div class="alert alert-danger alert-block">
-
-                                <button type="button" class="close" data-dismiss="alert">x</button>
-
-                                <strong>{{ $message }}</strong>
-
-                            </div>
-
-                        @endif
-
-                    </div>
+                                                                                                </ul> -->
 
 
 
-                    {{-- <div class="col-md-2">
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            @if (count($errors) > 0)
+
+                                <div class="alert alert-danger">
+
+                                    upload validation error<br />
+
+                                    <ul>
+
+                                        @foreach ($errors->all() as $error)
+
+                                            <li>{{ $error }}</li>
+
+                                        @endforeach
+
+                                    </ul>
+
+                                </div>
+
+                            @endif
+
+                            @if ($message = Session::get('success'))
+
+                                <div class="alert alert-success alert-block">
+
+                                    <button type="button" class="close" data-dismiss="alert">x</button>
+
+                                    <strong>{{ $message }}</strong>
+
+                                </div>
+
+                            @endif
+
+                            @if ($message = Session::get('warning'))
+
+                                <div class="alert alert-warning alert-block">
+
+                                    <button type="button" class="close" data-dismiss="alert">x</button>
+
+                                    <strong>{{ $message }}</strong>
+
+                                </div>
+
+                            @endif
+
+                            @if ($message = Session::get('error'))
+
+                                <div class="alert alert-danger alert-block">
+
+                                    <button type="button" class="close" data-dismiss="alert">x</button>
+
+                                    <strong>{{ $message }}</strong>
+
+                                </div>
+
+                            @endif
+
+                        </div>
+
+
+
+                        {{-- <div class="col-md-2">
 
                         <a class="btn btn-primary" href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
                             Import format</a>
 
                     </div> --}}
 
-                    <div class="col-md-8">
+                        <div class="col-md-12">
 
-                        <form method="post" enctype="multipart/form-data" action="{{ url('/import_excel/subscribers') }}">
+                            <form method="post" enctype="multipart/form-data"
+                                action="{{ url('/import_excel/subscribers') }}">
 
-                            @csrf
+                                @csrf
 
-                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="row">
 
-                                <div class="row">
-                                    <div class="radio radio-primary col-sm-4">
+                                            <div class="radio radio-primary col-sm-3">
 
-                                        <input type="radio" class="TestRadio " name="radioName" id="radio1"
-                                            value="excel" />
+                                                <input type="radio" class="TestRadio " name="radioName" id="radio1"
+                                                    value="excel" />
 
-                                        <label for="radio1">
+                                                <label for="radio1">
 
-                                            Upload By Excel
+                                                    Upload By Excel
 
-                                        </label>
+                                                </label>
 
+                                            </div>
+
+                                            <div class="radio radio-primary col-sm-3">
+
+
+                                                <input type="radio" class="TestRadio" name="radioName" id="radio7"
+                                                    value="manual">
+
+                                                <label for="radio7">
+
+                                                    Add Manual Entry
+
+                                                </label>
+
+                                            </div>
+
+                                            <div class="radio radio-primary col-sm-3">
+
+                                                <input type="radio" class="TestRadio" name="radioName" id="radio9"
+                                                    value="filter" />
+
+                                                <label for="radio9">
+
+                                                    By Filter and select
+
+                                                </label>
+
+                                            </div>
+
+                                            <div class="radio radio-primary col-sm-3">
+
+                                                <input type="radio" class="TestRadio" name="radioName" id="radio10"
+                                                    value="filter" />
+
+                                                <label for="radio10">
+
+                                                    By Multiple User Type
+
+                                                </label>
+
+                                            </div>
+
+                                            <div class="radio radio-primary col-sm-12">
+
+                                                <hr>
+
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="radio radio-primary col-sm-4">
-
-
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio7"
-                                            value="manual">
-
-                                        <label for="radio7">
-
-                                            Add Manual Entry 
-
-                                        </label>
-
-                                    </div>
-
-                                    <div class="radio radio-primary col-sm-4">
-
-                                        <input type="radio" class="TestRadio" name="radioName" id="radio9"
-                                            value="filter" />
-
-                                        <label for="radio9">
-
-                                            By Filter and select
-
-                                        </label>
-
-                                    </div>
-
-                                    <div class="radio radio-primary col-sm-4">
-
-                                        <hr>
-
-                                    </div>
                                 </div>
-
-
                                 {{-- <div class="row">
 
                                     <div class="radio radio-primary col-sm-4 excel-div">
@@ -471,7 +487,7 @@
 
                                             <select class="form-control" name="filter_type" id="filter_type">
                                                 <option value="">Select Column</option>
-                                                <option value="type">Type</option>
+                                                {{-- <option value="type">Type</option> --}}
                                                 <option value="useremail">User email</option>
                                                 <option value="username">User name</option>
                                                 <option value="month">Month</option>
@@ -521,15 +537,17 @@
                                                 <th style="text-align: center;" colspan="3">
                                                     <h3>Manage Subscription List</h3>
                                                     <p>To add members to subscription list, select members and the
-                                                        subscription list name(or
-                                                        add a new) and then click Submit</p>
+                                                        subscription list name and then click Submit</p>
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr style="text-align: center;">
                                                 <td>
-                                                    <input type="checkbox" class="check-all" value=""> Check All
+                                                    {{-- <input type="checkbox" class="check-all" value=""> Check All --}}
+                                                    <select id="sel_members" class="sel_members" multiple="multiple">
+
+                                                    </select>
                                                 </td>
 
                                                 <td>
@@ -559,57 +577,6 @@
 
                                 <div class="body filter-div">
 
-                                    <div class="table-responsive">
-
-                                        <table id="myTable2"
-                                            class="table table-hover js-basic-example dataTable table-custom spacing5">
-
-                                            <thead>
-
-                                                <tr>
-
-                                                    <th>Type</th>
-
-                                                    <th>UserName</th>
-
-                                                    <th>UserEmail</th>
-
-                                                    <th>StartDate</th>
-
-                                                    <th>EndDate</th>
-
-                                                    <th>Price</th>
-
-                                                    <th>Month</th>
-
-                                                    <th>Year Left</th>
-
-                                                    <th>Company</th>
-
-                                                    <th>Title</th>
-
-                                                    <th>Phone</th>
-
-                                                    <th>Industry</th>
-
-                                                    <th>Status</th>
-
-                                                    <th>Action</th>
-
-                                                </tr>
-
-                                            </thead>
-
-                                            <tbody>
-
-
-
-                                            </tbody>
-
-                                        </table>
-
-                                    </div>
-
                                 </div>
 
                                 <div id="manualInput" class="row">
@@ -632,7 +599,7 @@
 
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mt-2">
 
                                         <label for="email">Email :</label>
 
@@ -640,28 +607,36 @@
 
                                     </div>
 
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mt-2">
 
                                         <label for="email">Save To :</label>
 
-                                        <input id="s2n" type="radio" class="form-control" name="save2"
-                                            value="savetonew" />
+                                        <div class="row">
+                                            <div class="col-sm-1 mt-1">
+                                                <input id="s2n" type="radio" class="form-control" name="save2"
+                                                    value="savetonew" />
+                                            </div>
 
-                                        <label for="s2n">
+                                            <div class="col-sm-11"><label for="s2n">
 
-                                            Add New
+                                                    Add New
 
-                                        </label>
+                                                </label></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-1 mt-1">
+                                                <input id="s2e" type="radio" class="form-control" name="save2"
+                                                    value="savetoexist" />
+                                            </div>
 
-                                        <input id="s2e" type="radio" class="form-control" name="save2"
-                                            value="savetoexist" />
+                                            <div class="col-sm-11">
+                                                <label for="s2e">
 
-                                        <label for="s2e">
+                                                    Add to existing
 
-                                            Add to existing
-
-                                        </label>
-
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div id="tempDiv" class="col-sm-12">
@@ -706,35 +681,44 @@
 
                                 </div>
 
-                            </div>
-
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
 
                                 <table class="table tab-div">
 
                                     <tr>
 
-                                        <td width="30%" class="bltdl-file">
-                                            <a class="btn btn-primary" href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
+                                        <td width="100%" class="bltdl-file"
+                                            style="border-bottom:solid 1px #fff; border-top:solid 1px #fff;">
+                                            <a class="btn btn-primary"
+                                                href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
                                                 Import format</a>
                                         </td>
 
                                     </tr>
                                     <tr>
 
-                                        <td class="bltdl " width="50%" align="right">
+                                        <td class="bltdl " width="100%" align="left">
 
-                                            <label>Enter Your List Name</label>
-
-                                        </td>
-
-                                        <td class="bltdl" width="50%">
-
+                                            <label>Enter Your List Name</label><br>
                                             <input type="text" class="form-control" name="list_name"
                                                 placeholder="List Name" />
 
                                         </td>
 
+                                        <!--<td class="bltdl" width="30%">
+
+                                                                                                <input type="text" class="form-control" name="list_name"
+                                                                                                    placeholder="List Name" />
+
+                                                                                            </td> 
+                                                              
+                                                              <td width="30%" align="left">
+
+                                                                &nbsp;
+
+                                                                                            </td>-->
                                     </tr>
 
                                     <tr>
@@ -753,7 +737,8 @@
 
                                         <td width="30%" align="left">
 
-                                            <input type="submit" name="upload" class="btn btn-primary import-btn" value="Import" />
+                                            <input type="submit" name="upload" class="btn btn-primary import-btn"
+                                                value="Import" />
 
                                         </td>
 
@@ -762,6 +747,7 @@
                                 </table>
 
                             </div>
+                        </div>
 
                         </form>
 
@@ -929,14 +915,14 @@
 
     <script>
         $(function() {
-
+            getMembers();
             $('#dateRng,#manualInput,#tempDiv').hide();
 
             $('.bltdl-file').hide();
             $('.tab-div').hide();
             $('.filter-div').hide();
             $('.filter-div').hide();
-            $('.excel-div').hide(); 
+            $('.excel-div').hide();
 
         });
 
@@ -1003,7 +989,7 @@
             var radioval = $(this).val();
 
             // console.log(radioval);
-         
+
 
             if (radioval == 'excel') {
                 $('.bltdl-file').show();
@@ -1025,7 +1011,7 @@
                 $('.import-btn').hide();
                 $('.filter-div').show();
             }
-            
+
 
         });
 
@@ -1129,158 +1115,6 @@
             });
 
 
-            $("#myTable2").DataTable({
-
-                // "responsive": true,
-
-                "autoWidth": false,
-
-                "processing": true,
-
-                "serverSide": true,
-
-                "bDestroy": true,
-
-                "Access-Control-Allow-Origin": "*",
-
-                "ajax": {
-
-                    "url": "{{ secure_url('subs_list') }}",
-
-                    "data": function(d) {
-
-                        d.myKey = $('input[name=radioName]:checked').val()
-
-                    }
-
-                },
-
-                "columns": [{
-
-                        data: 'checkbox',
-
-                        name: 'checkbox'
-
-                    },
-                    {
-
-                        data: 'type',
-
-                        name: 'type'
-
-                    },
-
-                    {
-
-                        data: 'username',
-
-                        name: 'username'
-
-                    },
-
-                    {
-
-                        data: 'useremail',
-
-                        name: 'useremail'
-
-                    },
-
-                    {
-
-                        data: 'start_date',
-
-                        name: 'start_date'
-
-                    },
-
-                    {
-
-                        data: 'end_date',
-
-                        name: 'end_date'
-
-                    },
-
-                    {
-
-                        data: 'price',
-
-                        name: 'price'
-
-                    },
-
-                    {
-
-                        data: 'month',
-
-                        name: 'month'
-
-                    },
-
-                    {
-
-                        data: 'year_left',
-
-                        name: 'year_left'
-
-                    },
-
-                    {
-
-                        data: 'company',
-
-                        name: 'company'
-
-                    },
-
-                    {
-
-                        data: 'title',
-
-                        name: 'title'
-
-                    },
-
-                    {
-
-                        data: 'phone_no',
-
-                        name: 'phone_no'
-
-                    },
-
-                    {
-
-                        data: 'industry',
-
-                        name: 'industry'
-
-                    },
-
-                    {
-
-                        data: 'status',
-
-                        name: 'status'
-
-                    },
-
-                    {
-
-                        data: 'action',
-
-                        name: 'action'
-
-                    },
-
-                ]
-
-
-
-            });
-
-
             $(document).on("click", ".search-btn", function(e) {
 
                 var fromdate = $('#fromdate').val();
@@ -1288,10 +1122,11 @@
                 var search_key = $('#search_key').val();
                 var filter_type = $("select#filter_type option").filter(":selected").val();
                 var set_status = $("select#set_status option").filter(":selected").val();
+                var filterRad = $('input[name="filterRad"]:checked').val();
 
                 $.ajax({
 
-                    /*url: "{{ url('managesponsors') }}/" + Id,
+                    /*url: "{{ secure_url('managesponsors') }}/" + Id,
 
                     method: 'get',*/
 
@@ -1305,15 +1140,31 @@
                         todate: todate,
                         search_key: search_key,
                         filter_type: filter_type,
-                        set_status: set_status
+                        set_status: set_status,
+                        filterRad: filterRad
 
                     },
 
                     success: function(result) {
 
                         var response = JSON.parse(result);
+                        $('#sel_members').html('');
 
-                        //console.log(response.phone_no);
+                        $('#sel_members').multiselect('destroy');
+
+                        $.each(response, function(key, val) {
+                            $('#sel_members').append('<option value="' + val[
+                                    'user_id'] +
+                                '">' + val['username'] + ' (' + val['useremail'] +
+                                ', ' + val['type'] + ')' + '</option>');
+                        });
+
+                        // $('#sel_members').multiselect('rebuild');
+                        $('#sel_members').multiselect({
+                            includeSelectAllOption: true,
+                            enableFiltering: true,
+                            maxHeight: 150
+                        });
 
                     }
 
@@ -1707,7 +1558,127 @@
 
             });
 
+            $(document).on('click', '.sms-btn', function() {
+
+                var i = 0;
+                var arr = {};
+
+                var subs_id = $("select#subs_id option").filter(":selected").val();
+
+
+                $('#sel_members :selected').each(function(i, sel) {
+                    arr[i] = {};
+                    arr[i] = $(sel).val();
+                    i++;
+                });
+
+                var jArr = JSON.stringify(arr);
+                // console.log(jArr);
+
+                if (subs_id != '' && jArr != '{}') {
+                    $.ajax({
+
+                        url: "{{ secure_url('addtosubslist') }}",
+                        method: 'POST',
+                        data: {
+                            arr: arr,
+                            subs_id: subs_id
+                        },
+                        success: function(result) {
+                            if (result.success == '1') {
+                                swal(result.msg, {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal(result.msg, {
+                                    icon: "error",
+                                });
+                            }
+                        }
+
+                    });
+                } else {
+                    swal("Please choose members and subscription list first!", {
+                        icon: "error",
+                    });
+                }
+
+
+
+
+            });
+
+
         });
+
+        function getMembers() {
+
+            $.ajaxSetup({
+
+                headers: {
+
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                }
+
+            });
+
+            var fromdate = $('#fromdate').val();
+            var todate = $('#todate').val();
+            var search_key = $('#search_key').val();
+            var filter_type = $("select#filter_type option").filter(":selected").val();
+            var set_status = $("select#set_status option").filter(":selected").val();
+            var filterRad = $('input[name="filterRad"]:checked').val();
+
+
+            $.ajax({
+
+                /*url: "{{ secure_url('managesponsors') }}/" + Id,
+
+                method: 'get',*/
+
+                url: "{{ secure_url('filter_member') }}",
+
+                method: 'POST',
+
+                data: {
+
+                    fromdate: fromdate,
+                    todate: todate,
+                    search_key: search_key,
+                    filter_type: filter_type,
+                    set_status: set_status,
+                    filterRad: filterRad
+
+                },
+
+                success: function(result) {
+
+                    var response = JSON.parse(result);
+                    var html = '';
+                    $('#sel_members').html('');
+
+                    $('#sel_members').multiselect('destroy');
+
+                    $.each(response, function(key, val) {
+                        $('#sel_members').append('<option value="' + val['user_id'] +
+                            '">' + val['username'] + ' (' + val['useremail'] +
+                            ', ' + val['type'] + ')' + '</option>');
+                    });
+
+                    // $('#sel_members').multiselect('rebuild');
+                    $('#sel_members').multiselect({
+                        includeSelectAllOption: true,
+                        enableFiltering: true,
+                        maxHeight: 150
+                    });
+
+                }
+
+            });
+
+
+        }
     </script>
 
 @stop

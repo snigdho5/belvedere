@@ -132,83 +132,8 @@ class PrimiumController extends Controller
             /*echo '<pre>';
             print_r($data->get());
             die();*/
-            $testRedio  =   $request->myKey;
 
-            if ($testRedio === 'All') {
-                $data   =   $data->get();
-            } else {
-                $data   =   $data->where('type', $testRedio)->get();
-            }
-
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('checkbox', function ($row) {
-                    $html    =   '<input type="checkbox" class="check-member" name="check_member" id="check_member" value="' . $row->user_id . '" />';
-                    return $html;
-                })
-                ->addColumn('action', function ($row) {
-                    $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="' . $row->id . '" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
-                    $btn    .=  '<a href="javascript:void(0)" id="DeleteModel" data-id="' . $row->id . '" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
-                    return $btn;
-                })
-                ->addColumn('status', function ($row) {
-                    if ($row->status == 1) {
-                        $row->status    =   'Active';
-                    } else {
-                        $row->status    =   'Inactive';
-                    }
-                    return $row->status;
-                })
-                ->addColumn('company', function ($row) {
-                    if ($row->company) {
-                        $row->company   =   $row->company;
-                    } else {
-                        $row->company   =   'NA';
-                    }
-                    return $row->company;
-                })
-                ->addColumn('title', function ($row) {
-                    if ($row->title) {
-                        $row->title   =   $row->title;
-                    } else {
-                        $row->title   =   'NA';
-                    }
-                    return $row->title;
-                })
-                ->addColumn('industry', function ($row) {
-                    if ($row->industry) {
-                        $row->industry   =   $row->industry;
-                    } else {
-                        $row->industry   =   'NA';
-                    }
-                    return $row->industry;
-                })
-                ->addColumn('price', function ($row) {
-                    if ($row->price) {
-                        $price  =   '€' . $row->price;
-                    } else {
-                        $price  =   $row->price;
-                    }
-                    return $price;
-                })
-                ->addColumn('phone_no', function ($row) {
-                    if ($row->phone_no) {
-                        $row->phone_no   =   $row->phone_no;
-                    } else {
-                        $row->phone_no   =   'NA';
-                    }
-                    return $row->phone_no;
-                })
-                ->addColumn('start_date', function ($row) {
-                    $row->start_date    =   date("d-m-Y", strtotime($row->start_date));
-                    return $row->start_date;
-                })
-                ->addColumn('end_date', function ($row) {
-                    $row->end_date    =   date("d-m-Y", strtotime($row->end_date));
-                    return $row->end_date;
-                })
-                ->rawColumns(['checkbox', 'action', 'status', 'company', 'title', 'phone_no', 'industry'])
-                ->make(true);
+            return $data->toJson();
         }
         return view('admin.newsletter');
     }
@@ -225,6 +150,7 @@ class PrimiumController extends Controller
 
             $data['search_key']     =   $request->post('search_key');
             $filter_type     =   $request->post('filter_type');
+            $filterRad     =   $request->post('filterRad');
 
             //$dbData    =   Userpackage::get();
 
@@ -232,230 +158,516 @@ class PrimiumController extends Controller
             $to_range_selected = preg_match('/\b1970\b/', $data['dateTo']);
 
             if ($data['dateFrom'] != '' && $data['dateTo'] != '' && !$from_range_selected && !$to_range_selected) {
+
                 if ($filter_type == 'type') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("type", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("type", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else if ($filter_type == 'useremail') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("useremail", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else if ($filter_type == 'username') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("username", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("username", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("username", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else if ($filter_type == 'month') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("month", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("month", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("month", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else if ($filter_type == 'end_date') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("end_date", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else if ($filter_type == '' && $data['search_key'] == '') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 } else {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("type", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("username", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("month", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
-                        ->whereRaw(
-                            "(start_date >= '?' AND start_date <= '?')",
-                            [
-                                $data['dateFrom'],
-                                $data['dateTo']
-                            ]
-                        )->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("type", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("username", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("month", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("username", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("month", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
                 }
             } else {
                 if ($filter_type == 'type') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("type", "like", "%" . $data['search_key'] . "%")->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("type", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $data['search_key'] . "%")->get();
+                    }
                 } else if ($filter_type == 'useremail') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("useremail", "like", "%" . $data['search_key'] . "%")->get();
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("useremail", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("useremail", "like", "%" . $data['search_key'] . "%")->get();
+                    }
                 } else if ($filter_type == 'username') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("username", "like", "%" . $data['search_key'] . "%")->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("username", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("username", "like", "%" . $data['search_key'] . "%")->get();
+                    }
                 } else if ($filter_type == 'month') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("month", "like", "%" . $data['search_key'] . "%")->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("month", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("month", "like", "%" . $data['search_key'] . "%")->get();
+                    }
                 } else if ($filter_type == 'end_date') {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("end_date", "like", "%" . $data['search_key'] . "%")->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("end_date", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("end_date", "like", "%" . $data['search_key'] . "%")->get();
+                    }
                 } else {
-                    $dbData = Userpackage::select(
-                        'username',
-                        'useremail',
-                        'type',
-                        'price',
-                        'month',
-                        DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
-                        DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
-                        DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
-                    )
-                        ->where("type", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("username", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("month", "like", "%" . $data['search_key'] . "%")
-                        ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
-                        ->get();
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("username", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("month", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("username", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("month", "like", "%" . $data['search_key'] . "%")
+                            ->orWhere("end_date", "like", "%" . $data['search_key'] . "%")
+                            ->get();
+                    }
                 }
             }
 
 
             if ($dbData->count()) {
-                // return $dbData;
-                // $data = $dbData->toJson();
-                // return $data;
-                return DataTables::collection($data)->toJson();
+                return $dbData->toJson();
+                // return DataTables::collection($data)->toJson();
+                // return DataTables::of($dbData)->addIndexColumn()->make(true);
             } else {
                 return back()->with('error', 'No Data found');
             }

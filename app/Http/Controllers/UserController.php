@@ -1476,19 +1476,41 @@ class UserController extends Controller
         
         $dataArr = (array) $data['arr'];
         // print_r($data);die;
+
+        $msg = '';
  
             foreach ($dataArr as $key => $user_id) {
 
-                $ncl_array  =   [
+                $tData = DB::table('subscriber_list_child')
+                ->select(array(DB::raw('*')))
+                ->where('user_id', '=', $user_id)
+                ->where('list_id', '=', $data['subs_id'])
+                ->get()
+                ->first();
 
-                    'user_id'   =>  $user_id,
+                if(empty($tData)){
+                    $ncl_array  =   [
 
-                    'list_id'   =>  $data['subs_id']
+                        'user_id'   =>  $user_id,
+    
+                        'list_id'   =>  $data['subs_id']
+    
+                    ];
+    
+                    DB::table('subscriber_list_child')->insert($ncl_array);
 
-                ];
-
-                DB::table('subscriber_list_child')->insert($ncl_array);
+                    $msg .= 'User added to this subscribers list!';
+                }else{
+                    $msg .= 'User already present to this subscribers list!';
+                }
+                
             }
+
+            $data = array(
+                'success' => '1',
+                'msg' => $msg
+            );
+            return  $data;
             
         }
 
