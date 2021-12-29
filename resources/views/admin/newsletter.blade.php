@@ -269,7 +269,7 @@
                                             <div class="radio radio-primary col-sm-3">
 
                                                 <input type="radio" class="TestRadio" name="radioName" id="radio10"
-                                                    value="filter" />
+                                                    value="multi_member" />
 
                                                 <label for="radio10">
 
@@ -577,6 +577,107 @@
 
                                 <div class="body filter-div">
 
+                                </div>
+
+                                <div class="row multi-member-div">
+
+                          
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="checkbox" class="multi_mem" name="multi_mem" id="multi_mem"
+                                            value="member">
+
+                                        <label for="multi_mem">
+
+                                            Member
+
+                                        </label>
+
+                                    </div>
+
+
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="checkbox" class="multi_mem" name="multi_mem" id="multi_mem"
+                                            value="advertiser">
+
+                                        <label for="multi_mem">
+
+                                            Advertiser
+
+                                        </label>
+
+                                    </div>
+
+
+
+                                    <div class="radio radio-primary col-sm-2">
+
+                                        <input type="checkbox" class="multi_mem" name="multi_mem" id="multi_mem"
+                                            value="sponsor">
+
+                                        <label for="multi_mem">
+
+                                            Sponser
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
+                                
+
+                                <div class="body multi-member-div">
+                                    <div class="col-sm-6 mt-2">
+
+                                        <label for="email">Save To :</label>
+
+                                        <div class="row">
+                                            <div class="col-sm-1 mt-1">
+                                                <input id="s2n" type="radio" class="form-control" name="save2"
+                                                    value="savetonew" />
+                                            </div>
+
+                                            <div class="col-sm-11"><label for="s2n">
+
+                                                    Add New
+
+                                                </label></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-1 mt-1">
+                                                <input id="s2e" type="radio" class="form-control" name="save2"
+                                                    value="savetoexist" />
+                                            </div>
+
+                                            <div class="col-sm-11">
+                                                <label for="s2e">
+
+                                                    Add to existing
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tempDiv" class="col-sm-12">
+
+                                        <label for="chooseTempo">Choose List :</label>
+
+                                        <select id="tempodropd" name="templateno" class="form-control">
+
+                                            <option value="">Choose List</option>
+
+                                            @foreach (subscriberlist() as $listName)
+
+                                                <option value="<?= $listName->id ?>"><?= $listName->list_name ?></option>
+
+                                            @endforeach
+
+                                        </select>
+
+                                    </div>
                                 </div>
 
                                 <div id="manualInput" class="row">
@@ -921,7 +1022,7 @@
             $('.bltdl-file').hide();
             $('.tab-div').hide();
             $('.filter-div').hide();
-            $('.filter-div').hide();
+            $('.multi-member-div').hide();
             $('.excel-div').hide();
 
         });
@@ -980,7 +1081,6 @@
 
             // console.log(testRedioss);
 
-
             $('.tab-div').show();
 
             $('#myTable').DataTable().ajax.reload();
@@ -990,24 +1090,33 @@
 
             // console.log(radioval);
 
-
             if (radioval == 'excel') {
                 $('.bltdl-file').show();
                 $('.filter-div').hide();
-                $('.filter-div').hide();
+                $('.multi-member-div').hide();
                 $('.excel-div').show();
                 $('.import-btn').show();
             } else if (radioval == 'addlist' || radioval == 'manual') {
                 $('.filter-div').hide();
+                $('.multi-member-div').hide();
                 $('.excel-div').hide();
                 $('.bltdl-file').hide();
                 $('.import-btn').show();
+            } else if (radioval == 'multi_member') {
+                $('#manualInput').hide();
+                $('.bltdl').hide();
+                $('.bltdl-file').hide();
+                $('.excel-div').hide();
+                $('.filter-div').hide();
+                $('.import-btn').hide();
+                $('.multi-member-div').show();
             } else {
                 $('#manualInput').hide();
                 $('.bltdl').hide();
                 $('.bltdl-file').hide();
                 $('.excel-div').hide();
                 $('.filter-div').hide();
+                $('.multi-member-div').hide();
                 $('.import-btn').hide();
                 $('.filter-div').show();
             }
