@@ -1537,10 +1537,24 @@ class UserController extends Controller
                     ->get()
                     ->first();
 
-                    echo 'bcs';
-                    print_r($subsData);die;
+                    // print_r($subsData);
+                    if(!empty($subsData)){
+                        $choose_list = $subsData->id;
+                    }else{
+                        $insArray = array('list_name' => $list_name);
+                        $id = DB::table('subscriber_list_master')->insertGetId($insArray);
+
+                        $choose_list = $id;
+                    }
+                    
+                
+                    // echo 'ss ' . $choose_list;die;
+            }else{
+                $choose_list = $data['choose_list'];
             }
-            $choose_list = $data['choose_list'];
+
+            
+            
             $multi_mem_input = $data['multi_mem_input'];
             $multi_mem_input = explode(',', $multi_mem_input);
             // print_r($data);
@@ -1600,24 +1614,8 @@ class UserController extends Controller
                     $msg .= '<br> User already present to this subscribers list!';
                 }
 
-                echo $msg;
-                die;
-
-                if (empty($tData)) {
-                    $ncl_array  =   [
-
-                        'user_id'   =>  $user_id,
-
-                        'list_id'   =>  $data['subs_id']
-
-                    ];
-
-                    DB::table('subscriber_list_child')->insert($ncl_array);
-
-                    $msg .= '<br> User added to this subscribers list!';
-                } else {
-                    $msg .= '<br> User already present to this subscribers list!';
-                }
+                // echo $msg; die;
+            
             }
 
             $data = array(

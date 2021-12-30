@@ -44,69 +44,69 @@
 
                     <!-- <div class="row"> 
 
-                                                                                                                        <div class="radio radio-primary col-sm-2">
+                                                                                                                            <div class="radio radio-primary col-sm-2">
 
-                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
 
-                                                                                                                            <label for="radio4">
+                                                                                                                                <label for="radio4">
 
-                                                                                                                                ALL
+                                                                                                                                    ALL
 
-                                                                                                                            </label>
+                                                                                                                                </label>
 
-                                                                                                                        </div>
-
-
-
-                                                                                                                        <div class="radio radio-primary col-sm-2">
-
-                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
-
-                                                                                                                            <label for="radio4">
-
-                                                                                                                                Member
-
-                                                                                                                            </label>
-
-                                                                                                                        </div>
+                                                                                                                            </div>
 
 
 
-                                                                                                                        <div class="radio radio-primary col-sm-2">
+                                                                                                                            <div class="radio radio-primary col-sm-2">
 
-                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
+                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
 
-                                                                                                                            <label for="radio4">
+                                                                                                                                <label for="radio4">
 
-                                                                                                                                Advertiser
+                                                                                                                                    Member
 
-                                                                                                                            </label>
+                                                                                                                                </label>
 
-                                                                                                                        </div>
+                                                                                                                            </div>
 
 
 
-                                                                                                                        <div class="radio radio-primary col-sm-2">
+                                                                                                                            <div class="radio radio-primary col-sm-2">
 
-                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
 
-                                                                                                                            <label for="radio4">
+                                                                                                                                <label for="radio4">
 
-                                                                                                                                Sponser
+                                                                                                                                    Advertiser
 
-                                                                                                                            </label>
+                                                                                                                                </label>
 
-                                                                                                                        </div>
+                                                                                                                            </div>
 
-                                                                                                                    </div> -->
+
+
+                                                                                                                            <div class="radio radio-primary col-sm-2">
+
+                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+
+                                                                                                                                <label for="radio4">
+
+                                                                                                                                    Sponser
+
+                                                                                                                                </label>
+
+                                                                                                                            </div>
+
+                                                                                                                        </div> -->
 
 
 
                     <!-- <ul class="header-dropdown dropdown">
 
-                                                                                                                        <h4>
+                                                                                                                            <h4>
 
-                                                                                                                            {{-- <li>
+                                                                                                                                {{-- <li>
 
                                 <a href="{{url('export_renewal_data')}}">
 
@@ -116,31 +116,31 @@
 
                             </li> --}}
 
-                                                                                                                            <li>
+                                                                                                                                <li>
 
-                                                                                                                                <a href="javascript:void(0);" class="full-screen">
+                                                                                                                                    <a href="javascript:void(0);" class="full-screen">
 
-                                                                                                                                    <i class="icon-frame" style="font-size: 22px"></i>
+                                                                                                                                        <i class="icon-frame" style="font-size: 22px"></i>
 
-                                                                                                                                </a>
+                                                                                                                                    </a>
 
-                                                                                                                            </li>
+                                                                                                                                </li>
 
-                                                                                                                            <li class="dropdown">
+                                                                                                                                <li class="dropdown">
 
-                                                                                                                                <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
+                                                                                                                                    <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                                                                                                                   aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                                                                                                       aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                                                                                                                    <i class="icon-plus"></i>
+                                                                                                                                        <i class="icon-plus"></i>
 
-                                                                                                                                </a>
+                                                                                                                                    </a>
 
-                                                                                                                            </li>
+                                                                                                                                </li>
 
-                                                                                                                        </h4>
+                                                                                                                            </h4>
 
-                                                                                                                    </ul> -->
+                                                                                                                        </ul> -->
 
 
 
@@ -584,7 +584,7 @@
 
                                     <div class="radio radio-primary col-sm-2">
 
-                                        <input type="text" class="multi_mem_input" name="multi_mem_input"
+                                        <input type="hidden" class="multi_mem_input" name="multi_mem_input"
                                             id="multi_mem_input">
 
                                         <input type="checkbox" class="multi_mem" name="multi_mem" id="multi_mem"
@@ -826,16 +826,16 @@
 
                                         <!--<td class="bltdl" width="30%">
 
-                                                                                                                    <input type="text" class="form-control" name="list_name"
-                                                                                                                        placeholder="List Name" />
+                                                                                                                        <input type="text" class="form-control" name="list_name"
+                                                                                                                            placeholder="List Name" />
 
-                                                                                                                </td> 
-                                                                                  
-                                                                                  <td width="30%" align="left">
+                                                                                                                    </td> 
+                                                                                      
+                                                                                      <td width="30%" align="left">
 
-                                                                                    &nbsp;
+                                                                                        &nbsp;
 
-                                                                                                                </td>-->
+                                                                                                                    </td>-->
                                     </tr>
 
                                     <tr>
@@ -1324,10 +1324,22 @@
                                 swal(result.msg, {
                                     icon: "success",
                                 });
+
+                                // Swal.fire({
+                                //     icon: "success",
+                                //     title: "<i>Success</i>",
+                                //     html: result.msg,
+                                // });
                             } else {
                                 swal(result.msg, {
                                     icon: "error",
                                 });
+
+                                // Swal.fire({
+                                //     icon: "error",
+                                //     title: "<i>Failure</i>",
+                                //     html: result.msg,
+                                // });
                             }
                         }
 
