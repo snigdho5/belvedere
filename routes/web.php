@@ -369,6 +369,8 @@ Route::group(['middleware' => ['is_admin']], function(){
     
     Route::post('filter_member', 'PrimiumController@filterMember');
 
+    Route::post('import_newsletter_multi_member', 'UserController@importNewsletterMultiMember');
+
     Route::post('aboutadded', 'CmsController@AddEditCms');
 
     Route::get('homecms','CmsController@index');

@@ -16,6 +16,8 @@ use App\User;
 
 use App\Olddata;
 
+use App\Userpackage;
+
 use App\EventCheckOut;
 
 use Spatie\Permission\Models\Role;
@@ -449,9 +451,9 @@ class UserController extends Controller
 
                     $success    =   '(' . $c . ') Data Imported successfully';
                 } else {
-                    if($request->input('radioName') == 'addlist'){
+                    if ($request->input('radioName') == 'addlist') {
                         $success    =   'Subscription List added successfully!';
-                    }else{
+                    } else {
                         $success    =   'No new data to import';
                     }
                 }
@@ -1125,12 +1127,12 @@ class UserController extends Controller
                 ->select('subscriber_list_child.*', 'user_newsletter.first_name', 'user_newsletter.last_name', 'user_newsletter.email')
 
                 ->get();
-                //->toSql();
-                
+            //->toSql();
+
 
             // echo $request->input('templateno');die;
             // print_obj($dbData);die;
-                
+
 
             $data['sending_id'] =   rand(1000, 1000000);
 
@@ -1229,9 +1231,9 @@ class UserController extends Controller
         if ($request->ajax()) {
 
             $data =   DB::table('newsletter_logs')
-                    ->groupBy(DB::raw('sending_id'))
-                    ->orderByDesc('id')
-                    ->get();
+                ->groupBy(DB::raw('sending_id'))
+                ->orderByDesc('id')
+                ->get();
 
             //print_obj($data);die;
 
@@ -1275,7 +1277,7 @@ class UserController extends Controller
             // ->toSql();
             ->paginate(10);
 
-            //print_obj($data);die;
+        //print_obj($data);die;
 
         return view('admin.subscription_details', compact('data'));
     }
@@ -1464,46 +1466,45 @@ class UserController extends Controller
         }
     }
 
-    
+
 
     public function add_to_subslist(Request $request)
 
     {
 
         if ($request->ajax()) {
-            
-        $data   =   $request->all();
-        
-        $dataArr = (array) $data['arr'];
-        // print_r($data);die;
 
-        $msg = '';
- 
+            $data   =   $request->all();
+
+            $dataArr = (array) $data['arr'];
+            // print_r($data);die;
+
+            $msg = '';
+
             foreach ($dataArr as $key => $user_id) {
 
                 $tData = DB::table('subscriber_list_child')
-                ->select(array(DB::raw('*')))
-                ->where('user_id', '=', $user_id)
-                ->where('list_id', '=', $data['subs_id'])
-                ->get()
-                ->first();
+                    ->select(array(DB::raw('*')))
+                    ->where('user_id', '=', $user_id)
+                    ->where('list_id', '=', $data['subs_id'])
+                    ->get()
+                    ->first();
 
-                if(empty($tData)){
+                if (empty($tData)) {
                     $ncl_array  =   [
 
                         'user_id'   =>  $user_id,
-    
+
                         'list_id'   =>  $data['subs_id']
-    
+
                     ];
-    
+
                     DB::table('subscriber_list_child')->insert($ncl_array);
 
-                    $msg .= 'User added to this subscribers list!';
-                }else{
-                    $msg .= 'User already present to this subscribers list!';
+                    $msg .= '<br> User added to this subscribers list!';
+                } else {
+                    $msg .= '<br> User already present to this subscribers list!';
                 }
-                
             }
 
             $data = array(
@@ -1511,7 +1512,119 @@ class UserController extends Controller
                 'msg' => $msg
             );
             return  $data;
-            
+        }
+
+        return view('admin.payedmember');
+    }
+
+
+
+    public function importNewsletterMultiMember(Request $request)
+
+    {
+
+        if ($request->ajax()) {
+
+            $data   =   $request->all();
+
+            $list_name = $data['list_name'];
+
+            if ($list_name != '') {
+                $subsData = DB::table('subscriber_list_master')
+                    ->select(array(DB::raw('*')))
+                    ->where("list_name", "=", $list_name)
+                    // ->where("list_name", "like", "%" . $list_name . "%")
+                    ->get()
+                    ->first();
+
+                    echo 'bcs';
+                    print_r($subsData);die;
+            }
+            $choose_list = $data['choose_list'];
+            $multi_mem_input = $data['multi_mem_input'];
+            $multi_mem_input = explode(',', $multi_mem_input);
+            // print_r($data);
+            // print_r($multi_mem_input);die;
+
+
+
+            $msg = '';
+
+            foreach ($multi_mem_input as $key => $user_type) {
+
+                $tData = Userpackage::select(
+                    'user_id',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'year_left as Year Left',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("type", "like", "%" . $user_type . "%")->get();
+
+                // print_r($tData);die;
+                if (!empty($tData)) {
+                    foreach ($tData as $key => $value) {
+                        // $msg .= '>>' . $value['user_id'] . '<br>  ';
+
+                        $sData = DB::table('subscriber_list_child')
+                            ->select(array(DB::raw('*')))
+                            ->where('user_id', '=', $value['user_id'])
+                            ->where('list_id', '=', $choose_list)
+                            ->get()
+                            ->first();
+
+                        if (empty($sData)) {
+                            $ncl_array  =   array(
+                                'user_id'   =>  $value['user_id'],
+                                'list_id'   =>  $choose_list
+                            );
+
+                            DB::table('subscriber_list_child')->insert($ncl_array);
+
+                            $msg .= '<br> User added to this subscribers list!';
+                        } else {
+                            $msg .= '<br> User already present to this subscribers list!';
+                        }
+                    }
+                } else {
+                    $msg .= '<br> User already present to this subscribers list!';
+                }
+
+                echo $msg;
+                die;
+
+                if (empty($tData)) {
+                    $ncl_array  =   [
+
+                        'user_id'   =>  $user_id,
+
+                        'list_id'   =>  $data['subs_id']
+
+                    ];
+
+                    DB::table('subscriber_list_child')->insert($ncl_array);
+
+                    $msg .= '<br> User added to this subscribers list!';
+                } else {
+                    $msg .= '<br> User already present to this subscribers list!';
+                }
+            }
+
+            $data = array(
+                'success' => '1',
+                'msg' => $msg
+            );
+            return  $data;
         }
 
         return view('admin.payedmember');

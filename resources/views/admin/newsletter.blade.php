@@ -44,69 +44,69 @@
 
                     <!-- <div class="row"> 
 
-                                                                                                    <div class="radio radio-primary col-sm-2">
+                                                                                                                        <div class="radio radio-primary col-sm-2">
 
-                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
 
-                                                                                                        <label for="radio4">
+                                                                                                                            <label for="radio4">
 
-                                                                                                            ALL
+                                                                                                                                ALL
 
-                                                                                                        </label>
+                                                                                                                            </label>
 
-                                                                                                    </div>
-
-
-
-                                                                                                    <div class="radio radio-primary col-sm-2">
-
-                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
-
-                                                                                                        <label for="radio4">
-
-                                                                                                            Member
-
-                                                                                                        </label>
-
-                                                                                                    </div>
+                                                                                                                        </div>
 
 
 
-                                                                                                    <div class="radio radio-primary col-sm-2">
+                                                                                                                        <div class="radio radio-primary col-sm-2">
 
-                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
+                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
 
-                                                                                                        <label for="radio4">
+                                                                                                                            <label for="radio4">
 
-                                                                                                            Advertiser
+                                                                                                                                Member
 
-                                                                                                        </label>
+                                                                                                                            </label>
 
-                                                                                                    </div>
+                                                                                                                        </div>
 
 
 
-                                                                                                    <div class="radio radio-primary col-sm-2">
+                                                                                                                        <div class="radio radio-primary col-sm-2">
 
-                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
 
-                                                                                                        <label for="radio4">
+                                                                                                                            <label for="radio4">
 
-                                                                                                            Sponser
+                                                                                                                                Advertiser
 
-                                                                                                        </label>
+                                                                                                                            </label>
 
-                                                                                                    </div>
+                                                                                                                        </div>
 
-                                                                                                </div> -->
+
+
+                                                                                                                        <div class="radio radio-primary col-sm-2">
+
+                                                                                                                            <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+
+                                                                                                                            <label for="radio4">
+
+                                                                                                                                Sponser
+
+                                                                                                                            </label>
+
+                                                                                                                        </div>
+
+                                                                                                                    </div> -->
 
 
 
                     <!-- <ul class="header-dropdown dropdown">
 
-                                                                                                    <h4>
+                                                                                                                        <h4>
 
-                                                                                                        {{-- <li>
+                                                                                                                            {{-- <li>
 
                                 <a href="{{url('export_renewal_data')}}">
 
@@ -116,31 +116,31 @@
 
                             </li> --}}
 
-                                                                                                        <li>
+                                                                                                                            <li>
 
-                                                                                                            <a href="javascript:void(0);" class="full-screen">
+                                                                                                                                <a href="javascript:void(0);" class="full-screen">
 
-                                                                                                                <i class="icon-frame" style="font-size: 22px"></i>
+                                                                                                                                    <i class="icon-frame" style="font-size: 22px"></i>
 
-                                                                                                            </a>
+                                                                                                                                </a>
 
-                                                                                                        </li>
+                                                                                                                            </li>
 
-                                                                                                        <li class="dropdown">
+                                                                                                                            <li class="dropdown">
 
-                                                                                                            <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
+                                                                                                                                <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                                                                                               aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                                                                                                   aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                                                                                                <i class="icon-plus"></i>
+                                                                                                                                    <i class="icon-plus"></i>
 
-                                                                                                            </a>
+                                                                                                                                </a>
 
-                                                                                                        </li>
+                                                                                                                            </li>
 
-                                                                                                    </h4>
+                                                                                                                        </h4>
 
-                                                                                                </ul> -->
+                                                                                                                    </ul> -->
 
 
 
@@ -581,8 +581,11 @@
 
                                 <div class="row multi-member-div">
 
-                          
+
                                     <div class="radio radio-primary col-sm-2">
+
+                                        <input type="text" class="multi_mem_input" name="multi_mem_input"
+                                            id="multi_mem_input">
 
                                         <input type="checkbox" class="multi_mem" name="multi_mem" id="multi_mem"
                                             value="member">
@@ -626,7 +629,7 @@
                                     </div>
 
                                 </div>
-                                
+
 
                                 <div class="body multi-member-div">
                                     <div class="col-sm-6 mt-2">
@@ -635,19 +638,21 @@
 
                                         <div class="row">
                                             <div class="col-sm-1 mt-1">
-                                                <input id="s2n" type="radio" class="form-control" name="save2"
+                                                <input id="s2n" type="radio" class="form-control add-list-radio" name="hh"
                                                     value="savetonew" />
                                             </div>
 
-                                            <div class="col-sm-11"><label for="s2n">
+                                            <div class="col-sm-11">
+                                                <label for="s2n">
 
                                                     Add New
 
-                                                </label></div>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-1 mt-1">
-                                                <input id="s2e" type="radio" class="form-control" name="save2"
+                                                <input id="s2e" type="radio" class="form-control add-list-radio" name="hh"
                                                     value="savetoexist" />
                                             </div>
 
@@ -665,7 +670,7 @@
 
                                         <label for="chooseTempo">Choose List :</label>
 
-                                        <select id="tempodropd" name="templateno" class="form-control">
+                                        <select id="tempodropd" name="templateno" class="form-control choose-list">
 
                                             <option value="">Choose List</option>
 
@@ -678,6 +683,17 @@
                                         </select>
 
                                     </div>
+
+
+
+
+                                </div>
+
+                                <div class="body multi-member-div">
+
+                                    <input type="button" name="upload" class="btn btn-primary btn-multimem"
+                                        value="Import" />
+
                                 </div>
 
                                 <div id="manualInput" class="row">
@@ -803,23 +819,23 @@
                                         <td class="bltdl " width="100%" align="left">
 
                                             <label>Enter Your List Name</label><br>
-                                            <input type="text" class="form-control" name="list_name"
+                                            <input type="text" class="form-control list-name" name="list_name"
                                                 placeholder="List Name" />
 
                                         </td>
 
                                         <!--<td class="bltdl" width="30%">
 
-                                                                                                <input type="text" class="form-control" name="list_name"
-                                                                                                    placeholder="List Name" />
+                                                                                                                    <input type="text" class="form-control" name="list_name"
+                                                                                                                        placeholder="List Name" />
 
-                                                                                            </td> 
-                                                              
-                                                              <td width="30%" align="left">
+                                                                                                                </td> 
+                                                                                  
+                                                                                  <td width="30%" align="left">
 
-                                                                &nbsp;
+                                                                                    &nbsp;
 
-                                                                                            </td>-->
+                                                                                                                </td>-->
                                     </tr>
 
                                     <tr>
@@ -1278,6 +1294,77 @@
                     }
 
                 });
+
+
+            });
+
+
+            $(document).on("click", ".btn-multimem", function(e) {
+
+                var multi_mem_input = $('.multi_mem_input').val();
+                var choose_list = $("select.choose-list option").filter(":selected").val();
+                var list_name = $('.list-name').val();
+
+                console.log('multi_mem_input: ' + multi_mem_input);
+                console.log('choose_list: ' + choose_list);
+                console.log('list_name: ' + list_name);
+
+                if (multi_mem_input != '' && (list_name != '' || choose_list != '')) {
+                    $.ajax({
+
+                        url: "{{ secure_url('import_newsletter_multi_member') }}",
+                        method: 'POST',
+                        data: {
+                            multi_mem_input: multi_mem_input,
+                            choose_list: choose_list,
+                            list_name: list_name
+                        },
+                        success: function(result) {
+                            if (result.success == '1') {
+                                swal(result.msg, {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal(result.msg, {
+                                    icon: "error",
+                                });
+                            }
+                        }
+
+                    });
+                } else {
+                    swal("Please choose member type and subscription list first!", {
+                        icon: "error",
+                    });
+                }
+
+
+            });
+
+            $(document).on("change", ".multi_mem", function() {
+
+                var multi_mem = $('.multi_mem_input').val();
+
+                var checkbox_val = $(this).val();
+
+                // var isContains = multi_mem.includes(checkbox_val);
+
+                // console.log(isContains);
+
+                if ($(this).is(':checked')) {
+                    if (multi_mem != '') {
+                        $('.multi_mem_input').val(multi_mem + ',' + checkbox_val);
+                    } else {
+                        $('.multi_mem_input').val(checkbox_val);
+                    }
+                } else {
+
+                    // multi_mem.replace(checkbox_val, " ");
+
+                    // console.log(checkbox_val);
+                    // console.log(multi_mem);
+                    // $('.multi_mem_input').val(multi_mem);
+                }
 
 
             });
