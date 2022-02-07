@@ -27,7 +27,12 @@ class ManageDashboard extends Controller
             ->join('users', 'userpackages.id', '=', 'users.id')
             ->where("user_id", "=", $user->id)
             ->get();
-        $userpackage = $userpackage[0];
+
+            if(!empty($userpackage)){
+                $userpackage = $userpackage[0];
+            }else{
+                $userpackage = [];
+            } 
         return view('user.pages.dashboard.profile',compact('user', 'userpackage'));
     }
 

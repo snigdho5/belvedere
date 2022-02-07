@@ -12,6 +12,7 @@ use DataTables;
 use Image;
 use DateTime;
 use Auth;
+
 class SponsorController extends Controller
 {
     /** 
@@ -22,19 +23,19 @@ class SponsorController extends Controller
     public function index(Request $request)
     {
         $user   =   Auth::user();
-        if ($request->ajax()){        
+        if ($request->ajax()) {
             $data = Sponsor::query();
             return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){                           
-                        $btn = '<h5><a href="javascript:void(0)" id="EditModel" data-id="'. $row->id .'" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
-                        $btn .= '<a href="javascript:void(0)" id="DeleteModel" data-id="'. $row->id .'" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }        
-       return view('admin.sponsor',compact('user'));
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<h5><a href="javascript:void(0)" id="EditModel" data-id="' . $row->id . '" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
+                    $btn .= '<a href="javascript:void(0)" id="DeleteModel" data-id="' . $row->id . '" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.sponsor', compact('user'));
     }
 
     /**
@@ -56,25 +57,25 @@ class SponsorController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($request->has('editlogo')){
+        if ($request->has('editlogo')) {
             //user side request manage
-            if($request->has('image')){
-                $imageName  =   time().'.'.request()->image->getClientOriginalExtension();
+            if ($request->has('image')) {
+                $imageName  =   time() . '.' . request()->image->getClientOriginalExtension();
                 request()->image->move(public_path('imagess'), $imageName);
                 $get_img    =   public_path("imagess/" . $imageName);
                 $thumbnail  =   public_path("imagess/thumb-" . $imageName);
-                Image::make($get_img)->resize(170, 68)->save($thumbnail);       
-                $input['image']=$imageName;
-            } 
+                Image::make($get_img)->resize(170, 68)->save($thumbnail);
+                $input['image'] = $imageName;
+            }
             // Sponsor::updateOrCreate($input);
             unset($input['editlogo']);
-            $flight =Sponsor::updateOrCreate(['user_id' => Auth::user()->id],$input);
+            $flight = Sponsor::updateOrCreate(['user_id' => Auth::user()->id], $input);
             return response('operation compoleted');
-        } 
+        }
 
-        if($request->has('image')){
+        if ($request->has('image')) {
             $profile    =   $request->file('image');
-            $imageName  =   time().'.'.request()->image->getClientOriginalExtension();
+            $imageName  =   time() . '.' . request()->image->getClientOriginalExtension();
             /*request()->image->move(public_path('imagess'), $imageName);
             $get_img    =   public_path("imagess/" . $imageName);
             //$thumbnail  =   public_path("imagess/thumb-" . $imageName);
@@ -83,26 +84,25 @@ class SponsorController extends Controller
             Image::make($get_img)->resize(200, 80)->save($thumbnail);       
             $input['image']=$imageName;*/
 
-            $destinationPath    =   public_path().'/imagess/thumbnail';
+            $destinationPath    =   public_path() . '/imagess/thumbnail';
             $img = Image::make($profile->path());
-            $img->resize(200, 80, function($constraint){
+            $img->resize(200, 80, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($destinationPath.'/'.$imageName);
-            
-            $destinationPath    =   public_path().'/imagess';
+            })->save($destinationPath . '/' . $imageName);
+
+            $destinationPath    =   public_path() . '/imagess';
             $profile->move($destinationPath, $imageName);
             $input['image']     =   $imageName;
         }
 
-        if($request->has('EditId')){           
+        if ($request->has('EditId')) {
             $id = $input['EditId'];
             unset($input['EditId']);
-            Sponsor::where('id',$id)->update($input);
-            return response()->json([ 'status' => 1 ,  'success'=>'Record Edited successfully']);
-        }
-        else{
+            Sponsor::where('id', $id)->update($input);
+            return response()->json(['status' => 1,  'success' => 'Record Edited successfully']);
+        } else {
             Sponsor::create($input);
-            return response()->json([ 'status' => 1 ,  'success'=>'Record added successfully']);
+            return response()->json(['status' => 1,  'success' => 'Record added successfully']);
         }
     }
 
@@ -151,45 +151,71 @@ class SponsorController extends Controller
         //
     }
 
-    public function getUserData(Request $request){
+    public function getUserData(Request $request)
+    {
         //$userData   =   User::where('id', $request->userid)->get();
-        $data = Userpackage::Join('users', function($join){
-            $join->on('userpackages.id', '=', 'users.id');
+        $data = Userpackage::Join('users', function ($join) {
+            $join->on('userpackages.user_id', '=', 'users.id');
         })
-        ->where('users.id', $request->userid)
-        ->get();
+            ->where('users.id', $request->userid)
+            ->get();
         //->get()->toArray();
         $data = $data[0]->toJson();
         return $data;
     }
 
-    public function updateUserData(Request $request){
+    public function updateUserData(Request $request)
+    {
         $data   =   $request->all();
         $id     =   $data['userId'];
         $status     =   $data['status'];
+        $price     =   $data['price'];
+        $month     =   $data['month'];
+        $year_left     =   $data['year_left'];
+        $type     =   $data['type'];
+
         unset($data['userId']);
         unset($data['status']);
-        User::where('id',$id)->update($data);
-        Userpackage::where('id',$id)->update(array('status' => $status));
+        unset($data['email']);
+        unset($data['price']);
+        unset($data['month']);
+        unset($data['year_left']);
+        unset($data['type']);
+
+
+        User::where('id', $id)->update($data);
+
+        $pkg_upd = array(
+            'status' => $status,
+            'price' => $price,
+            'month' => $month,
+            'year_left' => $year_left,
+            'type' => $type
+        );
+
+        Userpackage::where('user_id', $id)->update($pkg_upd);
         return true;
     }
 
-    public function deleteuserbyadmin(Request $request){
+    public function deleteuserbyadmin(Request $request)
+    {
         //$result     =   DB::table('users')->where('id', $request->userid)->delete();
         User::where('id', $request->userid)->delete();
         Userpackage::where('user_id', $request->userid)->delete();
         return true;
     }
-    
+
     /***************************************    Sponsor Admin Module    ***************************************/
 
-    public function edit_sponsor(Request $request, $id){
+    public function edit_sponsor(Request $request, $id)
+    {
         $data   =   Sponsor::where('id', '=', $id)->first();
         return  $data;
     }
 
-    public function delete_sponsor(Request $request, $id){
-        $affected = Sponsor::where("id",$id)->delete();
+    public function delete_sponsor(Request $request, $id)
+    {
+        $affected = Sponsor::where("id", $id)->delete();
         return $affected;
     }
 

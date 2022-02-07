@@ -44,69 +44,69 @@
 
                     <!-- <div class="row"> 
 
-                                                                                                                            <div class="radio radio-primary col-sm-2">
+                                                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
+                                                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="All"  checked>
 
-                                                                                                                                <label for="radio4">
+                                                                                                                                        <label for="radio4">
 
-                                                                                                                                    ALL
+                                                                                                                                            ALL
 
-                                                                                                                                </label>
+                                                                                                                                        </label>
 
-                                                                                                                            </div>
-
-
-
-                                                                                                                            <div class="radio radio-primary col-sm-2">
-
-                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
-
-                                                                                                                                <label for="radio4">
-
-                                                                                                                                    Member
-
-                                                                                                                                </label>
-
-                                                                                                                            </div>
+                                                                                                                                    </div>
 
 
 
-                                                                                                                            <div class="radio radio-primary col-sm-2">
+                                                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
+                                                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="member">
 
-                                                                                                                                <label for="radio4">
+                                                                                                                                        <label for="radio4">
 
-                                                                                                                                    Advertiser
+                                                                                                                                            Member
 
-                                                                                                                                </label>
+                                                                                                                                        </label>
 
-                                                                                                                            </div>
+                                                                                                                                    </div>
 
 
 
-                                                                                                                            <div class="radio radio-primary col-sm-2">
+                                                                                                                                    <div class="radio radio-primary col-sm-2">
 
-                                                                                                                                <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+                                                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="advertiser">
 
-                                                                                                                                <label for="radio4">
+                                                                                                                                        <label for="radio4">
 
-                                                                                                                                    Sponser
+                                                                                                                                            Advertiser
 
-                                                                                                                                </label>
+                                                                                                                                        </label>
 
-                                                                                                                            </div>
+                                                                                                                                    </div>
 
-                                                                                                                        </div> -->
+
+
+                                                                                                                                    <div class="radio radio-primary col-sm-2">
+
+                                                                                                                                        <input type="radio" class="TestRadio" name="radioName" id="radio4" value="sponsor">
+
+                                                                                                                                        <label for="radio4">
+
+                                                                                                                                            Sponser
+
+                                                                                                                                        </label>
+
+                                                                                                                                    </div>
+
+                                                                                                                                </div> -->
 
 
 
                     <!-- <ul class="header-dropdown dropdown">
 
-                                                                                                                            <h4>
+                                                                                                                                    <h4>
 
-                                                                                                                                {{-- <li>
+                                                                                                                                        {{-- <li>
 
                                 <a href="{{url('export_renewal_data')}}">
 
@@ -116,31 +116,31 @@
 
                             </li> --}}
 
-                                                                                                                                <li>
+                                                                                                                                        <li>
 
-                                                                                                                                    <a href="javascript:void(0);" class="full-screen">
+                                                                                                                                            <a href="javascript:void(0);" class="full-screen">
 
-                                                                                                                                        <i class="icon-frame" style="font-size: 22px"></i>
+                                                                                                                                                <i class="icon-frame" style="font-size: 22px"></i>
 
-                                                                                                                                    </a>
+                                                                                                                                            </a>
 
-                                                                                                                                </li>
+                                                                                                                                        </li>
 
-                                                                                                                                <li class="dropdown">
+                                                                                                                                        <li class="dropdown">
 
-                                                                                                                                    <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
+                                                                                                                                            <a href="javascript:void(0);" class="AddNew" data-toggle="" role="button"
 
-                                                                                                                                       aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
+                                                                                                                                               aria-haspopup="true" aria-expanded="false" style="font-size: 22px">
 
-                                                                                                                                        <i class="icon-plus"></i>
+                                                                                                                                                <i class="icon-plus"></i>
 
-                                                                                                                                    </a>
+                                                                                                                                            </a>
 
-                                                                                                                                </li>
+                                                                                                                                        </li>
 
-                                                                                                                            </h4>
+                                                                                                                                    </h4>
 
-                                                                                                                        </ul> -->
+                                                                                                                                </ul> -->
 
 
 
@@ -399,7 +399,7 @@
 
                                 <div class="row filter-div">
 
-                                    <div class="radio radio-primary col-sm-2">
+                                    <div class="radio radio-primary col-sm-2" style="display: none;">
 
                                         <input type="radio" class="filterRad" name="filterRad" id="filterRad"
                                             value="All" checked>
@@ -451,7 +451,7 @@
 
                                         <label for="filterRad">
 
-                                            Sponser
+                                            Sponsor
 
                                         </label>
 
@@ -463,70 +463,70 @@
 
 
 
-                                    <form method="post" action="{{ url('export_primium_data') }}">
+                                    {{-- <form method="post" action="{{ url('export_primium_data') }}"> --}}
 
-                                        @csrf
+                                    @csrf
 
-                                        <div class="form-group">
+                                    <div class="form-group">
 
-                                            <input type="text" name="fromdate" id="fromdate" data-provide="datepicker"
-                                                data-date-autoclose="true" class="form-control"
-                                                placeholder="Select From date" />
+                                        <input type="text" name="fromdate" id="fromdate" data-provide="datepicker"
+                                            data-date-autoclose="true" class="form-control"
+                                            placeholder="Select From date" />
 
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
+                                    <div class="form-group">
 
-                                            <input type="text" name="todate" id="todate" data-provide="datepicker"
-                                                data-date-autoclose="true" class="form-control"
-                                                placeholder="Select To date" />
+                                        <input type="text" name="todate" id="todate" data-provide="datepicker"
+                                            data-date-autoclose="true" class="form-control"
+                                            placeholder="Select To date" />
 
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
+                                    <div class="form-group">
 
-                                            <select class="form-control" name="filter_type" id="filter_type">
-                                                <option value="">Select Column</option>
-                                                {{-- <option value="type">Type</option> --}}
-                                                <option value="useremail">User email</option>
-                                                <option value="username">User name</option>
-                                                <option value="month">Month</option>
-                                                <option value="enddate">Enddate</option>
-                                                <option value="year_left">Year Left</option>
-                                                <option value="company">Company</option>
-                                                <option value="title">Title</option>
-                                                <option value="phone_no">Phone</option>
-                                                <option value="status">Status</option>
-                                            </select>
+                                        <select class="form-control" name="filter_type" id="filter_type">
+                                            <option value="">Select Column</option>
+                                            {{-- <option value="type">Type</option> --}}
+                                            <option value="useremail">User email</option>
+                                            <option value="username">User name</option>
+                                            <option value="month">Month</option>
+                                            <option value="enddate">Enddate (yyyy-mm-dd)</option>
+                                            <option value="year_left">Year Left</option>
+                                            <option value="company">Company</option>
+                                            <option value="title">Title</option>
+                                            <option value="phone_no">Phone</option>
+                                            <option value="status">Status</option>
+                                        </select>
 
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group search-box">
+                                    <div class="form-group search-box">
 
-                                            <input type="text" name="search_key" id="search_key" class="form-control"
-                                                placeholder="Search.." />
+                                        <input type="text" name="search_key" id="search_key" class="form-control"
+                                            placeholder="Search.." />
 
-                                        </div>
+                                    </div>
 
 
-                                        <div class="form-group status-drop" style="display:none;">
+                                    <div class="form-group status-drop" style="display:none;">
 
-                                            <select class="form-control" name="set_status" id="set_status">
-                                                <option value="">Select Status</option>
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
-                                            </select>
+                                        <select class="form-control" name="set_status" id="set_status">
+                                            <option value="">Select Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
 
-                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
+                                    <div class="form-group">
 
-                                            <input type="button" name="export" class="btn btn-primary search-btn"
-                                                value="Submit" />
+                                        <input type="button" name="export" class="btn btn-primary search-btn"
+                                            value="Submit" />
 
-                                        </div>
+                                    </div>
 
-                                    </form>
+                                    {{-- </form> --}}
 
                                 </div>
 
@@ -551,6 +551,10 @@
                                                 </td>
 
                                                 <td>
+                                                    <input type="radio" class="list_choose" name="list_choose"
+                                                        value="Add"> Add New
+                                                    <input type="radio" class="list_choose" name="list_choose"
+                                                        value="Choose" checked> Add to Existing
                                                     <select name="subs_id" id="subs_id" class="form-control subs_id"
                                                         style="max-width:300px;">
 
@@ -565,6 +569,9 @@
                                                         @endforeach
 
                                                     </select>
+
+                                                    <input type="text" class="form-control sub_list_name"
+                                                        name="sub_list_name" placeholder="List Name" style="display: none"/>
                                                 </td>
 
                                                 <td>
@@ -622,7 +629,7 @@
 
                                         <label for="multi_mem">
 
-                                            Sponser
+                                            Sponsor
 
                                         </label>
 
@@ -638,12 +645,12 @@
 
                                         <div class="row">
                                             <div class="col-sm-1 mt-1">
-                                                <input id="s2n" type="radio" class="form-control add-list-radio" name="hh"
+                                                <input id="tt" type="radio" class="form-control add-list-radio" name="hh"
                                                     value="savetonew" />
                                             </div>
 
                                             <div class="col-sm-11">
-                                                <label for="s2n">
+                                                <label for="tt">
 
                                                     Add New
 
@@ -652,12 +659,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-1 mt-1">
-                                                <input id="s2e" type="radio" class="form-control add-list-radio" name="hh"
-                                                    value="savetoexist" />
+                                                <input id="tt2" type="radio" class="form-control add-list-radio" name="hh"
+                                                    value="savetoexist" checked />
                                             </div>
 
                                             <div class="col-sm-11">
-                                                <label for="s2e">
+                                                <label for="tt2">
 
                                                     Add to existing
 
@@ -666,7 +673,7 @@
                                         </div>
                                     </div>
 
-                                    <div id="tempDiv" class="col-sm-12">
+                                    <div id="tempDiv2" class="col-sm-12">
 
                                         <label for="chooseTempo">Choose List :</label>
 
@@ -731,7 +738,7 @@
                                         <div class="row">
                                             <div class="col-sm-1 mt-1">
                                                 <input id="s2n" type="radio" class="form-control" name="save2"
-                                                    value="savetonew" />
+                                                    value="savetonew" checked/>
                                             </div>
 
                                             <div class="col-sm-11"><label for="s2n">
@@ -811,12 +818,65 @@
                                             <a class="btn btn-primary"
                                                 href="{{ secure_url('exportformat/import_news.xlsx') }}">Download
                                                 Import format</a>
+                                                <br><p>
+                                                    1. File must be in .xlsx format<br>
+                                                    2. Please download the sample file and do not change the header part</p>
                                         </td>
 
                                     </tr>
                                     <tr>
 
-                                        <td class="bltdl " width="100%" align="left">
+                                        <td class="bltdl bltdl-file">
+                                            <div class="col-sm-6 mt-2">
+
+                                                <label for="email">Save To :</label>
+        
+                                                <div class="row">
+                                                    <div class="col-sm-1 mt-1">
+                                                        <input id="newexist" type="radio" class="form-control newexist" name="newexist" value="savetonew" checked/>
+                                                    </div>
+        
+                                                    <div class="col-sm-11"><label for="newexist">
+        
+                                                            Add New
+        
+                                                        </label></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-1 mt-1">
+                                                        <input id="newexist" type="radio" class="form-control newexist" name="newexist" value="savetoexist" />
+                                                    </div>
+        
+                                                    <div class="col-sm-11">
+                                                        <label for="newexist">
+        
+                                                            Add to existing
+        
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div id="tempDiv3" class="col-sm-12" style="display: none">
+        
+                                                <label for="chooseTempo">Choose List :</label>
+        
+                                                <select id="slist_id" name="slist_id" class="form-control">
+        
+                                                    <option value="">Choose List</option>
+        
+                                                    @foreach (subscriberlist() as $listName)
+        
+                                                        <option value="<?= $listName->id ?>"><?= $listName->list_name ?></option>
+        
+                                                    @endforeach
+        
+                                                </select>
+        
+                                            </div>
+                                        </td>
+
+                                        <td class="bltdl add_newlist" width="100%" align="left">
 
                                             <label>Enter Your List Name</label><br>
                                             <input type="text" class="form-control list-name" name="list_name"
@@ -826,16 +886,16 @@
 
                                         <!--<td class="bltdl" width="30%">
 
-                                                                                                                        <input type="text" class="form-control" name="list_name"
-                                                                                                                            placeholder="List Name" />
+                                                                                                                                <input type="text" class="form-control" name="list_name"
+                                                                                                                                    placeholder="List Name" />
 
-                                                                                                                    </td> 
-                                                                                      
-                                                                                      <td width="30%" align="left">
+                                                                                                                            </td> 
+                                                                                              
+                                                                                              <td width="30%" align="left">
 
-                                                                                        &nbsp;
+                                                                                                &nbsp;
 
-                                                                                                                    </td>-->
+                                                                                                                            </td>-->
                                     </tr>
 
                                     <tr>
@@ -1069,17 +1129,47 @@
 
         });
 
+        $(document).on('change', '.list_choose', function() {
+            var chooseval = $(this).val();
+
+            if (chooseval == 'Add') {
+                $('.sub_list_name').show();
+                $('.subs_id').hide();
+            } else {
+                $('.subs_id').show();
+                $('.sub_list_name').hide();
+            }
+
+
+        });
+
+        $(document).on('change', '.newexist', function() {
+            var chooseval = $(this).val();
+
+            if (chooseval == 'savetonew') {
+                $('.add_newlist').show();
+                $('#tempDiv3').hide();
+            } else {
+                $('#tempDiv3').show();
+                $('.add_newlist').hide();
+            }
+
+
+        });
+
         $(document).on('click', '#s2e', function() {
 
             $('#tempDiv').show();
 
-            $('.bltdl').hide();
+            $('.add_newlist').hide();
 
         });
 
+
+
         $(document).on('click', '#s2n', function() {
 
-            $('.bltdl').show();
+            $('.add_newlist').show();
 
             $('#tempDiv').hide();
 
@@ -1087,6 +1177,21 @@
 
         });
 
+        $(document).on('click', '#tt', function() {
+
+            $('#tempDiv2').hide();
+
+            $('.add_newlist').show();
+
+        });
+
+        $(document).on('click', '#tt2', function() {
+
+
+            $('#tempDiv2').show();
+
+            $('.add_newlist').hide();
+        });
 
 
         $(document).on("change", ".TestRadio", function(e) {
@@ -1112,6 +1217,7 @@
                 $('.multi-member-div').hide();
                 $('.excel-div').show();
                 $('.import-btn').show();
+                $('.add_newlist').show();
             } else if (radioval == 'addlist' || radioval == 'manual') {
                 $('.filter-div').hide();
                 $('.multi-member-div').hide();
@@ -1233,7 +1339,8 @@
 
                     }
 
-                ]
+                ],
+                "order": [[ 2, "desc" ]]
 
 
 
@@ -1305,9 +1412,9 @@
                 var choose_list = $("select.choose-list option").filter(":selected").val();
                 var list_name = $('.list-name').val();
 
-                console.log('multi_mem_input: ' + multi_mem_input);
-                console.log('choose_list: ' + choose_list);
-                console.log('list_name: ' + list_name);
+                // console.log('multi_mem_input: ' + multi_mem_input);
+                // console.log('choose_list: ' + choose_list);
+                // console.log('list_name: ' + list_name);
 
                 if (multi_mem_input != '' && (list_name != '' || choose_list != '')) {
                     $.ajax({
@@ -1773,6 +1880,7 @@
 
                 var subs_id = $("select#subs_id option").filter(":selected").val();
 
+                var sub_list_name = $(".sub_list_name").val();
 
                 $('#sel_members :selected').each(function(i, sel) {
                     arr[i] = {};
@@ -1783,14 +1891,15 @@
                 var jArr = JSON.stringify(arr);
                 // console.log(jArr);
 
-                if (subs_id != '' && jArr != '{}') {
+                if (jArr != '{}'  && (subs_id != '' || sub_list_name != '')) {
                     $.ajax({
 
                         url: "{{ secure_url('addtosubslist') }}",
                         method: 'POST',
                         data: {
                             arr: arr,
-                            subs_id: subs_id
+                            subs_id: subs_id,
+                            sub_list_name: sub_list_name
                         },
                         success: function(result) {
                             if (result.success == '1') {

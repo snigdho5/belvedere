@@ -181,17 +181,25 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
                         </div>
 
 
-
+                        
                         <div class="form-group row">
 
                             <span class="col-sm-4 displa-4 col-form-label">Year Left:</span>
 
                             <div class="col-sm-8">
+                                @php
+                                // echo  'hiiii>>' ;print_r($userpackage); die; 
+                                    if (isset($userpackage)){
+                                        $year_left = $userpackage->year_left; 
+                                    }else{
+                                        $year_left = 0;
+                                    }  
+                                @endphp
 
                                 <!-- <input id="yrleft" type="date" class="form-control-plaintext borde text-muted/"> -->
 
                                 {{-- <input id="yrleft" type="text" class="form-control-plaintext borde text-muted/"> --}}
-                                <input type="number" class="form-control-plaintext borde text-muted/" id="yrleft" name="year_left" min="1900" max="2099" step="1" placeholder="Year Left" value="{{$userpackage->year_left}}"/>
+                                <input type="number" class="form-control-plaintext borde text-muted/" id="yrleft" name="year_left" min="1900" max="2099" step="1" placeholder="Year Left" value="{{$year_left}}"/>
 
                             </div>
 

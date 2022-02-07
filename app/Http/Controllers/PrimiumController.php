@@ -35,7 +35,7 @@ class PrimiumController extends Controller
 
             //$data       =   new Userpackage();
             $data = Userpackage::Join('users', function ($join) {
-                $join->on('userpackages.id', '=', 'users.id');
+                $join->on('userpackages.user_id', '=', 'users.id');
             });
             /*echo '<pre>';
             print_r($data->get());
@@ -50,13 +50,17 @@ class PrimiumController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('checkbox', function ($row) {
-                    $html    =   '<input type="checkbox" class="check-member" name="check_member" id="check_member" value="' . $row->user_id . '" />';
-                    return $html;
-                })
+                // ->addColumn('checkbox', function ($row) {
+                //     $html    =   '<input type="checkbox" class="check-member" name="check_member" id="check_member" value="' . $row->user_id . '" />';
+                //     return $html;
+                // })
                 ->addColumn('action', function ($row) {
                     $btn    =   '<h5><a href="javascript:void(0)" id="EditModel" data-id="' . $row->id . '" > <i class="fa fa-pencil" style="color: #28a745;"></i></a>&nbsp; &nbsp;';
                     $btn    .=  '<a href="javascript:void(0)" id="DeleteModel" data-id="' . $row->id . '" ><i class="fa fa-trash-o" style="color: red;" onclick="myFunction()"></a></h5>';
+                    return $btn;
+                })
+                ->addColumn('reset', function ($row) {
+                    $btn    =   '<span><a href="javascript:void(0)" class="reset_password" data-id="' . $row->id . '" > Reset</a></span>';
                     return $btn;
                 })
                 ->addColumn('status', function ($row) {
@@ -115,7 +119,7 @@ class PrimiumController extends Controller
                     $row->end_date    =   date("d-m-Y", strtotime($row->end_date));
                     return $row->end_date;
                 })
-                ->rawColumns(['checkbox', 'action', 'status', 'company', 'title', 'phone_no', 'industry'])
+                ->rawColumns(['action', 'reset', 'status', 'company', 'title', 'phone_no', 'industry'])
                 ->make(true);
         }
         return view('admin.payedmember');
@@ -127,7 +131,7 @@ class PrimiumController extends Controller
 
             //$data       =   new Userpackage();
             $data = Userpackage::Join('users', function ($join) {
-                $join->on('userpackages.id', '=', 'users.id');
+                $join->on('userpackages.user_id', '=', 'users.id');
             });
             /*echo '<pre>';
             print_r($data->get());
@@ -165,6 +169,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -186,6 +191,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -208,6 +214,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -229,6 +236,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -252,6 +260,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -273,6 +282,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -281,6 +291,208 @@ class PrimiumController extends Controller
                             DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                         )
                             ->where("username", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
+                } else if ($filter_type == 'year_left') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("year_left", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("year_left", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
+                } else if ($filter_type == 'company') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("company", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'year_left',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("company", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
+                } else if ($filter_type == 'phone_no') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("phone_no", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("phone_no", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    }
+                } else if ($filter_type == 'title') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'title',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("title", "like", "%" . $data['search_key'] . "%")
+                            ->whereRaw(
+                                "(start_date >= '?' AND start_date <= '?')",
+                                [
+                                    $data['dateFrom'],
+                                    $data['dateTo']
+                                ]
+                            )->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'title',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("title", "like", "%" . $data['search_key'] . "%")
                             ->whereRaw(
                                 "(start_date >= '?' AND start_date <= '?')",
                                 [
@@ -295,6 +507,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -316,6 +529,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -332,13 +546,14 @@ class PrimiumController extends Controller
                                 ]
                             )->get();
                     }
-                } else if ($filter_type == 'end_date') {
+                } else if ($filter_type == 'enddate') {
 
                     if ($filterRad != 'All') {
                         $dbData = Userpackage::select(
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -360,6 +575,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -383,6 +599,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -403,6 +620,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -425,6 +643,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -450,6 +669,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -479,6 +699,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -493,6 +714,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -508,6 +730,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -522,6 +745,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -538,6 +762,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -552,6 +777,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -560,6 +786,152 @@ class PrimiumController extends Controller
                             DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                         )
                             ->where("username", "like", "%" . $data['search_key'] . "%")->get();
+                    }
+                } else if ($filter_type == 'year_left') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("year_left", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->where("year_left", "like", "%" . $data['search_key'] . "%")->get();
+                    }
+                } else if ($filter_type == 'company') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("company", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("company", "like", "%" . $data['search_key'] . "%")->get();
+                    }
+                } else if ($filter_type == 'phone_no') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("phone_no", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("phone_no", "like", "%" . $data['search_key'] . "%")->get();
+                    }
+                } else if ($filter_type == 'title') {
+
+                    if ($filterRad != 'All') {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'title',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("type", "like", "%" . $filterRad . "%")
+                            ->where("title", "like", "%" . $data['search_key'] . "%")->get();
+                    } else {
+                        $dbData = Userpackage::select(
+                            'user_id',
+                            'username',
+                            'useremail',
+                            'year_left',
+                            'company',
+                            'phone_no',
+                            'title',
+                            'type',
+                            'price',
+                            'month',
+                            DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                            DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                            DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                        )
+                            ->join('users', 'userpackages.user_id', '=', 'users.id')
+                            ->where("title", "like", "%" . $data['search_key'] . "%")->get();
                     }
                 } else if ($filter_type == 'month') {
 
@@ -568,6 +940,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -582,6 +955,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -591,13 +965,14 @@ class PrimiumController extends Controller
                         )
                             ->where("month", "like", "%" . $data['search_key'] . "%")->get();
                     }
-                } else if ($filter_type == 'end_date') {
+                } else if ($filter_type == 'enddate') {
 
                     if ($filterRad != 'All') {
                         $dbData = Userpackage::select(
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -612,6 +987,7 @@ class PrimiumController extends Controller
                             'user_id',
                             'username',
                             'useremail',
+                            'year_left',
                             'type',
                             'price',
                             'month',
@@ -1103,7 +1479,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("type", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1129,7 +1505,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("useremail", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1155,7 +1531,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("username", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1181,7 +1557,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("month", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1207,7 +1583,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("end_date", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1233,7 +1609,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as year_left'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("year_left", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1259,7 +1635,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("company", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1285,7 +1661,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("title", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1311,7 +1687,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("phone_no", "like", "%" . $data['search_key'] . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1337,7 +1713,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("userpackages.status", "like", "%" . $status . "%")
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
@@ -1363,7 +1739,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->whereRaw(
                         "(start_date >= ? AND start_date <= ?)",
                         [
@@ -1388,7 +1764,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("type", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("username", "like", "%" . $data['search_key'] . "%")
@@ -1425,7 +1801,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("type", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'useremail') {
                 $dbData = Userpackage::select(
@@ -1444,7 +1820,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("useremail", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'username') {
                 $dbData = Userpackage::select(
@@ -1463,7 +1839,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("username", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'month') {
                 $dbData = Userpackage::select(
@@ -1482,7 +1858,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("month", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'end_date') {
                 $dbData = Userpackage::select(
@@ -1501,7 +1877,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("end_date", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'year_left') {
                 $dbData = Userpackage::select(
@@ -1520,7 +1896,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("year_left", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'company') {
                 $dbData = Userpackage::select(
@@ -1539,7 +1915,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("company", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'title') {
                 $dbData = Userpackage::select(
@@ -1558,7 +1934,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("title", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'phone_no') {
                 $dbData = Userpackage::select(
@@ -1577,7 +1953,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("phone_no", "like", "%" . $data['search_key'] . "%")->get();
             } else if ($filter_type == 'status') {
                 $dbData = Userpackage::select(
@@ -1596,7 +1972,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("userpackages.status", "like", "%" . $status . "%")->get();
             } else {
                 $dbData = Userpackage::select(
@@ -1615,7 +1991,7 @@ class PrimiumController extends Controller
                     DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
                     DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
                 )
-                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->join('users', 'userpackages.user_id', '=', 'users.id')
                     ->where("type", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("useremail", "like", "%" . $data['search_key'] . "%")
                     ->orWhere("username", "like", "%" . $data['search_key'] . "%")
@@ -1668,6 +2044,8 @@ class PrimiumController extends Controller
         ]);
 
         $data = (new FastExcel)->import($request->file('select_file')->getRealPath());
+        $user_type = $request->post('user_type');
+
         //echo "<pre>";
         //print_r($data);
 
@@ -1680,19 +2058,47 @@ class PrimiumController extends Controller
         if ($data->count() > 0) {
             foreach ($data as $key => $value) {
 
+                // $user_type = strtolower($value['user_type']);
+
+                if ($user_type != '') {
+                    if ($user_type == 'member') {
+                        $user_type_member = 1;
+                        $user_type_sponsor = 0;
+                        $user_type_advertiser = 0;
+                    } else if ($user_type == 'sponser') {
+                        $user_type_member = 0;
+                        $user_type_sponsor = 1;
+                        $user_type_advertiser = 0;
+                    } else if ($user_type == 'advertiser') {
+                        $user_type_member = 0;
+                        $user_type_sponsor = 0;
+                        $user_type_advertiser = 1;
+                    } else {
+                        $user_type_member = 1;
+                        $user_type_sponsor = 0;
+                        $user_type_advertiser = 0;
+                    }
+                } else {
+                    $user_type_member = 1;
+                    $user_type_sponsor = 0;
+                    $user_type_advertiser = 0;
+                }
+
+                $password_rand = self::randomPassword();
+
                 $insertData[]   =   [
                     'name'          =>  $value['first_name'],
                     'surname'       =>  $value['last_name'],
                     'email'         =>  $value['email'],
-                    'password'      =>  Hash::make(self::randomPassword()),
-                    'mail_pass'     =>  self::randomPassword(),
+                    'password'      =>  Hash::make($password_rand),
+                    'mail_pass'     =>  $password_rand,
                     'company'       =>  $value['company'],
                     'title'         =>  $value['title'],
                     'phone_no'      =>  $value['phone_no'],
                     'industry'      =>  $value['industry'],
-                    'member'        =>  1,
-                    'sponser'       =>  0,
-                    'advertiser'    =>  0,
+                    'member'        =>  $user_type_member,
+                    'sponser'       =>  $user_type_sponsor,
+                    'advertiser'    =>  $user_type_advertiser,
                     'package_id'    =>  $value['package_id'],
                     'start_date'    =>  $value['start_date']->format('Y-m-d'),
                 ];
@@ -1706,6 +2112,7 @@ class PrimiumController extends Controller
                     'start_date'    =>  $value['start_date']->format('Y-m-d'),
                     //'end_date'      =>  $value['end_date']->format('Y-m-d'),
                     'package_id'    =>  $value['package_id'],
+                    'year_left'    =>  $value['year_left'],
                     'status'        =>  $value['status'],
                 ];
             }
@@ -1736,12 +2143,14 @@ class PrimiumController extends Controller
                             "email"         =>  $insert['email'],
                             "phone"         =>  $insert['phone_no'],
                             "password"      =>  $insert['mail_pass'],
-                            "body"          =>  "Welcome to Belvedere",
+                            "body"          =>  "You have been successfully registered. Your login credentials are as follows.",
                             "subscribed_on" =>  $insert['start_date'],
+                            "user_type" => $user_type,
                             "renew_date"    =>  $renewalDate
                         ];
                         Mail::send('admin.mail.import_member', $data, function ($message) use ($insert) {
-                            $message->to($insert['email'], 'Belvedere')
+                            $message->to($insert['email'], $insert['name'])
+                                ->cc('belunion.dev@gmail.com')
                                 ->subject('Welcome to Belvedere');
                             $message->from('noreply@belvedereunion.com', 'Belvedere');
                         });
@@ -1749,12 +2158,44 @@ class PrimiumController extends Controller
                         //User::create($insert);
                         //dd($insert);
                         $packagesData[$key]['user_id']  =   User::create($insert)->id;
+
+                        foreach ($packagesData as $pkey => $packages) {
+                            Userpackage::create($packages);
+                        }
                     } else {
-                        return back()->with('error', 'Remove redundant data from Excel');
+                        // echo '<pre>';print_r($insert);die;
+                        $user_id = $users->id;
+                        // $data   =   [
+                        //     "first_name"    =>  ucfirst($insert['name']),
+                        //     "last_name"     =>  ucfirst($insert['surname']),
+                        //     "email"         =>  $insert['email'],
+                        //     "phone"         =>  $insert['phone_no'],
+                        //     // "password"      =>  $insert['mail_pass'],
+                        //     "body"          =>  "You have been successfully registered. Your login credentials are as follows.",
+                        //     "subscribed_on" =>  $insert['start_date'],
+                        //     "user_type" => $user_type,
+                        //     "renew_date"    =>  $renewalDate
+                        // ];
+                        // Mail::send('admin.mail.import_member', $data, function ($message) use ($insert) {
+                        //     $message->to($insert['email'], $insert['name'])
+                        //         ->cc('belunion.dev@gmail.com')
+                        //         ->subject('Welcome to Belvedere');
+                        //     $message->from('noreply@belvedereunion.com', 'Belvedere');
+                        // });
+                        unset($insert['mail_pass']);
+                        unset($insert['package_id']);
+                        unset($insert['start_date']);
+
+                        User::where('id', $user_id)
+                            ->update($insert);
+
+                        foreach ($packagesData as $pkey => $packages) {
+                            Userpackage::where('user_id', $user_id)
+                                ->update($packages);
+                        }
+
+                        // return back()->with('error', 'Remove redundant data from Excel');
                     }
-                }
-                foreach ($packagesData as $pkey => $packages) {
-                    Userpackage::create($packages);
                 }
             }
             return back()->with('success', 'Member Data Imported successfully');
@@ -1762,5 +2203,66 @@ class PrimiumController extends Controller
             return back()->with('error', 'Data not found on the spreadsheet');
         }
         //return back()->with('success','Mail send');
+    }
+
+    public function resetPasswordEmail(Request $request)
+    {
+
+        if ($request->ajax()) {
+
+            $reqData   =   $request->all();
+
+            $userid = $reqData['userid'];
+            $userData = Userpackage::Join('users', function ($join) {
+                $join->on('userpackages.user_id', '=', 'users.id');
+            })
+                ->where('users.id', $userid)
+                ->first();
+
+            // echo '<pre>';print_r($userData);die;
+
+            if (!empty($userData)) {
+                $userData = $userData->toArray();
+                $password_rand = self::randomPassword();
+                $password_hash = Hash::make($password_rand);
+
+                User::where('id', $userData['user_id'])
+                    ->update([
+                        'password' => $password_hash,
+                        'reset_requested' => 0
+                    ]);
+
+                $mailData   =   [
+                    "first_name"    =>  ucfirst($userData['name']),
+                    "last_name"     =>  ucfirst($userData['surname']),
+                    "email"         =>  $userData['email'],
+                    "phone"         =>  $userData['phone_no'],
+                    "password"      =>  $password_rand,
+                    "body"          =>  "There was a request to change your password!"
+                ];
+
+                Mail::send('admin.mail.reset_password', $mailData, function ($message) use ($userData) {
+                    $message->to($userData['email'], $userData['name'])
+                        ->cc('belunion.dev@gmail.com')
+                        ->subject('Reset Password - Belvedere');
+                    $message->from('noreply@belvedereunion.com', 'Belvedere');
+                });
+
+                $respData = array(
+                    'success' => '1',
+                    'msg' => 'Reset email successfuly sent!'
+                );
+            } else {
+                $respData = array(
+                    'success' => '0',
+                    'msg' => 'User not found!'
+                );
+            }
+
+
+            $respData = json_encode($respData);
+
+            return $respData;
+        }
     }
 }

@@ -220,6 +220,7 @@ Route::post('payBecomeAdvertiser','user\PaymentdetailController@payBecomeAdverti
 Route::post('post-register','FrontRegisterController@create')->name('post-register');
 
 
+Route::post('req_reset_password', 'FrontRegisterController@reqResetPassword')->name('req_reset_password');
 
 Route::get('auth-login','FrontRegisterController@login')->name('auth-login');
 
@@ -395,6 +396,10 @@ Route::group(['middleware' => ['is_admin']], function(){
 
     Route::post('/edituserdata', 'SponsorController@getUserData')->name('edituserdata');
 
+    
+    Route::post('reset_password_email', 'PrimiumController@resetPasswordEmail')->name('resetPasswordEmail');
+
+ 
     Route::post('/updateuserinfo','SponsorController@updateUserData')->name('updateuserinfo');
 
     Route::post('/deleteuser', 'SponsorController@deleteuserbyadmin')->name('deleteuser');

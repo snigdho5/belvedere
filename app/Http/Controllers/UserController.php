@@ -313,7 +313,10 @@ class UserController extends Controller
 
             // $data =   DB::table('user_newsletter')->get();
 
-            $data =   DB::table('subscriber_list_master')->get();
+            $data =   DB::table('subscriber_list_master')
+                // ->orderBy('id', 'DESC')
+                ->orderByDesc('id')
+                ->get();
 
             return DataTables::of($data)
 
@@ -366,6 +369,7 @@ class UserController extends Controller
     public function import_subscriber_data(Request $request)
 
     {
+
 
         if ($request->input('radioName') == 'member' || $request->input('radioName') == 'addlist') {
 
@@ -993,35 +997,62 @@ class UserController extends Controller
 
 
 
+        // echo '>> nn>'.$request->input('radioName');die;
         if ($data->count() > 0) {
 
-            $listData   =   ['list_name' => $request->input('list_name')];
+            $list_name = $request->input('list_name');
+
+            if ($list_name != '') {
+                $subsData = DB::table('subscriber_list_master')
+                    ->select(array(DB::raw('*')))
+                    ->where("list_name", "=", $list_name)
+                    // ->where("list_name", "like", "%" . $list_name . "%")
+                    ->get()
+                    ->first();
+
+                // print_r($subsData);
+                if (!empty($subsData)) {
+                    $listData = $subsData->id;
+                } else {
+                    $insArray = array('list_name' => $list_name);
+                    $id = DB::table('subscriber_list_master')->insertGetId($insArray);
+
+                    $listData = $id;
+                }
+
+
+                // echo 'ss ' . $listData;die;
+            } else {
+                $listData = $request->input('slist_id');
+            }
 
             //$listId     =   DB::table('subscriber_list_master')->insertGetId($listData);
 
             foreach ($data as $key => $value) {
 
-                $insertData[]   =   [
+                if ($value['first_name'] != ''  && $value['email'] != '') {
+                    $insertData[]   =   [
 
-                    'first_name'    =>  $value['first_name'],
+                        'first_name'    =>  $value['first_name'],
 
-                    'last_name'     =>  $value['last_name'],
+                        'last_name'     => ($value['last_name'] != '') ? $value['last_name'] : '',
 
-                    'email'         =>  $value['email'],
+                        'email'         =>  $value['email'],
 
-                    'member'        =>  '0',
+                        'member'        =>  '0',
 
-                    'sponser'       =>  '0',
+                        'sponser'       =>  '0',
 
-                    'advertiser'    =>  '0',
+                        'advertiser'    =>  '0',
 
-                    'event_attende' =>  '0',
+                        'event_attende' =>  '0',
 
-                    'old_db'        =>  '0',
+                        'old_db'        =>  '0',
 
-                    'excel'         =>  '1'
+                        'excel'         =>  '1'
 
-                ];
+                    ];
+                }
             }
 
             //print_r($insertData); die();
@@ -1029,6 +1060,8 @@ class UserController extends Controller
             if (!empty($insertData)) {
 
                 $c = 0;
+
+                $mlist_id = $listData;
 
                 foreach ($insertData as $key => $insert) {
 
@@ -1040,7 +1073,7 @@ class UserController extends Controller
 
                             'user_id'   =>  DB::table('user_newsletter')->insertGetId($insert),
 
-                            'list_id'   =>  DB::table('subscriber_list_master')->insertGetId($listData)
+                            'list_id'   =>  $mlist_id
 
                         ];
 
@@ -1051,13 +1084,11 @@ class UserController extends Controller
 
                         $emailExist =   DB::table('user_newsletter')->where('email', '=', $insert['email'])->get();
 
-                        $list       =   ['list_name' => $request->input('list_name')];
-
                         $ncl_array  =   [
 
                             'user_id'   =>  $emailExist->toArray()[0]->id,
 
-                            'list_id'   =>  DB::table('subscriber_list_master')->insertGetId($list)
+                            'list_id'   =>  $mlist_id
 
                         ];
 
@@ -1066,13 +1097,13 @@ class UserController extends Controller
                 }
             }
 
-            if ($c) {
+            // if ($c) {
 
-                $success    =   '(' . $c . ') Data Imported successfully';
-            } else {
+            $success    =   'Data Imported successfully';
+            // } else {
 
-                $success    =   'No new data to import';
-            }
+            //     $success    =   'No new data to import';
+            // }
 
             return back()->with('success', $success);
         } else {
@@ -1101,10 +1132,6 @@ class UserController extends Controller
             return view('admin.sendnewsletter', ['template_data' => '']);
         }
     }
-
-
-
-
 
     public function send_newsletter(Request $request)
 
@@ -1479,39 +1506,106 @@ class UserController extends Controller
             $dataArr = (array) $data['arr'];
             // print_r($data);die;
 
+            $list_name = $data['sub_list_name'];
+
+            if ($list_name != '') {
+                $subsData = DB::table('subscriber_list_master')
+                    ->select(array(DB::raw('*')))
+                    ->where("list_name", "=", $list_name)
+                    // ->where("list_name", "like", "%" . $list_name . "%")
+                    ->get()
+                    ->first();
+
+                // print_r($subsData);
+                if (!empty($subsData)) {
+                    $choose_list = $subsData->id;
+                } else {
+                    $insArray = array('list_name' => $list_name);
+                    $id = DB::table('subscriber_list_master')->insertGetId($insArray);
+
+                    $choose_list = $id;
+                }
+            } else {
+                $choose_list = $data['subs_id'];
+            }
+
+            // echo 'ss ' . $choose_list;die;
             $msg = '';
 
             foreach ($dataArr as $key => $user_id) {
 
-                $tData = DB::table('subscriber_list_child')
-                    ->select(array(DB::raw('*')))
-                    ->where('user_id', '=', $user_id)
-                    ->where('list_id', '=', $data['subs_id'])
-                    ->get()
-                    ->first();
 
-                if (empty($tData)) {
-                    $ncl_array  =   [
+                $tDataUser = Userpackage::select(
+                    'user_id',
+                    'useremail',
+                    'type',
+                    'price',
+                    'month',
+                    'year_left as Year Left',
+                    'name as firstname',
+                    'surname',
+                    'email',
+                    'company',
+                    'phone_no',
+                    DB::raw('DATE_FORMAT(start_date,"%d-%m-%Y %h:%i:%s") as start_date'),
+                    DB::raw('DATE_FORMAT(end_date,"%d-%m-%Y %h:%i:%s") as end_date'),
+                    DB::raw('DATE_FORMAT(userpackages.created_at,"%d-%m-%Y %h:%i:%s") as created_at')
+                )
+                    ->join('users', 'userpackages.id', '=', 'users.id')
+                    ->where("userpackages.id", "=", $user_id)->get()->first();
 
-                        'user_id'   =>  $user_id,
+                // print_r($tData);die;
+                if (!empty($tDataUser)) {
 
-                        'list_id'   =>  $data['subs_id']
 
-                    ];
+                    $sData = DB::table('user_newsletter')
+                        ->select(array(DB::raw('*')))
+                        ->where('email', '=', $tDataUser->email)
+                        ->get()
+                        ->first();
 
-                    DB::table('subscriber_list_child')->insert($ncl_array);
+                    if (empty($sData)) {
 
-                    $msg .= '<br> User added to this subscribers list!';
-                } else {
-                    $msg .= '<br> User already present to this subscribers list!';
+                        $insArray2 = array(
+                            'first_name'    =>  ucfirst($tDataUser->firstname),
+                            'last_name'     =>  ucfirst($tDataUser->surname),
+                            'email'         =>  strtolower($tDataUser->email)
+                        );
+                        $userid = DB::table('user_newsletter')->insertGetId($insArray2);
+                    } else {
+                        $userid = $sData->id;
+                    }
+
+                    $sData2 = DB::table('subscriber_list_child')
+                        ->select(array(DB::raw('*')))
+                        ->where('user_id', '=', $userid)
+                        ->where('list_id', '=', $choose_list)
+                        ->get()
+                        ->first();
+
+                    if (empty($sData2)) {
+                        $ncl_array  =   array(
+                            'user_id'   =>  $userid,
+                            'list_id'   =>  $choose_list
+                        );
+
+                        DB::table('subscriber_list_child')->insert($ncl_array);
+                        $msg = 'User added to this subscribers list!';
+                    } else {
+                        $msg = 'User already exists to this subscribers list!';
+                    }
                 }
+
+
+                //$msg = 'User added to this subscribers list!';
             }
 
-            $data = array(
+            $msgdata = array(
                 'success' => '1',
                 'msg' => $msg
             );
-            return  $data;
+
+            return  $msgdata;
         }
 
         return view('admin.payedmember');
@@ -1537,24 +1631,24 @@ class UserController extends Controller
                     ->get()
                     ->first();
 
-                    // print_r($subsData);
-                    if(!empty($subsData)){
-                        $choose_list = $subsData->id;
-                    }else{
-                        $insArray = array('list_name' => $list_name);
-                        $id = DB::table('subscriber_list_master')->insertGetId($insArray);
+                // print_r($subsData);
+                if (!empty($subsData)) {
+                    $choose_list = $subsData->id;
+                } else {
+                    $insArray = array('list_name' => $list_name);
+                    $id = DB::table('subscriber_list_master')->insertGetId($insArray);
 
-                        $choose_list = $id;
-                    }
-                    
-                
-                    // echo 'ss ' . $choose_list;die;
-            }else{
+                    $choose_list = $id;
+                }
+
+
+                // echo 'ss ' . $choose_list;die;
+            } else {
                 $choose_list = $data['choose_list'];
             }
 
-            
-            
+
+
             $multi_mem_input = $data['multi_mem_input'];
             $multi_mem_input = explode(',', $multi_mem_input);
             // print_r($data);
@@ -1590,32 +1684,51 @@ class UserController extends Controller
                     foreach ($tData as $key => $value) {
                         // $msg .= '>>' . $value['user_id'] . '<br>  ';
 
-                        $sData = DB::table('subscriber_list_child')
+                        $sData = DB::table('user_newsletter')
                             ->select(array(DB::raw('*')))
-                            ->where('user_id', '=', $value['user_id'])
-                            ->where('list_id', '=', $choose_list)
+                            ->where('email', '=', $value['email'])
                             ->get()
                             ->first();
 
                         if (empty($sData)) {
+
+                            $insArray2 = array(
+                                'first_name'    =>  ucfirst($value['firstname']),
+                                'last_name'     =>  ucfirst($value['surname']),
+                                'email'         =>  strtolower($value['email'])
+                            );
+                            $userid = DB::table('user_newsletter')->insertGetId($insArray2);
+                        } else {
+                            $userid = $sData->id;
+                        }
+
+
+
+                        $sData2 = DB::table('subscriber_list_child')
+                            ->select(array(DB::raw('*')))
+                            ->where('user_id', '=', $userid)
+                            ->where('list_id', '=', $choose_list)
+                            ->get()
+                            ->first();
+
+                        if (empty($sData2)) {
                             $ncl_array  =   array(
-                                'user_id'   =>  $value['user_id'],
+                                'user_id'   =>  $userid,
                                 'list_id'   =>  $choose_list
                             );
 
                             DB::table('subscriber_list_child')->insert($ncl_array);
-
-                            $msg .= '<br> User added to this subscribers list!';
+                            $msg = 'User added to this subscribers list!';
                         } else {
-                            $msg .= '<br> User already present to this subscribers list!';
+                            $msg = 'User already exists to this subscribers list!';
                         }
                     }
                 } else {
-                    $msg .= '<br> User already present to this subscribers list!';
+                    $msg = 'Users not found for this user type!';
                 }
 
                 // echo $msg; die;
-            
+
             }
 
             $data = array(

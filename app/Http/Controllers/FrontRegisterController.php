@@ -300,4 +300,89 @@ class FrontRegisterController extends Controller
 
         return view('user.pages.member_dashboard',compact('user','package','userPackage','userSponserPackage','userAdvertiserPackage','events'));
     }
+
+    
+    public function randomPassword()
+    {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 12; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
+    public function reqResetPassword(Request $request)
+    {
+
+        // if ($request->ajax()) {
+
+            $reqData   =   $request->all();
+
+            $email = $reqData['reset_email'];
+
+            if($email){
+                $userData = Userpackage::Join('users', function ($join) {
+                    $join->on('userpackages.user_id', '=', 'users.id');
+                })
+                    ->where('users.email', $email)
+                    ->first();
+    
+                // echo '<pre>';print_r($userData);die;
+    
+                if (!empty($userData)) {
+
+                    $userData = $userData->toArray();
+    
+                    $password_rand = self::randomPassword();
+                    $password_hash = Hash::make($password_rand);
+    
+                    User::where('id', $userData['user_id'])
+                        ->update([
+                            'password' => $password_hash,
+                            'reset_requested' => 1
+                        ]);
+    
+                    $mailData   =   [
+                        "first_name"    =>  ucfirst($userData['name']),
+                        "last_name"     =>  ucfirst($userData['surname']),
+                        "email"         =>  $userData['email'],
+                        "phone"         =>  $userData['phone_no'],
+                        "password"      =>  $password_rand,
+                        "body"          =>  "There was a request to change your password!"
+                    ];
+    
+                    Mail::send('admin.mail.reset_password', $mailData, function ($message) use ($userData) {
+                        $message->to($userData['email'], $userData['name'])
+                            // ->cc('belunion.dev@gmail.com')
+                            ->subject('Reset Password - Belvedere');
+                        $message->from('noreply@belvedereunion.com', 'Belvedere');
+                    });
+    
+                    $respData = array(
+                        'success' => '1',
+                        'msg' => 'Reset email successfuly sent!'
+                    );
+                } else {
+                    $respData = array(
+                        'success' => '0',
+                        'msg' => 'User not found!'
+                    );
+                }
+            }else{
+                $respData = array(
+                    'success' => '0',
+                    'msg' => 'Email field is mandatory!'
+                );
+            }
+            
+
+            
+            $respData2 = json_encode($respData);
+ 
+            return $respData['msg'];
+        // }
+    }
 }

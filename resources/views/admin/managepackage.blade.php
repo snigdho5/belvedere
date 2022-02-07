@@ -82,6 +82,8 @@
 
                                 <tr>
 
+                                    <th>ID</th>
+
                                     <th>Name</th>
 
                                     <th>Type</th>
@@ -481,6 +483,14 @@
                 },
 
                 "columns": [{
+
+                        data: 'id',
+
+                        name: 'id'
+
+                    },
+                    
+                    {
 
                         data: 'name',
 
