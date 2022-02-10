@@ -98,11 +98,13 @@
 
                     <ul>
 
-                        <li class="{{ Request::segment(2) === 'formsbasic' ? 'active' : null }}"><a href="{{url('subscriberslist')}}">Import Users</a></li>
+                        <li class="{{ Request::segment(2) === 'subscriberslist' ? 'active' : null }}"><a href="{{url('subscriberslist')}}">Import Users</a></li>
 
-                        <li class="{{ Request::segment(2) === 'formsbasic' ? 'active' : null }}"><a href="{{url('newsletter')}}">Send Newsletter</a></li>
+                        <li class="{{ Request::segment(2) === 'templates' ? 'active' : null }}"><a href="{{url('templates')}}">Newsletter Templates</a></li>
 
-                        <li class="{{ Request::segment(2) === 'formsbasic' ? 'active' : null }}"><a href="{{url('newsletterlogs')}}">Newsletter Logs</a></li>
+                        <li class="{{ Request::segment(2) === 'newsletter' ? 'active' : null }}"><a href="{{url('newsletter')}}">Send Newsletter</a></li>
+
+                        <li class="{{ Request::segment(2) === 'newsletterlogs' ? 'active' : null }}"><a href="{{url('newsletterlogs')}}">Newsletter Logs</a></li>
 
                     </ul>
 

@@ -267,7 +267,11 @@
 
     <script type="text/javascript">
         //snigdho
-        CKEDITOR.replace('mailBody');
+        // CKEDITOR.replace('mailBody');
+        CKEDITOR.replace('mailBody', {
+            filebrowserBrowseUrl: '/browser/browse.php?type=Files',
+            filebrowserUploadUrl: '/uploader/upload.php?type=Files'
+        });
     </script>
 
     <script>
