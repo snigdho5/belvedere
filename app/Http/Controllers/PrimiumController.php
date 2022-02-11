@@ -2265,4 +2265,6 @@ class PrimiumController extends Controller
             return $respData;
         }
     }
+
+
 }

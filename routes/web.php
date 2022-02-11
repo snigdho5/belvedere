@@ -529,4 +529,7 @@ Route::group(['middleware' => ['is_admin']], function(){
     Route::post('template/create', 'UserController@save_template');
     Route::get('gettemplate/{id}','UserController@getTemplate');
     Route::post('template/delete', 'UserController@deleteTemplate');
+
+    Route::get('ckeditor_upload/{csrf}','UserController@ckeditorUpload');
+
 });

@@ -64,7 +64,6 @@
                             <div class="col-md-12">
 
                                 @if (count($errors) > 0)
-
                                     <div class="alert alert-danger">
 
                                         upload validation error<br />
@@ -74,7 +73,6 @@
                                             @foreach ($errors->all() as $error)
 
                                                 <li>{{ $error }}</li>
-
                                             @endforeach
 
                                         </ul>
@@ -84,7 +82,6 @@
                                 @endif
 
                                 @if ($message = Session::get('success'))
-
                                     <div class="alert alert-success alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -92,11 +89,9 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                                 @if ($message = Session::get('warning'))
-
                                     <div class="alert alert-warning alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -104,11 +99,9 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                                 @if ($message = Session::get('error'))
-
                                     <div class="alert alert-danger alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -116,7 +109,6 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                             </div>
@@ -176,12 +168,9 @@
                                                 <option value="">choose subscription list</option>
 
                                                 @foreach (subscriberlist() as $listName)
-
-                                                    <option
-                                                        value="<?php echo $listName->id; ?>">
+                                                    <option value="<?php echo $listName->id; ?>">
                                                         <?php echo $listName->list_name; ?>
                                                     </option>
-
                                                 @endforeach
 
                                             </select>
@@ -281,23 +270,21 @@
 
     <script type="text/javascript">
         //snigdho
-        CKEDITOR.replace('mailBody');
+        CKEDITOR.replace('mailBody', {
+            filebrowserBrowseUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
+            filebrowserUploadUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
+        });
     </script>
 
     <script>
         $(function() {
 
             $.ajaxSetup({
-
                 headers: {
-
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
                 }
-
             });
-
-
 
             $(document).on('change', '.tempchange', function() {
 

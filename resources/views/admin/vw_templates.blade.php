@@ -269,8 +269,9 @@
         //snigdho
         // CKEDITOR.replace('mailBody');
         CKEDITOR.replace('mailBody', {
-            filebrowserBrowseUrl: '/browser/browse.php?type=Files',
-            filebrowserUploadUrl: '/uploader/upload.php?type=Files'
+            filebrowserBrowseUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
+            filebrowserUploadUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
         });
     </script>
 

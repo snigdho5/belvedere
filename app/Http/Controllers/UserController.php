@@ -1740,4 +1740,23 @@ class UserController extends Controller
 
         return view('admin.payedmember');
     }
+
+
+    public function ckeditorUpload(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $newsImage              =   $request->file('upload');
+            $destinationPath        =   public_path('uploads/image/');
+            $image_name             =   pathinfo($newsImage->getClientOriginalName(), PATHINFO_FILENAME);
+            $img_filepath    =   (rand(1000, 10000)) . '-' . $image_name . '.' . $newsImage->getClientOriginalExtension();
+            $newsImage->move($destinationPath, $img_filepath);
+
+            $ckeditorfunc           =   $request->input('CKEditorFuncNum');
+            $url = asset('uploads/image/' . $img_filepath);
+            $msg = 'Image uploaded successfully';
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditorfunc, '$url', '$msg')</script>";
+            @header('Content-type: text/html; charset-utf-8');
+            echo  $response;
+        }
+    }
 }
