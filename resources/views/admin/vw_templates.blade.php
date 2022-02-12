@@ -64,7 +64,6 @@
                             <div class="col-md-12">
 
                                 @if (count($errors) > 0)
-
                                     <div class="alert alert-danger">
 
                                         upload validation error<br />
@@ -74,7 +73,6 @@
                                             @foreach ($errors->all() as $error)
 
                                                 <li>{{ $error }}</li>
-
                                             @endforeach
 
                                         </ul>
@@ -84,7 +82,6 @@
                                 @endif
 
                                 @if ($message = Session::get('success'))
-
                                     <div class="alert alert-success alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -92,11 +89,9 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                                 @if ($message = Session::get('warning'))
-
                                     <div class="alert alert-warning alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -104,11 +99,9 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                                 @if ($message = Session::get('error'))
-
                                     <div class="alert alert-danger alert-block">
 
                                         <button type="button" class="close" data-dismiss="alert">x</button>
@@ -116,7 +109,6 @@
                                         <strong>{{ $message }}</strong>
 
                                     </div>
-
                                 @endif
 
                             </div>
@@ -144,7 +136,8 @@
                                                 @if (!empty($template_data))
                                                     @foreach ($template_data as $item)
                                                         <div>
-                                                            <option value="{{ $item->temp_id }}" data-tmpname="{{ $item->template_name }}">
+                                                            <option value="{{ $item->temp_id }}"
+                                                                data-tmpname="{{ $item->template_name }}">
                                                                 {{ $item->template_name }}</option>
                                                         </div>
                                                     @endforeach
@@ -187,7 +180,9 @@
 
                                         <div class="input-group">
 
-                                            <button type="button" class="btn btn-secondary theme-bg gradient btn-temp-del" data-btn-tmpid="" data-btn-tmpname=""><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                                            <button type="button" class="btn btn-secondary theme-bg gradient btn-temp-del"
+                                                data-btn-tmpid="" data-btn-tmpname=""><i class="fa fa-trash"
+                                                    aria-hidden="true"></i> Delete</button>
 
                                         </div>
 
@@ -255,6 +250,8 @@
     {{-- <script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script> --}}
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
+    <script src="{{ secure_url('assets/js/pages/ckfinder/ckfinder.js') }}"></script>
+
     <script src="{{ secure_url('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
 @stop
@@ -267,12 +264,9 @@
 
     <script type="text/javascript">
         //snigdho
-        // CKEDITOR.replace('mailBody');
-        CKEDITOR.replace('mailBody', {
-            filebrowserBrowseUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
-            filebrowserUploadUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form'
-        });
+
+        var editor = CKEDITOR.replace('mailBody');
+        CKFinder.setupCKEditor(editor);
     </script>
 
     <script>
@@ -323,8 +317,8 @@
                             $('.tmp-btn').html('Update Template');
                             $('.temp-name-div').hide();
 
-                            $('.btn-temp-del').attr('data-btn-tmpid', template); 
-                            $('.btn-temp-del').attr('data-btn-tmpname', tempname); 
+                            $('.btn-temp-del').attr('data-btn-tmpid', template);
+                            $('.btn-temp-del').attr('data-btn-tmpname', tempname);
                             $('.temp-del-div').show();
 
                         }
@@ -341,42 +335,44 @@
 
             });
 
-             $(document).on('click', '.btn-temp-del', function(){
+            $(document).on('click', '.btn-temp-del', function() {
 
                 var tmpid = $(this).attr('data-btn-tmpid');
                 var tmpname = $(this).attr('data-btn-tmpname');
 
-                conf = confirm('Are you sure to delete '+tmpname+'?');
-                if(conf){
+                conf = confirm('Are you sure to delete ' + tmpname + '?');
+                if (conf) {
                     $.ajax({
 
-                            type:'POST',
+                        type: 'POST',
 
-                            url: "{{ url('template/delete') }}",
+                        url: "{{ url('template/delete') }}",
 
-                            data:{tmpid:tmpid, tmpname:tmpname},
+                        data: {
+                            tmpid: tmpid,
+                            tmpname: tmpname
+                        },
 
-                            success:function(d){
+                        success: function(d) {
 
-                                if(d.success=='1'){
+                            if (d.success == '1') {
 
-                                    alert(d.msg);
-                                    window.location.reload();
+                                alert(d.msg);
+                                window.location.reload();
 
-                                }
-                                else if(d.success=='0'){
+                            } else if (d.success == '0') {
 
-                                    alert(d.msg);
+                                alert(d.msg);
 
-                                }else{
-                                    alert('Something went wrong!');
-                                }
-
+                            } else {
+                                alert('Something went wrong!');
                             }
 
-                        });
-                    }
-		    });	
+                        }
+
+                    });
+                }
+            });
 
 
 

@@ -258,6 +258,8 @@
     {{-- <script src="{{ asset('assets/vendor/ckeditor/ckeditor.js') }}"></script> --}}
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
+    <script src="{{ secure_url('assets/js/pages/ckfinder/ckfinder.js') }}"></script>
+
     <script src="{{ asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
 @stop
@@ -270,11 +272,8 @@
 
     <script type="text/javascript">
         //snigdho
-        CKEDITOR.replace('mailBody', {
-            filebrowserBrowseUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
-            filebrowserUploadUrl: "{{ secure_url('ckeditor_upload', ['token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form'
-        });
+        var editor = CKEDITOR.replace('mailBody');
+        CKFinder.setupCKEditor(editor);
     </script>
 
     <script>
