@@ -421,7 +421,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
 
 
-    <section class="BMember">
+    {{-- <section class="BMember">
 
         <div class="section-background-overlay"></div>
 
@@ -453,7 +453,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
         </div>
 
-    </section>
+    </section> --}}
 
 @endsection
 

@@ -66,7 +66,7 @@ $footerLogo = isset($data["footer_logo"]) ? $data["footer_logo"] : "";
 
                             <li><a href="{{secure_url('/event')}}">Events</a></li>
 
-                            <li><a href="{{secure_url('/careers')}}">Careers</a></li>
+                            {{-- <li><a href="{{secure_url('/careers')}}">Careers</a></li> --}}
 
 							<li><a href="{{secure_url('/sponser')}}">Sponsor</a></li>
 
@@ -130,7 +130,7 @@ $footerLogo = isset($data["footer_logo"]) ? $data["footer_logo"] : "";
 
                 <div class="col-lg-7 col-md-6">
 
-                    <p class="copy">© 2020, All Rights Reserved.</p>
+                    <p class="copy">© 2022, All Rights Reserved.</p>
 
                 </div>
 

@@ -131,7 +131,7 @@ $data = layoutDataData;
 
                         
 
-                        <li class="nav-item {{ request()->is('careers') ? 'active' : '' }}
+                        {{-- <li class="nav-item {{ request()->is('careers') ? 'active' : '' }}
 
                             {{ request()->is('advertiser') ? 'active' : '' }}
 
@@ -151,7 +151,7 @@ $data = layoutDataData;
 
                             </ul>
 
-                        </li>
+                        </li> --}}
 
                         @guest
 
