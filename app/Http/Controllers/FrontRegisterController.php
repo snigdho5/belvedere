@@ -354,12 +354,15 @@ class FrontRegisterController extends Controller
                         "body"          =>  "There was a request to change your password!"
                     ];
     
-                    Mail::send('admin.mail.reset_password', $mailData, function ($message) use ($userData) {
+                    $mailResp = Mail::send('admin.mail.reset_password', $mailData, function ($message) use ($userData) {
                         $message->to($userData['email'], $userData['name'])
                             // ->cc('belunion.dev@gmail.com')
                             ->subject('Reset Password - Belvedere');
                         $message->from('noreply@belvedereunion.com', 'Belvedere');
                     });
+
+                    // print_r($mailResp);die;
+                    
     
                     $respData = array(
                         'success' => '1',
