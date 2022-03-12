@@ -352,15 +352,11 @@
 
     </section> --}}
 
+<div class="clear"></div>
+    
+    @include('user.include.sponser')
 
-
-
-
-    {{-- @include('user.include.sponser') --}}
-
-
-
-    <section class="OSponsors">
+    {{-- <section class="OSponsors">
 
         <div class="container">
 
@@ -392,7 +388,7 @@
 
         </div>
 
-    </section>
+    </section> --}}
 
     {{-- model --}}
 
@@ -476,9 +472,6 @@
     </div>
 
 
-
-
-
     <div class="modal fade" id="paymentSuccessModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
@@ -516,7 +509,7 @@
 
 
 
-    <script src="{{ secure_url('user/js/owl.carousel.min.js') }}"></script>
+    {{-- <script src="{{ secure_url('user/js/owl.carousel.min.js') }}"></script> --}}
 
 
 

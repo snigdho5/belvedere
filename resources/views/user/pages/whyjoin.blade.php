@@ -118,58 +118,7 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
  <!-- ********footer********** -->
 
- <section class="OSponsors">
-
-    
-
-    <h2 class="reptro-section-title text-center margin-bottom-xsmall"><span>Our Sponsors</span></h2>
-
-    <p class="section-title-small text-center  section-title-small-border-yes"><a href="#">Become a Sponsor</a> | <a href="">Sponsor Benefits</a></p>
-
-    
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-
-                <div class="MultiCarousel-inner">
-
-                    @foreach ($oursponser as $item)
-
-                    <div class="item">
-
-                        <div class="pad15">
-
-                            <img src="{{ secure_url('imagess/thumbnail/'.$item->image) }}" class="img-responsive">
-
-                        </div>
-
-                    </div>
-
-    
-
-                    @endforeach
-
-   
-
-                </div>
-
-                <button class="btn  leftLst"><</button>
-
-                <button class="btn  rightLst">></button>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-   </section>
-
+ @include('user.include.sponser')
 
 
 @endsection
@@ -282,9 +231,6 @@ src="https://www.paypal.com/sdk/js?client-id=AdSuJbD9cyJpGbooPSf3Z963eDNCJ1TXJVm
 
                 $(this).parent().attr("id", "MultiCarousel" + id);
 
-    
-
-    
 
                 if (bodyWidth >= 1200) {
 
