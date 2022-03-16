@@ -45,28 +45,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <div class="row">
-                        <div class="form-group col-md-6 col-sm-6">
-                            <input type="text" name="your-name" value="" size="40" class="form-control"
-                                placeholder="Name">
+                    <form method="" id="">
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6">
+                                <input type="text" name="your-name" value="" size="40" class="form-control"
+                                    placeholder="Name">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <input type="email" name="your-email" value="" size="40" class="form-control"
+                                    placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="your-subject" value="" size="40" class="form-control"
+                                    placeholder="Subject">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="your-message" cols="40" rows="5"
+                                    class="form-control materialize-textarea" placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-btn col-md-12 text-center">
+                                <input type="submit" value="Submit Your Query" class="btn btn-fill btn-big">
+                            </div>
                         </div>
-                        <div class="form-group col-md-6 col-sm-6">
-                            <input type="email" name="your-email" value="" size="40" class="form-control"
-                                placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <input type="text" name="your-subject" value="" size="40" class="form-control"
-                                placeholder="Subject">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <textarea name="your-message" cols="40" rows="5"
-                                class="form-control materialize-textarea" placeholder="Message"></textarea>
-                        </div>
-                        <div class="form-btn col-md-12 text-center">
-                            <input type="submit" value="Submit Your Query"
-                                class="btn btn-fill btn-big">
-                        </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="offset-lg-1 col-lg-5 col-md-5 ">
                     <ul class="contact-info">
@@ -246,16 +247,16 @@
     @include('user.include.footer')
     <script>
         /*$('.count').each(function () {
-                        $(this).prop('Counter',0).animate({
-                            Counter: $(this).text()
-                        }, {
-                        duration: 10000,
-                        easing: 'swing',
-                        step: function (now) {
-                            $(this).text(Math.ceil(now));
-                        }
-                        });
-                    });*/
+                                    $(this).prop('Counter',0).animate({
+                                        Counter: $(this).text()
+                                    }, {
+                                    duration: 10000,
+                                    easing: 'swing',
+                                    step: function (now) {
+                                        $(this).text(Math.ceil(now));
+                                    }
+                                    });
+                                });*/
     </script>
     <style>
     </style>

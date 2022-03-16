@@ -1186,7 +1186,10 @@ class UserController extends Controller
                         $user->mailBody_final = $mailBody;
                     }
 
-                    // echo $mailBody_final;die;
+                    // $user->mailBody_final .= '<p><span class="apple-link">Belvedere College Union,<br> 6 Great Denmark Street,<br> Dublin 1, Ireland.</span>
+                    // <br><br> Do not like these emails? <a href="' . secure_url('newsletter/unsubscription/' . $user->email) . '">Unsubscribe</a>.</p>';
+
+                    // echo $user->mailBody_final;die;
 
                     Mail::send([], [], function ($message) use ($user) {
                         $message->to($user->email, 'Belvedere')
@@ -1752,5 +1755,56 @@ class UserController extends Controller
             @header('Content-type: text/html; charset-utf-8');
             echo  $response;
         }
+    }
+
+
+    public function unsubscribe_newsletter($email)
+
+    {
+        // echo 'email: ' . $email;die;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $out = 'correct';
+
+            $sData = DB::table('user_newsletter')
+                ->select(array(DB::raw('*')))
+                ->where('email', '=', $email)
+                ->get()
+                ->first();
+
+            if (!empty($sData) && isset($sData->id)) {
+                DB::table('user_newsletter')->where('email', $email)->delete();
+
+                $sDataUser = DB::table('users')
+                    ->select(array(DB::raw('*')))
+                    ->where('email', '=', $email)
+                    ->first();
+                if (isset($sDataUser->id)) {
+                    $sData2 = DB::table('subscriber_list_child')
+                        ->select(array(DB::raw('*')))
+                        ->where('user_id', '=', $sDataUser->id)
+                        ->get()
+                        ->first();
+
+                    if (!empty($sData2)) {
+                        DB::table('subscriber_list_child')->where('user_id', $sDataUser->id)->delete();
+                        $out = $email . ' deleted from our subscription list!';
+                    } else {
+                        $out = 'Mail id not found!';
+                    }
+                } else {
+                    DB::table('subscriber_list_child')->where('user_id', $sData->id)->delete();
+                    $out = $email . ' deleted from our subscription list!';
+                }
+
+
+                // $out = $email . ' deleted from our subscription list!';
+            } else {
+                $out = 'Mail id not found!!';
+            }
+        } else {
+            $out = 'Mail id error!';
+        }
+
+        echo $out;
     }
 }

@@ -87,6 +87,9 @@ Route::get('/contactus', function (){
 
 
 
+Route::get('newsletter/unsubscription/{email}', 'UserController@unsubscribe_newsletter');
+
+
 //new route for User
 
 Route::group(['middleware' => ['auth']], function(){
