@@ -45,23 +45,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-                    <form method="" id="">
+                    <form action="{{ secure_url('contact_submit') }}" method="post" id="">
+                        @csrf
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6">
-                                <input type="text" name="your-name" value="" size="40" class="form-control"
-                                    placeholder="Name">
+                                <input type="text" name="name" value="" size="40" class="form-control"
+                                    placeholder="Name" required>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
-                                <input type="email" name="your-email" value="" size="40" class="form-control"
-                                    placeholder="Email">
+                                <input type="email" name="email" value="" size="40" class="form-control"
+                                    placeholder="Email" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="text" name="your-subject" value="" size="40" class="form-control"
-                                    placeholder="Subject">
+                                <input type="text" name="subject" value="" size="40" class="form-control"
+                                    placeholder="Subject" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <textarea name="your-message" cols="40" rows="5"
-                                    class="form-control materialize-textarea" placeholder="Message"></textarea>
+                                <textarea name="message" cols="40" rows="5"
+                                    class="form-control materialize-textarea" placeholder="Message" required></textarea>
                             </div>
                             <div class="form-btn col-md-12 text-center">
                                 <input type="submit" value="Submit Your Query" class="btn btn-fill btn-big">

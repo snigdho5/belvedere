@@ -22,6 +22,8 @@ use DB;
 
 use Hash;
 
+use stdClass;
+
 use Illuminate\Support\Facades\Mail;
 
 use Rap2hpoutre\FastExcel\FastExcel;
@@ -1186,8 +1188,8 @@ class UserController extends Controller
                         $user->mailBody_final = $mailBody;
                     }
 
-                    // $user->mailBody_final .= '<p><span class="apple-link">Belvedere College Union,<br> 6 Great Denmark Street,<br> Dublin 1, Ireland.</span>
-                    // <br><br> Do not like these emails? <a href="' . secure_url('newsletter/unsubscription/' . $user->email) . '">Unsubscribe</a>.</p>';
+                    $user->mailBody_final .= '<p><span class="apple-link">Belvedere College Union,<br> 6 Great Denmark Street,<br> Dublin 1, Ireland.</span>
+                    <br><br> Do not like these emails? <a href="' . secure_url('newsletter/unsubscription/' . $user->email) . '">Unsubscribe</a>.</p>';
 
                     // echo $user->mailBody_final;die;
 
@@ -1806,5 +1808,28 @@ class UserController extends Controller
         }
 
         echo $out;
+    }
+    public function contact_submit(Request $request)
+
+    {
+        $user = new stdClass();
+        // $user->email = 'snigdho.lnsel@gmail.com';
+        $user->email = 'belvedereunion@belvederecollege.ie';
+        $user->mail_subject = 'Contact Us Mail';
+        $user->mailBody_final = '<p>Hi,</p>';
+        $user->mailBody_final .= '<p>You have got a new contact email.</p></br>';
+        $user->mailBody_final .= '<p>Name: ' . $request->name . '</p>';
+        $user->mailBody_final .= '<p>Email: ' . $request->email . '</p>';
+        $user->mailBody_final .= '<p>Subject: ' . $request->subject . '</p>';
+        $user->mailBody_final .= '<p>Message: ' . $request->message . '</p>';
+
+        Mail::send([], [], function ($message) use ($user) {
+            $message->to($user->email, 'Belvedere')
+                ->subject($user->mail_subject)
+                ->from('noreply@belvedereunion.com', 'Belvedere')
+                ->setBody($user->mailBody_final, 'text/html');
+        });
+
+        return back()->with('success', 'Mail sent successfully');
     }
 }

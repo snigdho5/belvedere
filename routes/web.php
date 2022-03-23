@@ -303,13 +303,16 @@ Route::get('/mail_test', function (Request $request){
 });
 
 
-Route::post('/contact', function (Request $request){
 
-    Mail::send(new ContactMail($request));
+// Route::post('/contact', function (Request $request){
+// print_r($request);die;
+//     Mail::send(new ContactMail($request));
 
-    return redirect('/');
+//     return redirect('/contactus');
 
-});
+// });
+
+Route::post('contact_submit', 'UserController@contact_submit');
 
 
 
