@@ -117,7 +117,7 @@
 
             <div class="tribe-events-event-image"><img src="{{ secure_url('imagess/' . $event->image) }}" alt=""></div>
 
-            <p>{{ $event->desc }}</p>
+            <p>{!! $event->desc !!}</p>
 
             <div class="reptro-all-courses-btn"> <a class="btn btn-lg btn-fill AddNew" href="javascript:void(0)">Book
                     Now</a></div>

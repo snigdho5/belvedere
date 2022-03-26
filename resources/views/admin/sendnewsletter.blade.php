@@ -209,7 +209,7 @@
                                         <label>e-Mail Body</label>
 
                                         {{-- <div class=""> --}}
-
+z
                                         <textarea class="form-control ckeditor" id="mailBody" name="mailBody"
                                             aria-label="With textarea" placeholder="Choose template.."
                                             style="resize: none;"></textarea>
@@ -260,7 +260,7 @@
 
     <script src="{{ secure_url('assets/js/pages/ckfinder/ckfinder.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ secure_url('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
 @stop
 
@@ -268,7 +268,7 @@
 
 @section('page-script')
 
-    <script src="{{ asset('assets/js/pages/forms/editors.js') }}"></script>
+    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
 
     <script type="text/javascript">
         //snigdho

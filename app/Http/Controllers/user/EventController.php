@@ -428,6 +428,7 @@ class EventController extends Controller
         //from date
         /*$todate             =   str_replace('/', '-', $data['todate']);
         $data['todate']     =   date('Y-m-d', strtotime($todate));*/
+        $data['desc']   = $request->desc;
         Event::create($data);
         return true;
     }
@@ -463,6 +464,7 @@ class EventController extends Controller
         /*echo '<pre>';
         print_r($data);
         die();*/
+        
         Event::where('id', $id)->update($data);
         return true;
     }

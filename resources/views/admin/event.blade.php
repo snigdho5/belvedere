@@ -96,9 +96,7 @@
                                 <ul>
 
                                     @foreach ($errors->all() as $error)
-
                                         <li>{{ $error }}</li>
-
                                     @endforeach
 
                                 </ul>
@@ -108,7 +106,6 @@
                         @endif
 
                         @if ($message = Session::get('success'))
-
                             <div class="alert alert-success alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -116,11 +113,9 @@
                                 <strong>{{ $message }}</strong>
 
                             </div>
-
                         @endif
 
                         @if ($message = Session::get('error'))
-
                             <div class="alert alert-danger alert-block">
 
                                 <button type="button" class="close" data-dismiss="alert">x</button>
@@ -128,7 +123,6 @@
                                 <strong>{{ $message }}</strong>
 
                             </div>
-
                         @endif
 
                     </div>
@@ -534,8 +528,11 @@
 
                                         <div class="input-group">
 
-                                            <textarea name="desc" id="ckeditor" class="desc form-control"
-                                                aria-label="With textarea" style="resize:none; height: 175px;"></textarea>
+                                            {{-- <textarea name="desc" id="ckeditor" class="desc form-control"
+                                                aria-label="With textarea" style="resize:none; height: 175px;"></textarea> --}}
+
+                                            <textarea class="form-control ckeditor" id="desc" name="desc" aria-label="With textarea" placeholder="Enter.."
+                                                style="resize: none;"></textarea>
 
                                         </div>
 
@@ -543,7 +540,7 @@
 
                                 </div>
 
-                                
+
 
                                 <div class="col-lg-12">
 
@@ -662,7 +659,6 @@
     {{-- <script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
 
     <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script> --}}
-
     <script src="{{ secure_url('assets/bundles/datatablescripts.bundle.js') }}"></script>
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
@@ -700,17 +696,24 @@
     <script src="{{ secure_url('assets/vendor/nouislider/nouislider.js') }}"></script>
 
 
-
-
-
-
-
     <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}">
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+    <script src="{{ secure_url('assets/js/pages/ckfinder/ckfinder.js') }}"></script>
+
+    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
+
+
     <script type="text/javascript">
+        //snigdho
+        var editor = CKEDITOR.replace('desc');
+        CKFinder.setupCKEditor(editor);
+
         $('.clockpicker').clockpicker();
 
 
@@ -886,17 +889,17 @@
 
             });
 
-            
+
             $(document).on("change", "#filter_type", function() {
                 var filter_type = $(this).val();
-                if(filter_type == 'status'){
+                if (filter_type == 'status') {
                     $('.search-box').hide();
                     $('.status-drop').show();
-                }else{
+                } else {
                     $('.status-drop').hide();
                     $('.search-box').show();
                 }
-                
+
             });
 
 
@@ -957,7 +960,9 @@
 
                         $('#cost').val(result.cost);
 
-                        $('#ckeditor').val(result.desc);
+                        // $('#ckeditor').val(result.desc);
+
+                        CKEDITOR.instances.desc.setData(result.desc);
 
                         $('#phone_no').val(result.phone_no);
 
@@ -967,10 +972,12 @@
 
                         $('#map').val(result.map);
 
-                        if(result.status == 1){
-                            var html_opt = '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
-                        }else{
-                            var html_opt = '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
+                        if (result.status == 1) {
+                            var html_opt =
+                                '<option value="1" selected>Active</option> <option value="0" >Inactive</option>';
+                        } else {
+                            var html_opt =
+                                '<option value="1">Active</option> <option value="0" selected>Inactive</option>';
                         }
 
                         $('#status').append(html_opt);
@@ -1002,6 +1009,15 @@
                     url = "{{ route('addevent') }}";
 
                 }
+
+
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+
+                var message = CKEDITOR.instances.desc.getData();
+                console.log(message);
+                $('#desc').val(message);
 
 
 
