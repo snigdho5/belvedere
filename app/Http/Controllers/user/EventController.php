@@ -13,6 +13,8 @@ use App\Sponsor;
 use Auth;
 use Image;
 use Rap2hpoutre\FastExcel\FastExcel;
+use stdClass;
+use Mail;
 
 class EventController extends Controller
 {
@@ -43,6 +45,29 @@ class EventController extends Controller
             $input['user_id'] = Auth::user()->id;
             EventCheckOut::create($input);
         }
+
+        $user = new stdClass();
+        // $user->email = 'snigdho.lnsel@gmail.com';
+        $user->email = $request->address;
+        $user->cc = 'belvedereunion@belvederecollege.ie';
+
+        $user->mail_subject = 'Event Booking';
+        $user->mailBody_final = '<p>Hi ' . $request->name . ',</p>';
+        $user->mailBody_final .= '<p>Congratulations! Event booked. Here is your new event booking details:</p></br>';
+
+        $user->mailBody_final .= '<p>Name: ' . $request->name . '</p>';
+        $user->mailBody_final .= '<p>Email: ' . $request->address . '</p>';
+        $user->mailBody_final .= '<p>Year: ' . $request->year . '</p>';
+        $user->mailBody_final .= '<p>Phone: ' . $request->phone_no . '</p>';
+        $user->mailBody_final .= '<p>Amount: ' . $request->eventfee . '</p>';
+
+        Mail::send([], [], function ($message) use ($user) {
+            $message->to($user->email, 'Belvedere')
+                ->cc($user->cc, 'Belvedere')
+                ->subject($user->mail_subject)
+                ->from('noreply@belvedereunion.com', 'Belvedere')
+                ->setBody($user->mailBody_final, 'text/html');
+        });
     }
 
     public function create()
@@ -464,7 +489,7 @@ class EventController extends Controller
         /*echo '<pre>';
         print_r($data);
         die();*/
-        
+
         Event::where('id', $id)->update($data);
         return true;
     }
@@ -491,7 +516,7 @@ class EventController extends Controller
                     'event_check_outs.phone_no as bookingPhone',
                     'event_check_outs.year as year',
                     'events.title as title',
-                    DB::raw('DATE_FORMAT(events.created_at,"%d-%m-%Y %h:%i:%s") as date') 
+                    DB::raw('DATE_FORMAT(events.created_at,"%d-%m-%Y %h:%i:%s") as date')
                 )->get();
 
             return DataTables::of($data)
@@ -509,19 +534,19 @@ class EventController extends Controller
         return view('admin.eventenrolledmember');
     }
 
-    
+
     public function event_search(Request $request)
     {
 
         $search_keyword     =   $request->get('query');
 
         $data = Event::where("status", "=", "1")
-        ->where('title','LIKE','%'.$search_keyword.'%')
-        ->paginate(10);
+            ->where('title', 'LIKE', '%' . $search_keyword . '%')
+            ->paginate(10);
 
         $oursponser = Sponsor::get();
 
-        return view('user.pages.event',compact('data','oursponser'));
+        return view('user.pages.event', compact('data', 'oursponser'));
     }
 
 
@@ -532,9 +557,9 @@ class EventController extends Controller
         $today = date('Y-m-d');
 
         $data = Event::where("status", "=", "0")
-        ->orWhere("fromdate", "<", "'" . $today . "'")
-        ->get();
-        
+            ->orWhere("fromdate", "<", "'" . $today . "'")
+            ->get();
+
         $oursponser = Sponsor::get();
         return view('user.pages.archivedevents', compact('data', 'oursponser'));
     }
@@ -548,19 +573,19 @@ class EventController extends Controller
     }
 
 
-    
+
     public function archived_event_search(Request $request)
     {
 
         $search_keyword     =   $request->get('query');
 
         $data = Event::where("status", "=", "0")
-        ->where('title','LIKE','%'.$search_keyword.'%')
-        ->paginate(10);
+            ->where('title', 'LIKE', '%' . $search_keyword . '%')
+            ->paginate(10);
 
         $oursponser = Sponsor::get();
 
-        return view('user.pages.archivedevents',compact('data','oursponser'));
+        return view('user.pages.archivedevents', compact('data', 'oursponser'));
     }
 
     public function autocomplete(Request $request)
@@ -569,20 +594,18 @@ class EventController extends Controller
         $status     =   $request->post('status');
 
         $eData = Event::where("status", "=", $status)
-        ->where('title','LIKE','%'.$search_keyword.'%')
-        ->paginate(10);
+            ->where('title', 'LIKE', '%' . $search_keyword . '%')
+            ->paginate(10);
 
         $outputData     =   '<ul id="suggestions" class="dropdown-menu" style="display:block; position:relative;">';
         $sg  =   1;
 
         foreach ($eData as $data) {
-            $outputData     .=  '<li class="sugg">'.$data->title.'</li>';
+            $outputData     .=  '<li class="sugg">' . $data->title . '</li>';
             $sg++;
         }
 
         $outputData     .=  '</ul>';
         echo $outputData;
     }
-
-
 }

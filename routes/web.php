@@ -69,7 +69,7 @@ Route::get('/', function(){
 
 
 
-Route::get('/contactus', function (){ 
+Route::get('/contactus', function () {
 
     $cmsData        =   CmsContent::first();
 
@@ -81,8 +81,7 @@ Route::get('/contactus', function (){
 
     $oursponser     =   Sponsor::get();
 
-    return view('user.pages.contact',compact('cmsData','eventData','ourClubData','blogData','oursponser'));
-
+    return view('user.pages.contact', compact('cmsData', 'eventData', 'ourClubData', 'blogData', 'oursponser'));
 })->name('contactus');
 
 

@@ -245,7 +245,7 @@
 
     <!-- Modal with btn -->
 
-    <div class="modal fade bd-example-modal-lg" id="MyModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade bd-example-modal-lg" id="MyModel" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
 
         <div class="modal-dialog modal-lg">
@@ -531,6 +531,7 @@
                                             {{-- <textarea name="desc" id="ckeditor" class="desc form-control"
                                                 aria-label="With textarea" style="resize:none; height: 175px;"></textarea> --}}
 
+
                                             <textarea class="form-control ckeditor" id="desc" name="desc" aria-label="With textarea" placeholder="Enter.."
                                                 style="resize: none;"></textarea>
 
@@ -611,8 +612,7 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css') }}">
 
-    <link rel="stylesheet"
-        href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}"> --}}
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}">
 
@@ -620,7 +620,7 @@
 
     <link rel="stylesheet" href="{{ secure_url('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css') }}">
 
-    <link rel="stylesheet" href="{{ secure_url('assets/vendor/nouislider/nouislider.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ secure_url('assets/vendor/nouislider/nouislider.min.css') }}"> --}}
 
 
 
@@ -654,11 +654,6 @@
 
 @section('vendor-script')
 
-
-
-    {{-- <script src="{{ secure_url('assets/vendor/ckeditor/ckeditor.js') }}"></script>
-
-    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script> --}}
     <script src="{{ secure_url('assets/bundles/datatablescripts.bundle.js') }}"></script>
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
@@ -671,9 +666,8 @@
 
     <script src="{{ secure_url('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
 
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src="{{ secure_url('assets/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
 
@@ -685,7 +679,7 @@
 
     <script src="{{ secure_url('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js') }}"></script>
 
-    <!-- <script src="{{ secure_url('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script> -->
+    {{-- <script src="{{ secure_url('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"
         integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ=="
@@ -693,21 +687,30 @@
 
     <script src="{{ secure_url('assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
 
-    <script src="{{ secure_url('assets/vendor/nouislider/nouislider.js') }}"></script>
-
+    {{-- <script src="{{ secure_url('assets/vendor/nouislider/nouislider.js') }}"></script> --}}
 
     <script type="text/javascript" src="{{ secure_url('clockpicker-gh-pages/dist/bootstrap-clockpicker.min.js') }}">
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 
+    <script src="{{ secure_url('assets/js/pages/tables/jquery-datatable.js') }}"></script>
+
+    {{-- <script src="{{ secure_url('assets/js/pages/forms/advanced-form-elements.js') }}"></script> --}}
 
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
     <script src="{{ secure_url('assets/js/pages/ckfinder/ckfinder.js') }}"></script>
 
-    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
+    <script src="{{ secure_url('assets/vendor/sweetalert/sweetalert.min.js') }}"></script>
 
+@stop
+
+
+
+@section('page-script')
+
+    <script src="{{ secure_url('assets/js/pages/forms/editors.js') }}"></script>
 
     <script type="text/javascript">
         //snigdho
@@ -751,18 +754,6 @@
 
         });
     </script>
-
-
-
-@stop
-
-
-
-@section('page-script')
-
-    <script src="{{ secure_url('assets/js/pages/tables/jquery-datatable.js') }}"></script>
-
-    <script src="{{ secure_url('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 
     <script>
         $(function() {

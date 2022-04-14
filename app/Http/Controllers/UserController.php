@@ -1812,6 +1812,33 @@ class UserController extends Controller
     public function contact_submit(Request $request)
 
     {
+        $keySecret = '6Leqxq8ZAAAAAHJungp8-ea8l-58bd2k8fra8g_U';
+
+        $check = array(
+            'secret'        =>    $keySecret,
+            'response'        =>    $request->g_recaptcha_response
+        );
+
+        $startProcess = curl_init();
+
+        curl_setopt($startProcess, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+
+        curl_setopt($startProcess, CURLOPT_POST, true);
+
+        curl_setopt($startProcess, CURLOPT_POSTFIELDS, http_build_query($check));
+
+        curl_setopt($startProcess, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_setopt($startProcess, CURLOPT_RETURNTRANSFER, true);
+
+        $receiveData = curl_exec($startProcess);
+
+        $finalResponse = json_decode($receiveData, true);
+
+        if (!$finalResponse['success']) {
+            return back()->with('success', 'Captcha Mismatch!');
+        }
+
         $user = new stdClass();
         // $user->email = 'snigdho.lnsel@gmail.com';
         $user->email = 'belvedereunion@belvederecollege.ie';

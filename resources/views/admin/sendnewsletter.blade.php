@@ -209,7 +209,7 @@
                                         <label>e-Mail Body</label>
 
                                         {{-- <div class=""> --}}
-z
+
                                         <textarea class="form-control ckeditor" id="mailBody" name="mailBody"
                                             aria-label="With textarea" placeholder="Choose template.."
                                             style="resize: none;"></textarea>
@@ -247,7 +247,7 @@ z
 
 @section('page-styles')
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/sweetalert/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ secure_url('assets/vendor/sweetalert/sweetalert.css') }}">
 
 @stop
 

@@ -64,6 +64,11 @@
                                 <textarea name="message" cols="40" rows="5" class="form-control materialize-textarea" placeholder="Message"
                                     required></textarea>
                             </div>
+                            <div class="form-btn col-md-12">
+                                <div class="g_recaptcha" id="g_recaptcha"></div>
+                                <input type="hidden" name="g_recaptcha_response" id="g_recaptcha_response" value="" >
+                            </div>
+                            
                             <div class="form-btn col-md-12 text-center">
                                 <input type="submit" value="Submit Your Query" class="btn btn-fill btn-big">
                             </div>
@@ -241,6 +246,7 @@
 
                 });
             </script>
+
         </div>
     </section>
 
@@ -248,19 +254,34 @@
     @include('user.include.footer')
     <script>
         /*$('.count').each(function () {
-                                                $(this).prop('Counter',0).animate({
-                                                    Counter: $(this).text()
-                                                }, {
-                                                duration: 10000,
-                                                easing: 'swing',
-                                                step: function (now) {
-                                                    $(this).text(Math.ceil(now));
-                                                }
-                                                });
-                                            });*/
+                                                                $(this).prop('Counter',0).animate({
+                                                                    Counter: $(this).text()
+                                                                }, {
+                                                                duration: 10000,
+                                                                easing: 'swing',
+                                                                step: function (now) {
+                                                                    $(this).text(Math.ceil(now));
+                                                                }
+                                                                });
+                                                            });*/
     </script>
-    <style>
-    </style>
+
+    <script type="text/javascript">
+        var callback;
+        var onloadCallback = function() {
+            grecaptcha.render('g_recaptcha', {
+                'sitekey': '6Leqxq8ZAAAAALTvA0t1jmAC3iG55LooV-s647Vi',
+                callback: function(resp) {
+                    // console.log(resp);
+                    $('#g_recaptcha_response').val(resp);
+                }
+            });
+        };
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+
 </body>
 
 </html>
